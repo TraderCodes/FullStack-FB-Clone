@@ -2,7 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const { readdirSync } = require('fs'); //read files in the folder
- 
+const dotenv = require('dotenv');
+dotenv.config();
+
 // filter the website that can connect to
 const options = {
   origin: 'http://localhost:3000',
@@ -10,23 +12,16 @@ const options = {
 };
 app.use(cors(options));
 
+// app.use('/', useRoutes) ✔ instead of using this we use below ;
+// require('./routes/'+r) is everyfile name we set to
+readdirSync('./routes').map((r) => app.use('/', require('./routes/' + r)));
 
-// app.use('/', useRoutes) ✔ instead of using this we use below ; 
-// require('./routes/'+r) is everyfile name we set to 
-readdirSync('./routes').map((r) => app.use('/',require('./routes/'+r)) )
-
-
-app.listen(8000, () => {
-  console.log('server is listening...');
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`server is running on port ${PORT}`);
 });
 
-// add nodemon npm i nodemon
-// add cors , npm i cors
+// ADD nodemon npm i nodemon
+// ADD cors , npm i cors
+// ADD .ENV , npm i dotenv
 // then import cors
-
-// app.get('/', (req, res) => {
-//   res.send('welcome from home');
-// });
-// app.get('/books', (req, res) => {
-//   res.send('book');
-// });

@@ -10,17 +10,19 @@ dotenv.config();
 
 app.use(cors());
 
-app.use(express.json());// set up json 
+app.use(express.json()); // set up json
 
 // app.use('/', useRoutes) ✔ instead of using this we use below ;
 // require('./routes/'+r) is everyfile name we set to
 readdirSync('./routes').map((r) => app.use('/', require('./routes/' + r)));
 
 // DATA BASE
-mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-}).then(() => console.log('database connected successfully'))
-.catch((err) => console.log('error connecting to mongodb database',err))
+mongoose
+  .connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+  })
+  .then(() => console.log('database connected successfully'))
+  .catch((err) => console.log('error connecting to mongodb database', err));
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
@@ -31,5 +33,7 @@ app.listen(PORT, () => {
 // ADD .ENV , npm i dotenv
 // then import cors
 // connect to mongodatabase install mongodb and mongoose
-// set up json 
+// set up json
 // set up user regitser
+//work on user validation 
+//  npm i bcrypt for password 

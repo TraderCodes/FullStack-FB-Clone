@@ -1,7 +1,7 @@
-const { ObjectId } = require('mongodb');
+
 const mongoose = require('mongoose');
 
-const { object } = mongoose.Schema;
+const { ObjectId } = mongoose.Schema;
 const userSchema = new mongoose.Schema({
   first_name: {
     type: String,
@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
     trim: true,
   },
   // BIRTH YEAR
-  BYear: {
+  bYear: {
     type: Number,
     required: true,
     trim: true,

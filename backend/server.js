@@ -7,11 +7,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // filter the website that can connect to
-const options = {
-  origin: 'http://localhost:3000',
-  useSuccessStatus: 200,
-};
-app.use(cors(options));
+
+app.use(cors());
 
 app.use(express.json());// set up json 
 
@@ -34,3 +31,4 @@ app.listen(PORT, () => {
 // then import cors
 // connect to mongodatabase install mongodb and mongoose
 // set up json 
+// set up user regitser

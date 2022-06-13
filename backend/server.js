@@ -16,6 +16,7 @@ app.use(express.json());// set up json
 // require('./routes/'+r) is everyfile name we set to
 readdirSync('./routes').map((r) => app.use('/', require('./routes/' + r)));
 
+// DATA BASE
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
 }).then(() => console.log('database connected successfully'))

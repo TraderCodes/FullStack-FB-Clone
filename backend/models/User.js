@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 
 const { object } = mongoose.Schema;
@@ -125,4 +126,20 @@ const userSchema = new mongoose.Schema({
       type: String,
     },
   },
+  // For user saved post
+  savedPost:[
+    {post:{
+      type: ObjectId,
+      ref:'Post'
+    },
+    savedAt:{
+      type:Date,
+      default:new Date()
+    },
+
+  },
+  ]
+},{
+  timestamps:true
 });
+module.exports = mongoose.model('User',userSchema)

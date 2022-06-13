@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const { readdirSync } = require('fs'); //read files in the folder
@@ -16,6 +17,10 @@ app.use(cors(options));
 // require('./routes/'+r) is everyfile name we set to
 readdirSync('./routes').map((r) => app.use('/', require('./routes/' + r)));
 
+mongoose.connect(process.env.DATABASE_URL, {
+  useNewUrlParser: true,
+}).then(() => console.log('database connected successfully'))
+.catch((err) => console.log('error connecting to mongodb database',err))
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);

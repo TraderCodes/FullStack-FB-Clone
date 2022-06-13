@@ -18,6 +18,7 @@ exports.validateUsername = async (username) => {
     let check = await User.findOne({ username });
     if (check) {
       // everytime we look through and check if the username exists we just add a number at the end
+      username += (+new Date()*Math.random()).toString().substring(0,1)
   
       a = true;
     } else {

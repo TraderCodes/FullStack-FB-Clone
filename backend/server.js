@@ -37,4 +37,5 @@ app.listen(PORT, () => {
 // set up user regitser
 //work on user validation 
 //  npm i bcrypt for password 
-// adding reccursive validation for username and
+// adding reccursive validation for username 
+// adding jaon web token npm i jsonwebtoken

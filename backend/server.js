@@ -25,3 +25,4 @@ app.listen(PORT, () => {
 // ADD cors , npm i cors
 // ADD .ENV , npm i dotenv
 // then import cors
+// connect to mongodatabase install mongodb and mongoose

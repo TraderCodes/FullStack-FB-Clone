@@ -13,6 +13,8 @@ const options = {
 };
 app.use(cors(options));
 
+app.use(express.json());// set up json 
+
 // app.use('/', useRoutes) ✔ instead of using this we use below ;
 // require('./routes/'+r) is everyfile name we set to
 readdirSync('./routes').map((r) => app.use('/', require('./routes/' + r)));
@@ -31,3 +33,4 @@ app.listen(PORT, () => {
 // ADD .ENV , npm i dotenv
 // then import cors
 // connect to mongodatabase install mongodb and mongoose
+// set up json 

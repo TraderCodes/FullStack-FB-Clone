@@ -6,8 +6,10 @@ const {
 } = require('../helpers/validation');
 const { generateToken } = require('../helpers/token');
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { sendVerificationEmail } = require('../helpers/mailer');
+// 🔴Register add to routes
 exports.register = async (req, res) => {
   try {
     const {
@@ -72,22 +74,36 @@ exports.register = async (req, res) => {
     // pass in name,email and url to verification
     sendVerificationEmail(user.email, user.first_name, url);
     // ger
-    const token = generateToken({id:user._id.toString()},'7d')
-    // send user items to the front end 
+    const token = generateToken({ id: user._id.toString() }, '7d');
+    // send user items to the front end
     res.send({
-      id:user._id,
-      username:user.username,
-      picture :user.picture,
-      first_name : user.first_name,
-      last_name : user.last_name,
-      token:token,
-      verified:user.verified
-      ,message:'Register Successfully'
-    })
-
+      id: user._id,
+      username: user.username,
+      picture: user.picture,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      token: token,
+      verified: user.verified,
+      message: 'Register Successfully',
+    });
 
     // save and response with the new user
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+// 🔴Activate add to routes
+exports.activateAccount = async (req, res) => {
+  const { token } = req.body;
+  // reverse the token to id data
+  const user = jwt.verify(token, process.env.TOKEN_SECRET);
+  // console.log(user); // return user id from the
+  const check = await User.findById(user.id);
+  if (check.verified == true) {
+    return res.status(400).json({ message: 'This user is already activated' });
+  } else {
+    await User.findByIdAndUpdate(user.id, { verified: true });
+    return res.status(200).json({ message: 'Successfully activated' });
+  }
+};
+ 

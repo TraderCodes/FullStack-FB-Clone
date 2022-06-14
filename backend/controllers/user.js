@@ -94,16 +94,56 @@ exports.register = async (req, res) => {
 };
 // 🔴Activate add to routes
 exports.activateAccount = async (req, res) => {
-  const { token } = req.body;
-  // reverse the token to id data
-  const user = jwt.verify(token, process.env.TOKEN_SECRET);
-  // console.log(user); // return user id from the
-  const check = await User.findById(user.id);
-  if (check.verified == true) {
-    return res.status(400).json({ message: 'This user is already activated' });
-  } else {
-    await User.findByIdAndUpdate(user.id, { verified: true });
-    return res.status(200).json({ message: 'Successfully activated' });
+  try {
+    const { token } = req.body;
+    // reverse the token to id data
+    const user = jwt.verify(token, process.env.TOKEN_SECRET);
+    // console.log(user); // return user id from the
+    const check = await User.findById(user.id);
+
+    // This triggers the User model verification to true or face and do something base on if the token exist or not
+
+    if (check.verified == true) {
+      return res
+        .status(400)
+        .json({ message: 'This user is already activated' });
+    } else {
+      await User.findByIdAndUpdate(user.id, { verified: true });
+      return res.status(200).json({ message: 'Successfully activated' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
- 
+exports.login = async (req, res) => {
+  try {
+    // first check if user email is in the User model then check the password by decrypting the password
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'the user does not exist' });
+    }
+    // decrypting hash compare password which user request to
+    // user which is the one that contain the email entered
+    const checkPassword = await bcrypt.compare(password, user.password);
+    if(!checkPassword) {
+      return res.status(404).json({ message: 'Wrong password,Try again' });
+
+    }
+    // when login is success🔴
+      const token = generateToken({ id: user._id.toString() }, '7d');
+      // send user items to the front end
+      res.send({
+        id: user._id,
+        username: user.username,
+        picture: user.picture,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        token: token,
+        verified: user.verified,
+        message: 'Register Successfully',
+      });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

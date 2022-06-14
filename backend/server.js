@@ -39,3 +39,4 @@ app.listen(PORT, () => {
 //  npm i bcrypt for password 
 // adding reccursive validation for username 
 // adding jaon web token npm i jsonwebtoken
+// install google api i googleapis nodemailer

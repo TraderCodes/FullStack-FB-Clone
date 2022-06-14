@@ -40,3 +40,4 @@ app.listen(PORT, () => {
 // adding reccursive validation for username 
 // adding jaon web token npm i jsonwebtoken
 // install google api i googleapis nodemailer
+// compress html for mail 

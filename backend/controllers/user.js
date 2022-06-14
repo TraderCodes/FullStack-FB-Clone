@@ -4,9 +4,10 @@ const {
   validateLength,
   validateUsername,
 } = require('../helpers/validation');
-const {generateToken} = require('../helpers/token');
+const { generateToken } = require('../helpers/token');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const { sendVerificationEmail } = require('../helpers/mailer');
 exports.register = async (req, res) => {
   try {
     const {
@@ -63,12 +64,14 @@ exports.register = async (req, res) => {
       bDay,
       gender,
     }).save();
-   const emailVerificationToken = generateToken(
-     { id: user._id.toString() },
-     '30m'
-   );
-   console.log(emailVerificationToken);
-
+    const emailVerificationToken = generateToken(
+      { id: user._id.toString() },
+      '30m'
+    );
+    const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
+    // pass in name,email and url to verification
+    sendVerificationEmail(user.email, user.first_name, url);
+    console.log(emailVerificationToken);
 
     // save and response with the new user
   } catch (error) {

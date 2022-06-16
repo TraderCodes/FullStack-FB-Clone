@@ -18,7 +18,7 @@
 .login_2 {
   text-align: center;
 }
-/* box format */
+/* BOX format */
 .login_2_wrap {
   display: flex;
   flex-direction: column;
@@ -34,8 +34,37 @@
   margin: 1rem auto;
 }
 /* Buttons inside box*/
-.login_2_wrap button{
+.login_2_wrap button {
   width: 100%;
   height: 50px;
   font-size: 17px;
+}
+/* Forgot password */
+.forgot_password {
+  color: var(--blue-color);
+  cursor: pointer;
+  font-size: 14px;
+}
+.forgot_password:hover {
+  text-decoration: underline;
+}
+/* line divider */
+.sign_splitter {
+  width: 100%;
+  height: 1px;
+  background: var(--bg-third); 
+}
+/* green button */
+.open_signup {
+  background-color: var(--green-color); 
+  font-size: 20px!important;
+  width: 80% !important;
+  margin-top: 1rem;
+}
+.sign_extra {
+  font-size:15px
+}
+#demo{
+  font-size: 20px !important;
+  color: rgba(72, 3, 3, 0.691);
 }

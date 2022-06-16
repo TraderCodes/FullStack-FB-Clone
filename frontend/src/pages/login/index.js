@@ -25,9 +25,10 @@ export default function Login() {
                   </Form>
                 )}
               </Formik>
-              <Link to="/forgot">Forgot password ?</Link>
+              <Link to="/forgot" className='forgot_password'>Forgot password ?</Link>
               {/* splitter */}
               <div className="sign_splitter"></div>
+              <button className="blue_btn open_signup" id='demo'>Demo Login</button>
               <button className="blue_btn open_signup">Create Account</button>
             </div>
             {/* Create a page text */}

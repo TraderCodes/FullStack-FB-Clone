@@ -74,7 +74,7 @@ export default function Login() {
                 Demo Login
               </button>
               <button className="blue_btn open_signup">
-                Create NewAccount
+                Create New Account
               </button>
             </div>
             {/* Create a page text */}

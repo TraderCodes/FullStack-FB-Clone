@@ -1,18 +1,29 @@
 import './style.css';
 import { ErrorMessage, useField } from 'formik';
+import { useMediaQuery } from 'react-responsive';
 // (bottom) only added to Password
 export default function LoginInput({ placeholder, bottom, ...props }) {
   // make sure is []
   const [field, meta] = useField(props);
+  const desktopView = useMediaQuery({
+    query: '(min-width:850px)',
+  });
   return (
     <div className="input_wrap">
       {/* error box  */}
       {meta.touched && meta.error && !bottom && (
-        <div className="input_error" style={{ transform: 'translateY(-6px)' }}>
+        <div
+          className={
+            desktopView ? 'input_error input_error_desktop' : 'input_error'
+          }
+          style={{ transform: 'translateY(-6px)' }}
+        >
           {/* change message from yup input  in index.js */}
           {meta.touched && meta.error && <ErrorMessage name={field.name} />}
           {meta.touched && meta.error && (
-            <div className="error_arrow_top"></div>
+            <div
+              className={desktopView ? 'error_arrow_left' : 'error_arrow_top'}
+            ></div>
           )}
         </div>
       )}
@@ -27,16 +38,27 @@ export default function LoginInput({ placeholder, bottom, ...props }) {
         {...props}
       />
       {meta.touched && meta.error && bottom && (
-        <div className="input_error">
+        <div
+          className={
+            desktopView ? 'input_error input_error_desktop' : 'input_error'
+          }
+        >
           {/* change message from yup input  in index.js */}
           {meta.touched && meta.error && <ErrorMessage name={field.name} />}
           {meta.touched && meta.error && (
-            <div className="error_arrow_bottom"></div>
+            <div
+              className={
+                desktopView ? 'error_arrow_left' : 'error_arrow_bottom'
+              }
+            ></div>
           )}
         </div>
       )}
       {meta.touched && meta.error && (
-        <i className="info_icon" style={{ top: `${!bottom && '62%'}` }}></i>
+        <i
+          className="info_icon"
+          style={{ top: `${!bottom && !desktopView ?'62%':"18px"}` }}
+        ></i>
       )}
     </div>
   );

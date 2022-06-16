@@ -15,3 +15,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+// install react dom 
+// npm i reducx react - redux

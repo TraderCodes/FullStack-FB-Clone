@@ -21,3 +21,5 @@ export default App;
 
 // install react dom 
 // npm i reducx react - redux
+// add login css
+// add formik and yup validation

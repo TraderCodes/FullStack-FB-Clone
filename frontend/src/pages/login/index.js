@@ -4,8 +4,9 @@ import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import LoginInput from '../../components/inputs/logininput';
 import { useState } from 'react';
+import * as Yup from 'yup';
 const loginInfo = {
-  email: 'd',
+  email: '',
   password: '',
 };
 export default function Login() {
@@ -15,8 +16,12 @@ export default function Login() {
   console.log(login);
   const handleLoginChange = (e) => {
     const { name, value } = e.target;
-    setLogin({...login , [name]:value})
+    setLogin({ ...login, [name]: value });
   };
+  const loginValidation = Yup.object({
+    email: Yup.string().required('Email Address Needed'),
+    password: Yup.string().required('Enter Password'),
+  });
   return (
     <div className="login">
       <div className="login_wrapper">
@@ -33,10 +38,11 @@ export default function Login() {
               <Formik
                 enableReinitialize
                 initialValues={{
-                  
                   email,
-                  password
+                  password,
                 }}
+                // ADD Yup 🔴 return yup  #21
+                validationSchema={loginValidation}
               >
                 {(Formik) => (
                   <Form>

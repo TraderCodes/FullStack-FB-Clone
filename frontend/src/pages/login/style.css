@@ -1,0 +1,41 @@
+.login_wrapper {
+  background: var(--bg-secondary);
+}
+.login_wrap {
+  height: 70vh;
+  /* for dark mode */
+  color: var(--color-primary);
+}
+/* logo */
+.login_1 {
+  width: 300px;
+  margin: 0 auto;
+}
+.login_1 span {
+  font-size: 20px;
+}
+/*input box area */
+.login_2 {
+  text-align: center;
+}
+/* box format */
+.login_2_wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background: var(--bg-primary);
+  box-shadow: 0 1px 2px var(--shadow-1); /* shadow */
+  padding: 1rem; /* space inside */
+  padding-bottom: 2rem;
+  height: fit-content;
+  width: 350px;
+  border-radius: 10px;
+  margin: 1rem auto;
+}
+/* Buttons inside box*/
+.login_2_wrap button{
+  width: 100%;
+  height: 50px;
+  font-size: 17px;
+}

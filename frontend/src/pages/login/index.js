@@ -1,4 +1,5 @@
 // install formail and yup
+import './style.css';
 import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 export default function Login() {
@@ -18,17 +19,19 @@ export default function Login() {
                   <Form>
                     <input type="text" />
                     <input type="text" />
-                    <button type="submit">Log In</button>
+                    <button type="submit" className="blue_btn">
+                      Log In
+                    </button>
                   </Form>
                 )}
               </Formik>
-              <Link to="/forgot">Forgot password</Link>
+              <Link to="/forgot">Forgot password ?</Link>
               {/* splitter */}
               <div className="sign_splitter"></div>
               <button className="blue_btn open_signup">Create Account</button>
             </div>
             {/* Create a page text */}
-            <Link to="/">
+            <Link to="/" className="sign_extra">
               <b>Create a page</b> for a celebrity,brand or business
             </Link>
           </div>

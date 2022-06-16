@@ -1,0 +1,20 @@
+.input_wrap {
+  position: relative;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Input textarea */
+.input_wrap input {
+  outline: none;
+  border: 1px solid var(--bg-third);
+  background: var(--bg-primary);
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  color:var(--color-primary);
+  padding-left: 10px;
+  font-size: 17px;
+}

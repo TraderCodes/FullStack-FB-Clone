@@ -29,8 +29,8 @@ export default function Login() {
           {/* //login 1 = LOGO🟢  // loging 2 = signup 🟢*/}
           <div className="login_1">
             <img src="../../icons/facebook.svg" alt="" />
-            <span>
-              Facebook Clone Created by Jamal Many hours of dedication
+            <span >
+              Facebook Clone Created by <b>TraderCodes</b><br/> 
             </span>
           </div>
           <div className="login_2">
@@ -57,6 +57,7 @@ export default function Login() {
                       name="password"
                       placeholder="Password"
                       onChange={handleLoginChange}
+                      bottom
                     />
                     <button type="submit" className="blue_btn">
                       Log In
@@ -78,7 +79,7 @@ export default function Login() {
             </div>
             {/* Create a page text */}
             <Link to="/" className="sign_extra">
-              <b>Create a page</b> for a celebrity,brand or business
+              <b>Create a Page</b> for a celebrity, brand or business
             </Link>
           </div>
         </div>

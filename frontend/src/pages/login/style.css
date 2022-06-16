@@ -2,7 +2,7 @@
   background: var(--bg-secondary);
 }
 .login_wrap {
-  height: 70vh;
+  height: 100vh;
   /* for dark mode */
   color: var(--color-primary);
 }
@@ -10,13 +10,16 @@
 .login_1 {
   width: 300px;
   margin: 0 auto;
+  text-align: center;
 }
 .login_1 span {
   font-size: 20px;
+  
 }
 /*input box area */
 .login_2 {
   text-align: center;
+  
 }
 /* BOX format */
 .login_2_wrap {

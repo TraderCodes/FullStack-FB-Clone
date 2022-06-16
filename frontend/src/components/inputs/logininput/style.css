@@ -20,10 +20,16 @@
 }
 /* style for input error */
 .input_error_border {
-  border: 2px solid red !important ;
+  border: 2px solid #b94a48 !important ;
 }
 .input_wrap i {
   position: absolute;
   right: 7px;
   top: 40px;
+}
+.input_error {
+  position: relative;
+  padding: 15px 10px;
+  background: #b94a48;
+  width: 100%;
 }

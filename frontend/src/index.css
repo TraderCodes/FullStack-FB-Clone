@@ -51,6 +51,10 @@ a {
   justify-content: center;
   gap: 6px;
   cursor: pointer;
+  transition: 0.5s;
+}
+.blue_btn:hover {
+  filter: brightness(90%);
 }
 
 /* Button */

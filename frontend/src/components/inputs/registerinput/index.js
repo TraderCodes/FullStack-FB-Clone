@@ -9,24 +9,8 @@ export default function RegisterInput({ placeholder, bottom, ...props }) {
     query: '(min-width:850px)',
   });
   return (
-    <div className="input_wrap">
-      {/* error box  */}
-      {meta.touched && meta.error && !bottom && (
-        <div
-          className={
-            desktopView ? 'input_error input_error_desktop' : 'input_error'
-          }
-          style={{ transform: 'translateY(-6px)' }}
-        >
-          {/* change message from yup input  in index.js */}
-          {meta.touched && meta.error && <ErrorMessage name={field.name} />}
-          {meta.touched && meta.error && (
-            <div
-              className={desktopView ? 'error_arrow_left' : 'error_arrow_top'}
-            ></div>
-          )}
-        </div>
-      )}
+    <div className="input_wrap register_input_wrap" >
+
       {/* pass in placeholder from login/index.js */}
       <input
         // 🔴 Change input border style
@@ -37,7 +21,7 @@ export default function RegisterInput({ placeholder, bottom, ...props }) {
         {...field}
         {...props}
       />
-      {meta.touched && meta.error && bottom && (
+      {meta.touched && meta.error && (
         <div
           className={
             desktopView ? 'input_error input_error_desktop' : 'input_error'
@@ -57,7 +41,6 @@ export default function RegisterInput({ placeholder, bottom, ...props }) {
       {meta.touched && meta.error && (
         <i
           className="info_icon"
-          style={{ top: `${!bottom && !desktopView ?'62%':"18px"}` }}
         ></i>
       )}
     </div>

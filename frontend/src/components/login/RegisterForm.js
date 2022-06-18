@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
 import RegisterInput from '../inputs/registerinput';
-import * as Yup from 'yup'
+import * as Yup from 'yup';
 const userInfos = {
   first_name: '',
   last_name: '',
@@ -36,9 +36,23 @@ export default function RegisterForm() {
     return new Date(bYear, bMonth, 0).getDate();
   };
   const days = Array.from(new Array(getDays()), (val, index) => 1 + index);
-const registerValidation = Yup.object({
-  first_name: Yup.string().required('')
-})
+  const registerValidation = Yup.object({
+    first_name: Yup.string()
+      .required('Whats your first name ?')
+      .min(2, 'Need 2 to 16 characters'),
+    // .matches(/^[aA-zZ]+$/,'Only English letters are allowed')
+    last_name: Yup.string()
+      .required('Whats your Last name ?')
+      .min(2, 'Need 2 to 16 characters'),
+    // .matches(/^[aA-zZ]+$/,'Only English letters are allowed')
+    email: Yup.string()
+      .required('Email please')
+      .email('Enter a valid email address'),
+    password: Yup.string()
+
+      .required('Password please')
+      .min(6, 'Password must be 6 characters long'),
+  });
   // console.log(user)
   return (
     <div className="blur">
@@ -49,7 +63,7 @@ const registerValidation = Yup.object({
           <span>it's quick and easy</span>
         </div>
         <Formik
-        enableReinitialize
+          enableReinitialize
           initialValues={{
             first_name,
             last_name,
@@ -59,8 +73,8 @@ const registerValidation = Yup.object({
             bMonth,
             bDay,
             gender,
-           }}
-           validationSchema = {registerValidation}
+          }}
+          validationSchema={registerValidation}
         >
           {(formik) => (
             <Form className="register_form">

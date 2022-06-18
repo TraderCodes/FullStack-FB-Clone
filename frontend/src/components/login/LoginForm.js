@@ -1,5 +1,4 @@
 // install formail and yup
-import './style.css';
 import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import LoginInput from '../../components/inputs/logininput';

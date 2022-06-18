@@ -59,6 +59,36 @@ export default function RegisterForm() {
                   type="password"
                 />
               </div>
+              {/* Date and birth */}
+              <div className="reg_col">
+                <div className="reg_line_header">
+                  Date of birth <i className="info_icon"></i>
+                </div>
+                <div className="reg_grid">
+                  <select name="bDay" id="">
+                    <option value="">15</option>
+                  </select>
+                  <select name="bMonth" id="">
+                    <option value="">15</option>
+                  </select>
+                  <select name="bYear" id="">
+                    <option value="">15</option>
+                  </select>
+                </div>
+              </div>
+              <div className="reg_col">
+                <div className="reg_line_header">
+                  Gender <i className="info_icon"></i>
+                </div>
+                <div className='reg_grid'>
+                  <label htmlFor="male">
+                    Male
+                    <input type="radio" name="gender" id="male" value='male' onChange={handleRegisterChange}/>
+                  </label>
+                </div>
+
+
+              </div>
             </Form>
           )}
         </Formik>

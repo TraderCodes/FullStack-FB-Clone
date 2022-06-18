@@ -8,6 +8,7 @@ const loginInfo = {
   email: '',
   password: '',
 };
+
 export default function LoginForm() {
   // pass the value into state with enabbleinitilize value from formik
   const [login, setLogin] = useState(loginInfo);

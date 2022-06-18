@@ -6,17 +6,31 @@ const userInfos = {
   last_name: '',
   email: '',
   password: '',
-  bYear: '',
-  bMonth: '',
-  bDay: '',
+  bYear: new Date().getFullYear(),
+  bMonth: new Date().getMonth() + 1,
+  bDay: new Date().getDate(),
   gender: '',
 };
 export default function RegisterForm() {
   const [user, setUser] = useState(userInfos);
+  const {
+    first_name,
+    last_name,
+    email,
+    password,
+    bYear,
+    bMonth,
+    bDay,
+    gender,
+  } = user;
   const handleRegisterChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
+  // Generate Years in array
+
+  const years = Array.from(new Array(108), (val, index) => bYear - index);
+  console.log(user);
   return (
     <div className="blur">
       <div className="register">
@@ -71,8 +85,12 @@ export default function RegisterForm() {
                   <select name="bMonth" id="">
                     <option value="">15</option>
                   </select>
-                  <select name="bYear" id="">
-                    <option value="">15</option>
+                  <select name="bYear" value={bYear}>
+                    {years.map((year, i) => (
+                      <option value={year} key={i}>
+                        {year}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -115,13 +133,13 @@ export default function RegisterForm() {
               </div>
               <div className="reg_infos">
                 By clicking Sign Up, you agree to our{' '}
-                <span> Terms, Data Policy &nbsp;</span>and 
+                <span> Terms, Data Policy &nbsp;</span>and
                 <span> Cookies Policy.</span>
                 You may receive SMS Notifications from us and can opt out any
                 time.
               </div>
               <div className="reg_btn_wrapper">
-                <button className='blue_btn open_signup'>Sign up</button>
+                <button className="blue_btn open_signup">Sign up</button>
               </div>
             </Form>
           )}

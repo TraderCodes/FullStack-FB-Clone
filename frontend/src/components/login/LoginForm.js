@@ -4,12 +4,20 @@ import { Link } from 'react-router-dom';
 import LoginInput from '../../components/inputs/logininput';
 import { useState } from 'react';
 import * as Yup from 'yup';
+import PuffLoader from 'react-spinners/PuffLoader';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+
 const loginInfo = {
   email: '',
   password: '',
 };
 
 export default function LoginForm({ setVisible }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   // pass the value into state with enabbleinitilize value from formik
   const [login, setLogin] = useState(loginInfo);
   const { email, password } = login;
@@ -22,6 +30,25 @@ export default function LoginForm({ setVisible }) {
     email: Yup.string().required('Email Address Needed'),
     password: Yup.string().required('Enter Password'),
   });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const loginSubmit = async () => {
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
+        { email, password }
+      );
+
+      dispatch({ type: 'LOGIN', payload: data });
+      Cookies.set('user', JSON.stringify(data));
+      navigate('/');
+    } catch (error) {
+      setLoading(false);
+      setError(error.response.data.message);
+    }
+  };
+
   return (
     <div className="login_wrap">
       {/* //login 1 = LOGO🟢  // loging 2 = signup 🟢*/}
@@ -42,6 +69,9 @@ export default function LoginForm({ setVisible }) {
             }}
             // ADD Yup 🔴 return yup  #21
             validationSchema={loginValidation}
+            onSubmit={() => {
+              loginSubmit();
+            }}
           >
             {(Formik) => (
               <Form>
@@ -67,6 +97,7 @@ export default function LoginForm({ setVisible }) {
           <Link to="/forgot" className="forgot_password">
             Forgot password ?
           </Link>
+          {error && <div className="error_text">{error}</div>}
           {/* splitter */}
           <div className="sign_splitter"></div>
           <button className="blue_btn open_signup" id="demo">

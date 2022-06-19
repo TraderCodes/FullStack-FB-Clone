@@ -9,7 +9,7 @@ const loginInfo = {
   password: '',
 };
 
-export default function LoginForm() {
+export default function LoginForm({ setVisible }) {
   // pass the value into state with enabbleinitilize value from formik
   const [login, setLogin] = useState(loginInfo);
   const { email, password } = login;
@@ -72,7 +72,12 @@ export default function LoginForm() {
           <button className="blue_btn open_signup" id="demo">
             Demo Login
           </button>
-          <button className="blue_btn open_signup">Create New Account</button>
+          <button
+            onClick={() => setVisible(true)}
+            className="blue_btn open_signup"
+          >
+            Create New Account
+          </button>
         </div>
         {/* Create a page text */}
         <Link to="/" className="sign_extra">

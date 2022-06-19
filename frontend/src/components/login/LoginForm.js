@@ -39,10 +39,12 @@ export default function LoginForm({ setVisible }) {
         `${process.env.REACT_APP_BACKEND_URL}/login`,
         { email, password }
       );
-
-      dispatch({ type: 'LOGIN', payload: data });
-      Cookies.set('user', JSON.stringify(data));
-      navigate('/');
+setLoading(true);
+     setTimeout(() => {
+       dispatch({ type: 'LOGIN', payload: data });
+       Cookies.set('user', JSON.stringify(DataTransferItemList));
+       navigate('/');
+     }, 1000);
     } catch (error) {
       setLoading(false);
       setError(error.response.data.message);
@@ -97,6 +99,8 @@ export default function LoginForm({ setVisible }) {
           <Link to="/forgot" className="forgot_password">
             Forgot password ?
           </Link>
+          <PuffLoader color="#1876f2" loading={loading} size={39} />
+
           {error && <div className="error_text">{error}</div>}
           {/* splitter */}
           <div className="sign_splitter"></div>

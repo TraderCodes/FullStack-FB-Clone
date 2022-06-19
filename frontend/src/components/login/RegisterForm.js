@@ -3,6 +3,7 @@ import { useState } from 'react';
 import RegisterInput from '../inputs/registerinput';
 import * as Yup from 'yup';
 import DateOfBirthSelect from './DateOfBirthSelect';
+import GenderSelect from './GenderSelect';
 const userInfos = {
   first_name: '',
   last_name: '',
@@ -57,6 +58,9 @@ export default function RegisterForm() {
   // console.log(user)
   const [dateError, setDateError] = useState();
   const [genderError, setGenderError] = useState('');
+  const [error, setError] = useState('You have an error');
+  const [success, setSuccess] = useState('success');
+  const [loading, setLoading] = useState(false);
   return (
     <div className="blur">
       <div className="register">
@@ -86,10 +90,10 @@ export default function RegisterForm() {
             // set min age
             let atleast14 = new Date(1970 + 14, 0, 1);
             if (current_date - picked_date < atleast14) {
-              setDateError('Needs to be more than 14 years old');
+              setDateError('Must be 14');
             } else if (gender === '') {
               setDateError('');
-              setGenderError('Please select a valid gender');
+              setGenderError('age');
             } else {
               setDateError('');
               setGenderError('');
@@ -149,41 +153,16 @@ export default function RegisterForm() {
                 <div className="reg_line_header">
                   Gender <i className="info_icon"></i>
                 </div>
-                <div className="reg_grid">
-                  <label htmlFor="male">
-                    Male
-                    <input
-                      type="radio"
-                      name="gender"
-                      id="male"
-                      value="male"
-                      onChange={handleRegisterChange}
-                    />
-                  </label>
-                  <label htmlFor="female">
-                    Female
-                    <input
-                      type="radio"
-                      name="gender"
-                      id="female"
-                      value="female"
-                      onChange={handleRegisterChange}
-                    />
-                  </label>
-                  <label htmlFor="I decide">
-                    I Decide
-                    <input
-                      type="radio"
-                      name="gender"
-                      id="custom"
-                      value="custom"
-                      onChange={handleRegisterChange}
-                    />
-                  </label>
-                  {genderError && (
-                    <div className="input_error">{genderError}</div>
-                  )}
-                </div>
+                <GenderSelect
+                  bDay={bDay}
+                  bMonth={bMonth}
+                  bYear={bYear}
+                  years={years}
+                  months={months}
+                  days={days}
+                  genderError={genderError}
+                  handleRegisterChange={handleRegisterChange}
+                />
               </div>
               <div className="reg_infos">
                 By clicking Sign Up, you agree to our{' '}
@@ -195,10 +174,13 @@ export default function RegisterForm() {
               <div className="reg_btn_wrapper">
                 <button className="blue_btn open_signup">Sign up</button>
               </div>
+              {error && <div className="error_text">{error}</div>}
+              {success && <div className="success_text">{success}</div>}
             </Form>
           )}
         </Formik>
       </div>
+
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { useMediaQuery } from "react-responsive";
 
 
 export default function DateOfBirthSelect({
@@ -9,9 +10,21 @@ export default function DateOfBirthSelect({
   months,
   handleRegisterChange,
   dateError
-}) {
+})
+
+{
+   const view1 = useMediaQuery({
+     query: '(min-width:550px)',
+   });
+   const view2 = useMediaQuery({
+     query: '(min-width:650px)',
+   });
+   const view3 = useMediaQuery({
+     query: '(min-width:1179px)',
+   });
+
   return (
-    <div className="reg_grid">
+    <div className="reg_grid" style={{marginBottom:`${dateError && !view3 && "45px"}`}}>
       <select name="bDay" value={bDay} onChange={handleRegisterChange}>
         {days.map((day, i) => (
           <option value={day} key={i}>
@@ -33,7 +46,9 @@ export default function DateOfBirthSelect({
           </option>
         ))}
       </select>
-      {dateError && <div className='error_input'>{dateError}</div>}
+      {dateError &&( <div className="input_error">
+        <div className='error_arrow_bottom'> </div>
+        {dateError}</div>)}
     </div>
   );
 }

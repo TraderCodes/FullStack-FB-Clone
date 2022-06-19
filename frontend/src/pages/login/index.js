@@ -10,8 +10,8 @@ export default function Login() {
       <div className="login_wrapper">
         <LoginForm />
         <RegisterForm/>
-        <Footer />
       </div>
+        <Footer />
     </div>
   );
 }

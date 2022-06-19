@@ -82,7 +82,6 @@
 
 /* --------------Register----------------- */
 
-
 /* 🔴 blur is in the main index.css */
 .register {
   position: absolute;
@@ -192,9 +191,10 @@
   justify-content: center;
   margin: 20px 0 10px 0;
 }
-.blue_btn{
-  padding: 8px ;
+.blue_btn {
+  padding: 8px;
 }
+
 /* --------------Register----------------- */
 /* --------------Footer----------------- */
 .log .login_footer {
@@ -239,20 +239,33 @@
   margin: 10px auto;
   max-width: 900px;
 }
+
 /* --------------Footer----------------- */
+
+/* full register error */
+.error_text {
+  color: #b94a48;
+}
+.success_text {
+  color: var(--green-color);
+}
+.reg_grid .input_error {
+  width: 250px;
+  position: absolute;
+  top: 70px;
+}
 
 /* Media */
 @media (min-width: 550px) {
   .login_footer_wrap {
     max-width: 590px;
-
   }
-  .register{
-    width:400px;
-
+  .register {
+    width: 400px;
   }
 
-  .reg_grid select,.reg_grid label {
+  .reg_grid select,
+  .reg_grid label {
     width: 100px;
   }
 }
@@ -264,10 +277,9 @@
 @media (min-width: 750px) {
   .login_footer_wrap {
     max-width: 750px;
-
   }
-  .register{
-        background: rgba(255, 255, 255, 0.696);
+  .register {
+    background: rgba(255, 255, 255, 0.696);
   }
 }
 @media (min-width: 750px) {

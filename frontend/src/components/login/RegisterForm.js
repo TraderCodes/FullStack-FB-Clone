@@ -54,6 +54,8 @@ export default function RegisterForm() {
       .min(6, 'Password must be 6 characters long'),
   });
   // console.log(user)
+  const [dateError, setDateError] = useState('');
+  const [genderError, setGenderError] = useState('');
   return (
     <div className="blur">
       <div className="register">
@@ -62,6 +64,8 @@ export default function RegisterForm() {
           <span>Sign up</span>
           <span>it's quick and easy</span>
         </div>
+
+        {/*  🔴 Formik */}
         <Formik
           enableReinitialize
           initialValues={{
@@ -75,6 +79,17 @@ export default function RegisterForm() {
             gender,
           }}
           validationSchema={registerValidation}
+          onSubmit={() => {
+            let current_date = new Date();
+            let picked_date = new Date(bYear, bMonth - 1, bDay);
+            // set min age
+            let atleast14 = new Date(1970 + 14, 0, 1);
+            if (current_date - picked_date < atleast14) {
+              setDateError('Needs to be more than 14 years old');
+            } else if (gender === '') {
+              setGenderError('Please select a valid gender');
+            }
+          }}
         >
           {(formik) => (
             <Form className="register_form">
@@ -148,6 +163,7 @@ export default function RegisterForm() {
                       </option>
                     ))}
                   </select>
+                  {dateError && <div className="input_error">{dateError}</div>}
                 </div>
               </div>
               <div className="reg_col">
@@ -185,6 +201,9 @@ export default function RegisterForm() {
                       onChange={handleRegisterChange}
                     />
                   </label>
+                  {genderError && (
+                    <div className="input_error">{genderError}</div>
+                  )}
                 </div>
               </div>
               <div className="reg_infos">

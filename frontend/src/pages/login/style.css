@@ -248,7 +248,8 @@
 
   }
   .register{
-    width:400px
+    width:400px;
+
   }
 
   .reg_grid select,.reg_grid label {
@@ -263,9 +264,13 @@
 @media (min-width: 750px) {
   .login_footer_wrap {
     max-width: 750px;
+
+  }
+  .register{
+        background: rgba(255, 255, 255, 0.696);
   }
 }
-@media (min-width: 850px) {
+@media (min-width: 750px) {
   .login_wrap {
     display: flex;
     margin: 0 auto;

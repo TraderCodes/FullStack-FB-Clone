@@ -142,6 +142,7 @@ export default function RegisterForm() {
                   months={months}
                   days={days}
                   dateError={dateError}
+                  handleRegisterChange={handleRegisterChange}
                 />
               </div>
               <div className="reg_col">

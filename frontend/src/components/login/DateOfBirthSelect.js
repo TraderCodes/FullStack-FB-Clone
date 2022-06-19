@@ -33,7 +33,7 @@ export default function DateOfBirthSelect({
           </option>
         ))}
       </select>
-      {dateError && <div className="input_error">{dateError}</div>}
+      {dateError && <div className='error_input'>{dateError}</div>}
     </div>
   );
 }

@@ -6,18 +6,26 @@ import DateOfBirthSelect from './DateOfBirthSelect';
 import GenderSelect from './GenderSelect';
 import PuffLoader from 'react-spinners/PuffLoader';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
-const userInfos = {
-  first_name: '',
-  last_name: '',
-  email: '',
-  password: '',
-  bYear: new Date().getFullYear(),
-  bMonth: new Date().getMonth() + 1,
-  bDay: new Date().getDate(),
-  gender: '',
-};
+
 export default function RegisterForm() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+
+  const userInfos = {
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    bYear: new Date().getFullYear(),
+    bMonth: new Date().getMonth() + 1,
+    bDay: new Date().getDate(),
+    gender: '',
+  };
+
   const [user, setUser] = useState(userInfos);
   const {
     first_name,
@@ -82,14 +90,21 @@ export default function RegisterForm() {
           gender,
         }
       );
-      setError('')
-      setSuccess(data.message)
+      setLoading(true)
+      setError('');
+      setSuccess(data.message);
+      const { message, ...rest } = data;
+   //-------------------TIMER  
+      setTimeout(() => {
+        dispatch({ type: 'LOGIN', payload: rest });
+        Cookies.set('user', JSON.stringify(rest));
+        navigate("/")
+      }, 4000);
     } catch (error) {
       setLoading(false);
       setSuccess('');
       setError(error.response.data.message);
       //  get error response from backend
-
     }
   };
   return (
@@ -130,7 +145,6 @@ export default function RegisterForm() {
               setGenderError('');
               registerSubmit();
             }
-            
           }}
         >
           {(formik) => (
@@ -205,7 +219,9 @@ export default function RegisterForm() {
                 time.
               </div>
               <div className="reg_btn_wrapper">
-                <button type='submit'className="blue_btn open_signup">Sign up</button>
+                <button type="submit" className="blue_btn open_signup">
+                  Sign up
+                </button>
               </div>
 
               <PuffLoader color="#1876f2" loading={loading} size={39} />

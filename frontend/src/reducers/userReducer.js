@@ -1,4 +1,7 @@
-export function userReducer(state = null, action) {
+export function userReducer(
+  state = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
+  action
+) {
   switch (action.type) {
     // send a payload after the user has authenticated
     case 'LOGIN':

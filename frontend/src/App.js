@@ -24,3 +24,6 @@ export default App;
 // add login css
 // add formik and yup validation
 // npm i react=responsive
+// npm i js-cookie
+// npm i axios
+// npm i react-spinners 

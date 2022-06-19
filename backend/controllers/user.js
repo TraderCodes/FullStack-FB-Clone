@@ -84,7 +84,7 @@ exports.register = async (req, res) => {
       last_name: user.last_name,
       token: token,
       verified: user.verified,
-      message: 'Register Successfully',
+      message: 'Activate Email to start , Register Successfully',
     });
 
     // save and response with the new user

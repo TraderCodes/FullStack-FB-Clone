@@ -4,6 +4,8 @@ import RegisterInput from '../inputs/registerinput';
 import * as Yup from 'yup';
 import DateOfBirthSelect from './DateOfBirthSelect';
 import GenderSelect from './GenderSelect';
+import PuffLoader from 'react-spinners/PuffLoader';
+
 const userInfos = {
   first_name: '',
   last_name: '',
@@ -60,7 +62,15 @@ export default function RegisterForm() {
   const [genderError, setGenderError] = useState('');
   const [error, setError] = useState('You have an error');
   const [success, setSuccess] = useState('success');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const reigsterSubmit = async () => {
+    try {
+      
+    } catch (error) {
+      
+    }
+  
+  }
   return (
     <div className="blur">
       <div className="register">
@@ -174,13 +184,14 @@ export default function RegisterForm() {
               <div className="reg_btn_wrapper">
                 <button className="blue_btn open_signup">Sign up</button>
               </div>
+   
+              <PuffLoader color="#1876f2" loading={loading} size={39} />
               {error && <div className="error_text">{error}</div>}
               {success && <div className="success_text">{success}</div>}
             </Form>
           )}
         </Formik>
       </div>
-
     </div>
   );
 }

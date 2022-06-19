@@ -126,23 +126,22 @@ exports.login = async (req, res) => {
     // decrypting hash compare password which user request to
     // user which is the one that contain the email entered
     const checkPassword = await bcrypt.compare(password, user.password);
-    if(!checkPassword) {
+    if (!checkPassword) {
       return res.status(404).json({ message: 'Wrong password,Try again' });
-
     }
     // when login is success🔴
-      const token = generateToken({ id: user._id.toString() }, '7d');
-      // send user items to the front end
-      res.send({
-        id: user._id,
-        username: user.username,
-        picture: user.picture,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        token: token,
-        verified: user.verified,
-        message: 'Register Successfully',
-      });
+    const token = generateToken({ id: user._id.toString() }, '7d');
+    // send user items to the front end
+    res.send({
+      id: user._id,
+      username: user.username,
+      picture: user.picture,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      token: token,
+      verified: user.verified,
+      message: 'Register Successfully',
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

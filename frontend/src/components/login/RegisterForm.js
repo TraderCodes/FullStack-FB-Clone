@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import DateOfBirthSelect from './DateOfBirthSelect';
 import GenderSelect from './GenderSelect';
 import PuffLoader from 'react-spinners/PuffLoader';
+import axios from 'axios';
 
 const userInfos = {
   first_name: '',
@@ -58,19 +59,39 @@ export default function RegisterForm() {
       .min(6, 'Password must be 6 characters long'),
   });
   // console.log(user)
+
+  //---------------------🔴Use states------------------------------
   const [dateError, setDateError] = useState();
   const [genderError, setGenderError] = useState('');
-  const [error, setError] = useState('You have an error');
-  const [success, setSuccess] = useState('success');
-  const [loading, setLoading] = useState(true);
-  const reigsterSubmit = async () => {
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
+  // fetch data using Axios and destructure data
+  const registerSubmit = async () => {
     try {
-      
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/register`,
+        {
+          first_name,
+          last_name,
+          email,
+          password,
+          bYear,
+          bMonth,
+          bDay,
+          gender,
+        }
+      );
+      setError('')
+      setSuccess(data.message)
     } catch (error) {
-      
+      setLoading(false);
+      setSuccess('');
+      setError(error.response.data.message);
+      //  get error response from backend
+
     }
-  
-  }
+  };
   return (
     <div className="blur">
       <div className="register">
@@ -107,7 +128,9 @@ export default function RegisterForm() {
             } else {
               setDateError('');
               setGenderError('');
+              registerSubmit();
             }
+            
           }}
         >
           {(formik) => (
@@ -182,9 +205,9 @@ export default function RegisterForm() {
                 time.
               </div>
               <div className="reg_btn_wrapper">
-                <button className="blue_btn open_signup">Sign up</button>
+                <button type='submit'className="blue_btn open_signup">Sign up</button>
               </div>
-   
+
               <PuffLoader color="#1876f2" loading={loading} size={39} />
               {error && <div className="error_text">{error}</div>}
               {success && <div className="success_text">{success}</div>}

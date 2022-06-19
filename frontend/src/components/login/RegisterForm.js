@@ -2,6 +2,7 @@ import { Form, Formik } from 'formik';
 import { useState } from 'react';
 import RegisterInput from '../inputs/registerinput';
 import * as Yup from 'yup';
+import DateOfBirthSelect from './DateOfBirthSelect';
 const userInfos = {
   first_name: '',
   last_name: '',
@@ -54,7 +55,7 @@ export default function RegisterForm() {
       .min(6, 'Password must be 6 characters long'),
   });
   // console.log(user)
-  const [dateError, setDateError] = useState('');
+  const [dateError, setDateError] = useState();
   const [genderError, setGenderError] = useState('');
   return (
     <div className="blur">
@@ -87,7 +88,11 @@ export default function RegisterForm() {
             if (current_date - picked_date < atleast14) {
               setDateError('Needs to be more than 14 years old');
             } else if (gender === '') {
+              setDateError('');
               setGenderError('Please select a valid gender');
+            } else {
+              setDateError('');
+              setGenderError('');
             }
           }}
         >
@@ -129,42 +134,15 @@ export default function RegisterForm() {
                 <div className="reg_line_header">
                   Date of birth <i className="info_icon"></i>
                 </div>
-                <div className="reg_grid">
-                  <select
-                    name="bDay"
-                    value={bDay}
-                    onChange={handleRegisterChange}
-                  >
-                    {days.map((day, i) => (
-                      <option value={day} key={i}>
-                        {day}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    name="bMonth"
-                    value={bMonth}
-                    onChange={handleRegisterChange}
-                  >
-                    {months.map((month, i) => (
-                      <option value={month} key={i}>
-                        {month}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    name="bYear"
-                    value={bYear}
-                    onChange={handleRegisterChange}
-                  >
-                    {years.map((year, i) => (
-                      <option value={year} key={i}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
-                  {dateError && <div className="input_error">{dateError}</div>}
-                </div>
+                <DateOfBirthSelect
+                  bDay={bDay}
+                  bMonth={bMonth}
+                  bYear={bYear}
+                  years={years}
+                  months={months}
+                  days={days}
+                  dateError={dateError}
+                />
               </div>
               <div className="reg_col">
                 <div className="reg_line_header">

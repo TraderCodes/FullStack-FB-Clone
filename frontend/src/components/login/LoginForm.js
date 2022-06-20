@@ -39,12 +39,14 @@ export default function LoginForm({ setVisible }) {
         `${process.env.REACT_APP_BACKEND_URL}/login`,
         { email, password }
       );
-setLoading(true);
-     setTimeout(() => {
-       dispatch({ type: 'LOGIN', payload: data });
-       Cookies.set('user', JSON.stringify(DataTransferItemList));
-       navigate('/');
-     }, 1000);
+
+      setLoading(true);
+      setError('');
+      setTimeout(() => {
+        dispatch({ type: 'LOGIN', payload: data });
+        Cookies.set('user', JSON.stringify(data));
+        navigate('/');
+      }, 2000);
     } catch (error) {
       setLoading(false);
       setError(error.response.data.message);

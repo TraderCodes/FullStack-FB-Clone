@@ -1,0 +1,50 @@
+header {
+  position: fixed;
+  top: 0;
+  height: 56px;
+  z-index: 99;
+  background: var(--bg-primary);
+  width: 100%;
+  box-shadow: 1px 8px 14px -7px var(--shadow-2);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  color: var(--color-primary);
+}
+.header_left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+}
+/* Logo */
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-forth);
+  padding: 10px 32px 10px 10px;
+  cursor: text;
+  border-radius: 50px;
+}
+/* Text area */
+.search input {
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  font-family: inherit;
+}
+/* Target placeholder */
+.search input::placeholder {
+  transform: translate(4px);
+}

@@ -110,7 +110,7 @@ header {
   display: flex;
   align-items: center;
   /* position: absolute; */
-  gap: 5px;
+  gap: 7px;
   cursor: pointer;
   padding: 3px 10px 3px 6px;
   border-radius: 50px;
@@ -134,7 +134,7 @@ header {
   align-items: center;
   justify-content: center;
   background: var(--bg-third);
-  margin-right: 8px;
+  margin-right: 13px;
   border-radius: 12px;
   cursor: pointer;
 }

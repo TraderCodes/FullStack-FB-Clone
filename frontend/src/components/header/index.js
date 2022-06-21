@@ -16,6 +16,7 @@ import {
 } from '../../svg';
 import { useSelector } from 'react-redux';
 import SearchMenu from './searchMenu';
+import AllMenu from './AllMenu';
 // Add profile picture from data
 export { useSelector } from 'react-redux';
 
@@ -54,7 +55,7 @@ export default function Header() {
           color={color}
         >
           <Watch />
-          <div className="middle-notification">9+</div>
+          <div className="middle-notification">9+</div> 
         </Link>
         <Link to="/" className="middle_icon hover1" color={color}>
           <Market />
@@ -71,6 +72,7 @@ export default function Header() {
         </Link>
         <div className="circle_icon hover1">
           <Menu />
+        <AllMenu/>
         </div>
         <div className="circle_icon hover1">
           <Messenger />

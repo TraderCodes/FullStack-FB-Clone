@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 import {
@@ -15,13 +15,14 @@ import {
   Watch,
 } from '../../svg';
 import { useSelector } from 'react-redux';
+import SearchMenu from './searchMenu';
 // Add profile picture from data
 export { useSelector } from 'react-redux';
 
 export default function Header() {
   const { user } = useSelector((user) => ({ ...user }));
   const color = '#65676b';
-
+  const [showSearchMenu, setShowSearchMenu] = useState(false);
   return (
     <header>
       {/* LOGO SECTION */}
@@ -31,11 +32,14 @@ export default function Header() {
             <Logo />
           </div>
         </Link>
-        <div className="search search1">
+        <div className="search search1" onClick={() => setShowSearchMenu(true)}>
           <Search color={color} />
           <input type="text" className="hide_input" placeholder="Search" />
         </div>
       </div>
+      {showSearchMenu && (
+        <SearchMenu color={color} setShowSearchMenu={setShowSearchMenu} />
+      )}
       {/* MIDDLE MENU */}
       <div className="header_middle">
         <Link to="/" className="middle_icon hover1 active" color={color}>
@@ -69,7 +73,7 @@ export default function Header() {
           <Menu />
         </div>
         <div className="circle_icon hover1">
-          <Messenger /> 
+          <Messenger />
         </div>
         <div className="circle_icon hover1">
           <Notifications />

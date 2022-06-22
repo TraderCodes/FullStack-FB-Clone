@@ -18,7 +18,7 @@ import {
 import { useSelector } from 'react-redux';
 import SearchMenu from './searchMenu';
 import AllMenu from './AllMenu';
-import UserMenu from './UserMenu';
+import UserMenu from './userMenu/index.js';
 // Add profile picture from data
 export { useSelector } from 'react-redux';
 

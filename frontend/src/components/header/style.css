@@ -212,7 +212,7 @@ header {
 .all_menu {
   position: absolute;
   right: -9rem;
-  top: 45px;
+  top: 55px;
   background: var(--bg-secondary);
   border-radius: 10px;
   height: 90vh;
@@ -343,11 +343,12 @@ header {
   padding: 0 0.3rem;
   position: absolute;
   top: 100%;
+
   right: 0;
   width: 360px;
   border-radius: 10px;
   background: var(--bg-primary);
-  box-shadow: 2px 2px 2px var(--shadow-1);
+  box-shadow:-1px 1px 1px 2px var(--shadow-1);
   user-select: none;
   padding: 10px;
 }
@@ -414,7 +415,7 @@ header {
 .rArrow {
   position: absolute;
   right: 10px;
-  top:30%
+  top: 30%;
 }
 .absolute_wrap {
   padding: 0 0.3rem;
@@ -457,9 +458,16 @@ header {
   height: 20px;
 }
 /*-------User menu----*/
-.logout{
+.logout {
   color: rgb(247, 78, 78);
   font-weight: 700;
+}
+
+.active_header {
+  background-color: var(--light-blue-color);
+}
+.active_header svg{
+  fill: var(--blue-color);
 }
 @media (max-width: 1295px) {
   .middle_icon {
@@ -468,7 +476,7 @@ header {
 }
 @media (max-width: 1130px) {
   .middle_icon {
-    width: 70px ;
+    width: 70px;
   }
 }
 @media (max-width: 1040px) {
@@ -560,4 +568,3 @@ header {
     left: -12.5rem;
   }
 }
-

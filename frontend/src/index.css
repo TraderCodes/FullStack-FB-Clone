@@ -91,10 +91,12 @@ a {
 
 /* SCROLL BAR ///////////////// */
 .scrollbar ::-webkit-scrollbar {
-  width: 8px;
+  width: 11px;
+  height: 11px;
+  
 }
 .scrollbar::-webkit-scrollbar-thumb {
-  background-color: #aeaeafa1;
+  background-color: #2b2b7daa;
   border-radius: 5px;
 }
 .small_circle{

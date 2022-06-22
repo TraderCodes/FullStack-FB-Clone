@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import './style.css'
 export default function UserMenu({ user }) {
   return (
     <div className="mmenu">
@@ -11,7 +11,7 @@ export default function UserMenu({ user }) {
             {user?.first_name}
             {user?.last_name}
           </span>
-          <span>see your profile</span>
+          <span>Click to see your profile</span>
         </div>
       </Link>
       {/* split */}

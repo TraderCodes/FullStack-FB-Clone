@@ -201,14 +201,13 @@ header {
   color: var(--blue-color);
 }
 
-.search_history_header span{
+.search_history_header span {
   font-weight: 500;
   font-size: 15px;
 }
 .header_left .circle {
   transform: translateY(3px);
 }
-
 
 .all_menu {
   position: absolute;
@@ -339,3 +338,44 @@ header {
   background: var(--bg-third);
 }
 /*---Search All Menu-----*/
+/* profile menu */
+.mmenu {
+  padding: 0 0.3rem;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 360px;
+  border-radius: 10px;
+  background: var(--bg-primary);
+  box-shadow: 2px 2px 2px var(--shadow-1);
+  user-select:none;
+  padding:10px
+}
+.mmenu_header{
+  display: flex;
+  align-items: center;
+  padding:5px;
+  border-radius:10px;
+  gap:5px;
+}
+.mmenu_header img{
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.mmenu_col{
+  display: flex;
+   justify-content: center;
+   flex-direction: column;
+}
+/* profile name  */
+.mmenu_col span:first-of-type{
+  color: var(--color-primary);
+  font-weight: 600 !important;
+  font-size:15px;
+  letter-spacing: 1px;
+}
+.mmenu_col span:last-of-type{
+  font-size: 14px;
+}

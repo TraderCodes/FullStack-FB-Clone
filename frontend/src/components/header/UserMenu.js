@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import './style.css'
+import './style.css';
 export default function UserMenu({ user }) {
   return (
     <div className="mmenu">
-      UserMenu
       <Link to="profile" className="mmenu_header hover3">
         <img src={user?.picture} alt="k" />
         <div className="mmenu_col">
@@ -32,6 +31,33 @@ export default function UserMenu({ user }) {
           <i className="settings_filled_icon"></i>
         </div>
         <span>Setting & privacy</span>
+        <div className="rArrow">
+          <i className="right_icon"></i>
+        </div>
+      </div>
+      <div className="mmenu_item hover3">
+        <div className="small_circle">
+          <i className="help_filled_icon"></i>
+        </div>
+        <span>Support & Help</span>
+        <div className="rArrow">
+          <i className="right_icon"></i>
+        </div>
+      </div>
+      <div className="mmenu_item hover3">
+        <div className="small_circle">
+          <i className="dark_filled_icon"></i>
+        </div>
+        <span>Accessibility & Display </span>
+        <div className="rArrow">
+          <i className="right_icon"></i>
+        </div>
+      </div>
+      <div className="mmenu_item hover3">
+        <div className="small_circle">
+          <i className="logout_filled_icon"></i>
+        </div>
+        <span> Log Out</span>
         <div className="rArrow">
           <i className="right_icon"></i>
         </div>

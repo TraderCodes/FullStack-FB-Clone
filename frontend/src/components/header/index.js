@@ -18,6 +18,7 @@ import {
 import { useSelector } from 'react-redux';
 import SearchMenu from './searchMenu';
 import AllMenu from './AllMenu';
+import UserMenu from './UserMenu';
 // Add profile picture from data
 export { useSelector } from 'react-redux';
 
@@ -98,6 +99,7 @@ export default function Header() {
         </div>
         <div className="circle_icon hover1">
           <ArrowDown />
+          <UserMenu user={user} />
         </div>
       </div>
     </header>

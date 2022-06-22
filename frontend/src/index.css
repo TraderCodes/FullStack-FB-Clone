@@ -75,6 +75,9 @@ a {
 .hover2:hover {
   background: var(--bg-third);
 }
+.hover3:hover {
+  background: #d4d6da4a;
+}
 .card {
   height: 500px;
   width: 500px;
@@ -88,4 +91,16 @@ a {
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: #aeaeafa1;
   border-radius: 5px;
+}
+.small_circle{
+  position: relative;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  background-color: var(--bg-third);
+  cursor: pointer;
 }

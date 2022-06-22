@@ -22,14 +22,19 @@ import UserMenu from './userMenu/index.js';
 // Add profile picture from data
 export { useSelector } from 'react-redux';
 
-export default function Header() {
+export default function Header({}) {
   const { user } = useSelector((user) => ({ ...user }));
   const color = '#65676b';
   const [showSearchMenu, setShowSearchMenu] = useState(false);
   const [showAllMenu, setShowAllMenu] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
   const allmenu = useRef(null);
   useClickOutside(allmenu, () => {
     setShowAllMenu(false);
+  });
+  const usermenu = useRef(null);
+  useClickOutside(usermenu, () => {
+    setShowProfileMenu(false);
   });
   return (
     <header>
@@ -78,14 +83,14 @@ export default function Header() {
           <img src={user?.picture} alt="" />
           <span>{user?.first_name}</span>
         </Link>
-        <div
-          className="circle_icon hover1"
-          onClick={() => {
-            setShowAllMenu((prev) => !prev);
-          }}
-          ref={allmenu}
-        >
-          <Menu />
+        <div className="circle_icon hover1" ref={allmenu}>
+          <div
+            onClick={() => {
+              setShowAllMenu((prev) => !prev);
+            }}
+          >
+            <Menu />
+          </div>
 
           {/* 🔴RIGHT MENU SECTION */}
           {showAllMenu && <AllMenu />}
@@ -97,9 +102,15 @@ export default function Header() {
           <Notifications />
           <div className="right_notification">9</div>
         </div>
-        <div className="circle_icon hover1">
-          <ArrowDown />
-          <UserMenu user={user} />
+        <div className="circle_icon hover1" ref={usermenu}>
+          <div
+            onClick={() => {
+              setShowProfileMenu((prev) => !prev);
+            }}
+          >
+            <ArrowDown />
+          </div>
+          {showProfileMenu && <UserMenu user={user} />}
         </div>
       </div>
     </header>

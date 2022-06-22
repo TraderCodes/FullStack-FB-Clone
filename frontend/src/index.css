@@ -71,12 +71,17 @@ a {
 /* Button */
 .hover1:hover {
   background: var(--bg-secondary);
+  transition: 0.5s;
+
 }
 .hover2:hover {
   background: var(--bg-third);
+  transition: 0.5s;
 }
 .hover3:hover {
   background: #d4d6da4a;
+  transition: 0.5s;
+
 }
 .card {
   height: 500px;

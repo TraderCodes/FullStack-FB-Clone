@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import SettingsPrivacy from './SettingsPrivacy';
 import HelpSupport from './HelpSupport';
+import DisplayAccessibility from './DisplayAccessibility';
 export default function UserMenu({ user }) {
-  const [visible, setVisible] = useState(1);
+  const [visible, setVisible] = useState(0);
   return (
     <div className="mmenu">
       {visible === 0 && (
@@ -58,7 +59,12 @@ export default function UserMenu({ user }) {
               <i className="right_icon"></i>
             </div>
           </div>
-          <div className="mmenu_item hover3">
+          <div
+            className="mmenu_item hover3"
+            onClick={() => {
+              setVisible(3);
+            }}
+          >
             <div className="small_circle">
               <i className="dark_filled_icon"></i>
             </div>
@@ -71,7 +77,7 @@ export default function UserMenu({ user }) {
             <div className="small_circle">
               <i className="logout_filled_icon"></i>
             </div>
-            <span> Log Out</span>
+            <span className="logout"> Log Out</span>
             <div className="rArrow">
               <i className="right_icon"></i>
             </div>
@@ -80,6 +86,7 @@ export default function UserMenu({ user }) {
       )}
       {visible === 1 && <SettingsPrivacy setVisible={setVisible} />}
       {visible === 2 && <HelpSupport setVisible={setVisible} />}
+      {visible === 3 && <DisplayAccessibility setVisible={setVisible} />}
     </div>
   );
 }

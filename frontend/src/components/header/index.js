@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
+import useClickOutside from '../../helpers/clickOutside';
 import {
   ArrowDown,
   Friends,
@@ -25,7 +26,10 @@ export default function Header() {
   const color = '#65676b';
   const [showSearchMenu, setShowSearchMenu] = useState(false);
   const [showAllMenu, setShowAllMenu] = useState(false);
-
+  const allmenu = useRef(null);
+  useClickOutside(allmenu, () => {
+    setShowAllMenu(false);
+  });
   return (
     <header>
       {/* LOGO SECTION */}
@@ -78,6 +82,7 @@ export default function Header() {
           onClick={() => {
             setShowAllMenu((prev) => !prev);
           }}
+          ref={allmenu}
         >
           <Menu />
 

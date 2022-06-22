@@ -9,3 +9,6 @@ export default function AllMenuItem({ name, description, icon }) {
     </div>
   );
 }
+
+// menu is in data folder 
+

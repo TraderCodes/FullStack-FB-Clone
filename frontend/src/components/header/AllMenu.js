@@ -9,10 +9,14 @@ export default function AllMenu() {
       <div className="all_menu_wrap scrollbar">
         <div className="all_left">
           <div className="all_menu_search">
+            {/* icon */}
             <i className="amm_s_ic"></i>
             <input type="text" placeholder="Search Menu" />
           </div>
+          
+
           <div className="all_menu_group">
+            {/* Menutitle */}
             <div className="all_menu_group_header">Social</div>
             {menu.slice(0, 6).map((item, i) => (
               <AllMenuItem

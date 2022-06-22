@@ -75,9 +75,17 @@ a {
 .hover2:hover {
   background: var(--bg-third);
 }
-.card{
+.card {
   height: 500px;
   width: 500px;
   background: red;
+}
 
+/* SCROLL BAR ///////////////// */
+.scrollbar ::-webkit-scrollbar {
+  width: 8px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #aeaeafa1;
+  border-radius: 5px;
 }

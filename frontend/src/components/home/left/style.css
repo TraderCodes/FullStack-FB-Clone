@@ -3,9 +3,11 @@
   margin-top: 60px;
   max-height: 100vh;
   width: 300px;
-  overflow-y:auto ;
+  overflow-y: auto;
   padding: 15px 0px;
   color: var(--color-primary);
+  /* add padding bottom to show toggle show more  */
+  padding-bottom: 4rem;
 }
 .left_link {
   display: flex;
@@ -27,6 +29,7 @@
 .left_link span {
   margin-bottom: 4px;
   margin-left: 1px;
+  font-size: 15px;
 }
 .col {
   margin-left: 2px;
@@ -44,7 +47,7 @@
   font-weight: normal;
 }
 .col_2::before {
-  content: "";
+  content: '';
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -53,4 +56,32 @@
   left: -10px;
   bottom: 2px;
 }
-
+.rotate180 {
+  transform: rotate(180deg);
+}
+.splitter {
+  height: 1.3px;
+  background: var(--divider);
+  margin: 9px;
+}
+/*  SHORTCUT SECTION */
+.heading {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-secondary);
+}
+.shortcut {
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.edit_shortcut {
+  font-size: 14px;
+  color: var(--blue-color);
+  display: none;
+  cursor: pointer;
+}
+.shortcut:hover .edit_shortcut {
+  display: block;
+}

@@ -13,7 +13,7 @@ header {
 .header_left {
   display: flex;
   align-items: center;
- 
+
   gap: 10px;
   padding: 5px 10px;
 }
@@ -28,7 +28,7 @@ header {
   align-items: center;
   cursor: pointer;
   position: relative;
-  top:-4px
+  top: -4px;
 }
 .search {
   display: flex;
@@ -121,6 +121,7 @@ header {
   font-size: 20px;
   line-height: 19px;
   margin-right: 10px;
+   user-select: none !important;
 }
 .profile_link img {
   width: 40px;
@@ -128,6 +129,7 @@ header {
   border-radius: 50px;
   /* border: 1px solid #b0b4b8; */
   transform: translateX(-1px);
+  user-select: none !important;
 }
 .circle_icon {
   position: relative;
@@ -141,9 +143,9 @@ header {
   border-radius: 12px;
   cursor: pointer;
 }
-.circle_icon svg{
+.circle_icon svg {
   position: relative;
-  top:1.5px
+  top: 1.5px;
 }
 .right_notification {
   position: absolute;
@@ -154,6 +156,7 @@ header {
   padding: 1px 6px;
   font-size: 13px;
   color: #fff;
+   user-select: none !important;
 }
 
 /* SEARCH AREA */
@@ -174,6 +177,7 @@ header {
   min-height: 400px;
   max-height: 70vh;
   padding: 0px 16px 10px 6px;
+   user-select: none !important;
 }
 .search_wrap {
   display: flex;
@@ -300,6 +304,7 @@ header {
 .all_menu_col span:first-of-type {
   font-size: 14px;
   font-weight: 500;
+
 }
 .all_menu_col span:last-of-type {
   font-size: 12px;

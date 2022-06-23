@@ -55,22 +55,28 @@ export default function LeftHome({ user }) {
         <div className="heading">ShortCuts</div>
         <div className="edit_shortcut">edit</div>
       </div>
-      <div className="shortcut_list">
-        <Shortcut
-          link="https://github.com/TraderCodes"
-          img="frontend\public\images\github.png"
-          name="github"
-        />
+      <div className="shortcut_list " >
         <Shortcut
           link="https://github.com/TraderCodes"
           img="../../images/github.svg"
-          name="github"
+          name="Github"
         />
         <Shortcut
           link="https://github.com/TraderCodes"
           img="../../images/ytb.png"
           name="Youtube"
         />
+      </div>
+      <div className={`fb_copyright ${visible && 'relative_fb_copyright'}`}>
+        <Link to="/">
+          Hey Visitors ! 
+          {/* <img src="../../images/github.svg"></img> */}
+          <br />
+        </Link>
+        <Link to="/"></Link>This is Made by
+        <br /> <Link to="/"> Jamal Sheriff </Link>
+        <br />
+        Project to Challenge myself 2022 ©
       </div>
     </div>
   );

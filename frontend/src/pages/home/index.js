@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import Header, { useSelector } from '../../components/header';
 import useClickOutside from '../../helpers/clickOutside';
 import LeftHome from '../../components/home/left';
+import RightHome from '../../components/home/right';
 
 export default function Home() {
   const { user } = useSelector((user) => ({ ...user }));
@@ -17,6 +18,7 @@ export default function Home() {
       <Header />
       {/* {visible && <div className="card" ref={el}></div>} */}
       <LeftHome user={user} />
+      <RightHome user={user} />
     </div>
   );
 }

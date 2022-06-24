@@ -4,6 +4,8 @@ import Header, { useSelector } from '../../components/header';
 import useClickOutside from '../../helpers/clickOutside';
 import LeftHome from '../../components/home/left';
 import RightHome from '../../components/home/right';
+import Stories from '../../components/home/stories/index'
+import "./style.css" 
 
 export default function Home() {
   const { user } = useSelector((user) => ({ ...user }));
@@ -14,10 +16,13 @@ export default function Home() {
     console.log('ga');
   });
   return (
-    <div>
+    <div className="home" >
       <Header />
       {/* {visible && <div className="card" ref={el}></div>} */}
       <LeftHome user={user} />
+      <div className="home_middle">
+        <Stories/>
+      </div>
       <RightHome user={user} />
     </div>
   );

@@ -69,4 +69,6 @@
 .contact span {
   transform: translateY(-5px);
 }
-
+.heading {
+margin: 20px;
+}

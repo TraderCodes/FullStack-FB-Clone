@@ -100,7 +100,7 @@
     margin-left: 9%;
   }
 }
-@media (max-width: 950px) {
+@media (max-width: 1060px) {
   .stories {
     grid-template-columns: repeat(6, 13vw);
   }

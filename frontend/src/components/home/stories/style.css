@@ -121,7 +121,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: -5px;
+  right: -18px;
   box-shadow: 1px 2px var(--shadow-1);
   cursor: pointer;
 }

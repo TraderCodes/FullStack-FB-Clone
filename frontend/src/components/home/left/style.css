@@ -2,8 +2,8 @@
   position: fixed;
   margin-top: 60px;
   max-height: 100vh;
-  width: 15vw !important;
-  overflow-y: auto;
+  width: 15vw ;
+  overflow-y: none!important;
   padding: 15px 0px;
   color: var(--color-primary);
   /* add padding bottom to show toggle show more  */

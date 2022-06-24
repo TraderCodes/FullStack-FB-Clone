@@ -3,8 +3,8 @@
   margin-top: 60px;
   max-height: 100vh;
   width: 15vw ;
-  overflow-y: none!important;
   padding: 15px 0px;
+  overflow-y: scroll;
   color: var(--color-primary);
   /* add padding bottom to show toggle show more  */
   padding-bottom: 4rem;
@@ -72,7 +72,7 @@
   background: var(--divider);
 
 
-  width: 250px;
+  width: 90%;
 margin: 15px auto;
 
 }

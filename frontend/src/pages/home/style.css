@@ -61,6 +61,9 @@
   .createPost {
     width: 100%;
   }
+  .left_link:nth-child(1) img{
+   margin: auto
+  }
 }
 @media (max-width: 960px) {
   .createPost {
@@ -114,10 +117,10 @@
   .stories .white_circle {
     right: 5px;
   }
-  .story_profile_pic {
-    width: 7vw;
-    height: 7vw;
+  .left_home{
+    margin-left: 10px;
   }
+ 
   .left_home::-webkit-scrollbar {
     display: none;
   }

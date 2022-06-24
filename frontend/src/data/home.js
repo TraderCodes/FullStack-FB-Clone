@@ -119,22 +119,22 @@ export const stories = [
   },
   {
     profile_picture: '../../stories/profile2.jpg',
-    profile_name: 'k',
-    image: '../../stories/2.png',
+    profile_name: 'Rat Boy',
+    image: '../../stories/2.jpg',
   },
   {
-    profile_picture: '../../stories/profile3.png',
-    profile_name: '',
+    profile_picture: '../../stories/profile3.jpg',
+    profile_name: 'Jeff Chad',
     image: '../../stories/3.jpg',
   },
   {
-    profile_picture: '../../stories/profile4.jfif',
+    profile_picture: '../../stories/profile4.jpg',
     profile_name: 'Quin62',
     image: '../../stories/4.jpg',
   },
   {
-    profile_picture: '../../stories/profile5.png',
-    profile_name: 'The Witcher Wild Hunt',
+    profile_picture: '../../stories/profile5.jpg',
+    profile_name: 'Twitch',
     image: '../../stories/5.jpg',
   },
 ];

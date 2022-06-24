@@ -22,7 +22,7 @@ export default function CreatePost({ user }) {
         </div>
         <div className="createPost_icon hover1">
           <Feeling color="#f7b928" />
-          Feeling/Activity
+          Feelings
         </div>
       </div>
     </div>

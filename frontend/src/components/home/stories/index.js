@@ -5,10 +5,10 @@ import Story from "./Story";
 import { useMediaQuery } from "react-responsive";
 export default function Stories() {
   const query1175px = useMediaQuery({
-    query: "(max-width: 1175px)",
+    query: "(max-width: 1300px)",
   });
   const query1030px = useMediaQuery({
-    query: "(max-width: 1030px)",
+    query: "(max-width: 1050px)",
   });
   const query960px = useMediaQuery({
     query: "(max-width: 960px)",
@@ -19,7 +19,7 @@ export default function Stories() {
   const max = query885px
     ? 5
     : query960px
-    ? 4
+    ? 5
     : query1030px
     ? 5
     : query1175px

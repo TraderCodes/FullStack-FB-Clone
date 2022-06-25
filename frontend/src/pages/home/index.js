@@ -10,7 +10,8 @@ import CreatePost from '../../components/createPost';
 import SendVerification from '../../components/home/sendVerification';
 
 export default function Home() {
-  const { user } = useSelector((user) => ({ ...user }));
+  // const { user } = useSelector((user) => ({ ...user }));
+  const { user } = useSelector((state) => ({ ...state }));
   const [visible, setVisible] = useState(true);
   const el = useRef(null);
   useClickOutside(el, () => {
@@ -20,11 +21,10 @@ export default function Home() {
   return (
     <div className="home">
       <Header />
-      {/* {visible && <div className="card" ref={el}></div>} */}
       <LeftHome user={user} />
       <div className="home_middle">
         <Stories />
-        <SendVerification user={user} />
+        {user.verified ===false  && <SendVerification user={user} />}
         <CreatePost user={user} />
       </div>
       <RightHome user={user} />

@@ -7,19 +7,36 @@ import RightHome from '../../components/home/right';
 import Stories from '../../components/home/stories/index';
 import './style.css';
 import CreatePost from '../../components/createPost';
+import ActivateForm from './ActivateForm';
 
 export default function Activate() {
   const { user } = useSelector((user) => ({ ...user }));
-  const [visible, setVisible] = useState(true);
-  const el = useRef(null);
-  useClickOutside(el, () => {
-    setVisible(false);
-    console.log('ga');
-  });
+  // adding usestate for success error and loading
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [success, setSuccess] = useState('');
+
   return (
     <div className="home">
+      {success && (
+        <ActivateForm
+          type="success"
+          header="Account Activated"
+          text={success}
+          isLoading={isLoading}
+        />
+      )}
+      {error && (
+        <ActivateForm
+          type="error"
+          header="Account Verification Failed"
+          text={error}
+          isLoading={isLoading}
+        />
+      )}
       <Header />
-      {/* {visible && <div className="card" ref={el}></div>} */}
+      {/* Activate component */}
+
       <LeftHome user={user} />
       <div className="home_middle">
         <Stories />

@@ -66,6 +66,8 @@ exports.register = async (req, res) => {
       bDay,
       gender,
     }).save();
+
+    // Generate email
     const emailVerificationToken = generateToken(
       { id: user._id.toString() },
       '30m'
@@ -145,6 +147,28 @@ exports.login = async (req, res) => {
       verified: user.verified,
       // message: 'Register Successfully',
     });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+// 🔴resend user notification
+exports.sendVerification = async (req, res) => {
+  try {
+    res.status(500).json({ message: error.message });
+    const id = req.user.id;
+    const user = User.findById(id);
+    if (user.verified === true) {
+      return res.status(400).json({ message: 'Already registered' });
+    }
+    // if it's not verified Creat email
+    const emailVerificationToken = generateToken(
+      { id: user._id.toString() },
+      '60m'
+    );
+    const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
+    // pass in name,email and url to verification
+    sendVerificationEmail(user.email, user.first_name, url);
+    return res.status(200).json({ message: 'Email verification link sent' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

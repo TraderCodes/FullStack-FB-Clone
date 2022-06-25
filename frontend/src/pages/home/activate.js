@@ -8,13 +8,38 @@ import Stories from '../../components/home/stories/index';
 import './style.css';
 import CreatePost from '../../components/createPost';
 import ActivateForm from './ActivateForm';
-
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from 'axios';
 export default function Activate() {
   const { user } = useSelector((user) => ({ ...user }));
   // adding usestate for success error and loading
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [success, setSuccess] = useState('');
+  // get token with useparam
+  const {token} = useParams();
+  // console.log("🚀 ~ token", token)
+  useEffect(() => {
+    activateAccount();
+  }, []);
+  const activateAccount = async () => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/activate`,
+        { token },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      setSuccess(data.message) ;
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
 
   return (
     <div className="home">

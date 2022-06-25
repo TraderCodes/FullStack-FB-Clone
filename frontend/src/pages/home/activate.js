@@ -12,9 +12,10 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import User from '../../../../backend/models/User';
+
 import { useDispatch } from 'react-redux';
 export default function Activate() {
+  const dispatch = useDispatch();
   const { user } = useSelector((user) => ({ ...user }));
   // adding usestate for success error and loading
   const [error, setError] = useState('');
@@ -23,7 +24,6 @@ export default function Activate() {
   // get token with useparam
   const { token } = useParams();
   // console.log("🚀 ~ token", token)
-  const dispatch = useDispatch();
   useEffect(() => {
     activateAccount();
   }, []);

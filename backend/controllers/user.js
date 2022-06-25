@@ -154,11 +154,10 @@ exports.login = async (req, res) => {
 // 🔴resend user notification
 exports.sendVerification = async (req, res) => {
   try {
-    res.status(500).json({ message: error.message });
     const id = req.user.id;
-    const user = User.findById(id);
+    const user = await User.findById(id);
     if (user.verified === true) {
-      return res.status(400).json({ message: 'Already registered' });
+      return res.status(404).json({ message: 'Already registered' });
     }
     // if it's not verified Creat email
     const emailVerificationToken = generateToken(

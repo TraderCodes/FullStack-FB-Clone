@@ -38,12 +38,12 @@
   font-weight: 500;
 }
 .loader{
-  margin-top:27px;
+  margin-top:px;
 }
 
 @media (max-width: 1300px) {
   .stories,
-  .createPost {
+  .createPost, .send_verification{
     width: 84%;
   }
   .home_middle {
@@ -88,7 +88,7 @@
     width: 20px;
   }
   .stories,
-  .createPost {
+  .createPost, .send_verification{
     width: 100%;
   }
   .left_link:nth-child(1) img {
@@ -96,7 +96,7 @@
   }
 }
 @media (max-width: 960px) {
-  .createPost {
+  .createPost, .send_verification{
     width: 95%;
   }
   .stories {
@@ -123,7 +123,7 @@
   .right_home {
     display: none;
   }
-  .createPost {
+  .createPost, .send_verification{
     width: 110%;
   }
   .stories {
@@ -164,7 +164,7 @@
     margin-left: 0;
   }
   .stories,
-  .createPost {
+  .createPost, .send_verification{
     width: 100%;
   }
   .stories .white_circle {

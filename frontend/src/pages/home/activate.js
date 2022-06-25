@@ -11,6 +11,9 @@ import ActivateForm from './ActivateForm';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import User from '../../../../backend/models/User';
+import { useDispatch } from 'react-redux';
 export default function Activate() {
   const { user } = useSelector((user) => ({ ...user }));
   // adding usestate for success error and loading
@@ -18,8 +21,9 @@ export default function Activate() {
   const [isLoading, setIsLoading] = useState(true);
   const [success, setSuccess] = useState('');
   // get token with useparam
-  const {token} = useParams();
+  const { token } = useParams();
   // console.log("🚀 ~ token", token)
+  const dispatch = useDispatch();
   useEffect(() => {
     activateAccount();
   }, []);
@@ -35,7 +39,14 @@ export default function Activate() {
           },
         }
       );
-      setSuccess(data.message) ;
+      setSuccess(data.message);
+      // change cookie verfied value to true
+      Cookies.set('user', JSON.stringify({ ...user, verified: true }));
+      // change element in the store by using dispatch
+      dispatch ({
+        type:'VERIFY',
+        payload:true
+      })
     } catch (error) {
       setError(error.response.data.message);
     }

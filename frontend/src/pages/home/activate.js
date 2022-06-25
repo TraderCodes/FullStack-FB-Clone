@@ -8,7 +8,7 @@ import Stories from '../../components/home/stories/index';
 import './style.css';
 import CreatePost from '../../components/createPost';
 import ActivateForm from './ActivateForm';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -16,6 +16,7 @@ import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 export default function Activate() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((user) => ({ ...user }));
   // adding usestate for success error and loading
   const [error, setError] = useState('');
@@ -43,12 +44,18 @@ export default function Activate() {
       // change cookie verfied value to true
       Cookies.set('user', JSON.stringify({ ...user, verified: true }));
       // change element in the store by using dispatch
-      dispatch ({
-        type:'VERIFY',
-        payload:true
-      })
+      dispatch({
+        type: 'VERIFY',
+        payload: true,
+      });
+      setTimeout(() => {
+        navigate('/');
+      }, 3000);
     } catch (error) {
       setError(error.response.data.message);
+      setTimeout(() => {
+        navigate('/');
+      }, 3000);
     }
   };
 

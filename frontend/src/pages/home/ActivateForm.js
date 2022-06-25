@@ -13,7 +13,10 @@ export default function ActivateForm({ type, header, text, isLoading }) {
         </div>
         <div className="popup_message">{text}</div>
         {/* Add dotloader */}
+        <div className="loader">
+
         <HashLoader color="#1876f2" size={49} loading={isLoading} />
+        </div>
       </div>
     </div>
   );

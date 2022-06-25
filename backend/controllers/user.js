@@ -95,6 +95,7 @@ exports.register = async (req, res) => {
 // 🔴Activate add to routes
 exports.activateAccount = async (req, res) => {
   try {
+    const validUser = req.user.id;
     const { token } = req.body;
     // reverse the token to id data
     const user = jwt.verify(token, process.env.TOKEN_SECRET);
@@ -102,7 +103,9 @@ exports.activateAccount = async (req, res) => {
     const check = await User.findById(user.id);
 
     // This triggers the User model verification to true or face and do something base on if the token exist or not
-
+    if (validUser !== user.id) {
+      return res.status(400).json({ message: 'You are not the user' });
+    }
     if (check.verified == true) {
       return res
         .status(400)

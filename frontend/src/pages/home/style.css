@@ -34,8 +34,11 @@
   padding: 20px;
 }
 .popup_message {
-  padding: 15px;
+  padding: 10px;
   font-weight: 500;
+}
+.loader{
+  margin-top:27px;
 }
 
 @media (max-width: 1300px) {

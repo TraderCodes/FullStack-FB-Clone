@@ -147,6 +147,6 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.auth = (req, res) => {
-  res.json('welcome auth');
-};
+// exports.auth = (req, res) => {
+//   res.json('welcome auth');
+// };

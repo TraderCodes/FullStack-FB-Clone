@@ -16,7 +16,7 @@ export default function Reset() {
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
 
-  const [visible, setVisible] = useState(2);
+  const [visible, setVisible] = useState(3);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -95,9 +95,10 @@ export default function Reset() {
         )}
         {visible === 3 && (
           <ChangePassword
-            user={user}
-            code={code}
-            setCode={setCode}
+            password={password}
+            conf_password={conf_password}
+            setConf_password={setConf_password}
+            setPassword={setPassword}
             error={error}
             setError={setError}
             setLoading={setLoading}

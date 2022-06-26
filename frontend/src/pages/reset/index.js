@@ -9,6 +9,7 @@ import SearchAccount from './SearchAccount';
 import SendEmail from './SendEmail';
 import CodeVerification from './CodeVerification';
 import Footer from '../../components/login/Footer';
+import ChangePassword from './ChangePassword';
 
 export default function Reset() {
   const dispatch = useDispatch();
@@ -82,6 +83,18 @@ export default function Reset() {
         )}
         {visible === 2 && (
           <CodeVerification
+            user={user}
+            code={code}
+            setCode={setCode}
+            error={error}
+            setError={setError}
+            setLoading={setLoading}
+            setVisible={setVisible}
+            userInfos={userInfos}
+          />
+        )}
+        {visible === 3 && (
+          <ChangePassword
             user={user}
             code={code}
             setCode={setCode}

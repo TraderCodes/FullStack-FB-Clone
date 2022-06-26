@@ -30,7 +30,7 @@ export default function SendEmail({
           </label>
         </div>
         <div className="reset_right">
-          <img src={user.picture} alt="" />
+          <img src={user?.picture} alt="" />
           <span></span>
           <span>Facebook user</span>
         </div>

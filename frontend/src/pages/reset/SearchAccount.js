@@ -4,10 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik, formik } from 'formik';
 import LoginInput from '../../components/inputs/logininput';
 import { useState } from 'react';
+import * as Yup from 'yup'
 export default function SearchAccount({ email, setEmail, error }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
+   const validateEmail = Yup.object({
+     email: Yup.string()
+       .required('Email address required.')
+       .email('Must be a valid email address.')
+       .max(50, "Email address can't be more than 50 characters."),
+   });
 
   return (
     <div className="reset_form">
@@ -20,7 +27,7 @@ export default function SearchAccount({ email, setEmail, error }) {
         initialValues={{
           email,
         }}
-        // validationSchema={validateEmail}
+        validationSchema={validateEmail}
         onSubmit={() => {
           // handleSearch();
         }}

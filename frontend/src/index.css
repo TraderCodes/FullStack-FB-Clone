@@ -53,6 +53,22 @@ a {
   cursor: pointer;
   transition: 0.5s;
 }
+.gray_btn {
+  border: none;
+  background-color: var(--bg-secondary);
+  outline: none;
+  padding: 0.5px 12px;
+  border-radius: 7px;
+  font-weight: 600;
+  font-family: inherit;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: 0.5s;
+}
 .blue_btn:hover {
   filter: brightness(90%);
 }

@@ -2,6 +2,7 @@
   background: var(--bg-secondary);
   height: 100vh;
   color: var(--color-primary);
+  
 }
 .reset_header {
   background: var(--bg-primary);
@@ -25,3 +26,60 @@
   height: 40px;
   border-radius: 50%;
 }
+.reset_wrap {
+  height: 67vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+.reset_form {
+  position: relative;
+  background: var(--bg-primary);
+  box-shadow: 0 1px 2px var(--shadow-1);
+  border-radius: 10px;
+  width: 570px;
+  height: fit-content !important;
+}
+
+.reset_form_header {
+  padding: 15px;
+  font-weight: 600;
+  font-size: 24px;
+  border-bottom: 1px solid var(--bg-third);
+}
+.reset_form_text {
+  padding: 15px;
+  font-size: 17px;
+}
+.reset_form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+.reset_form_btns {
+  display: flex;
+  align-self: flex-end;
+  gap: 10px;
+  margin-top: 5px;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  padding-left: 65%;
+  border-top: 1px solid var(--bg-third);
+}
+.reset_form_btns a,
+.reset_form_btns button {
+  width: 90px;
+}
+.reset_grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  font-size: 15px;
+  color: var(--color-secondary);
+}
+.reset_left {
+  padding: 15px;
+}
+

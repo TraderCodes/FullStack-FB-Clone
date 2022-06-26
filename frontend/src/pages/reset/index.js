@@ -6,13 +6,14 @@ import { Form, Formik, formik } from 'formik';
 import LoginInput from '../../components/inputs/logininput';
 import { useState } from 'react';
 import SearchAccount from './SearchAccount';
+import SendEmail from './SendEmail';
 
 export default function Reset() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
 
-  const [visible, setVisible] = useState(0);
+  const [visible, setVisible] = useState(1);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -54,7 +55,15 @@ export default function Reset() {
         )}
       </div>
       <div className="reset_wrap">
-        <SearchAccount email={email} setEmail={setEmail} error={error} />
+        {/* Change base no visible useState */}
+        {visible === 0 && (
+          
+          <SearchAccount email={email} setEmail={setEmail} error={error} />
+        )}
+        {visible === 1 && (
+          
+          <SendEmail user={user} />
+        )}
       </div>
       {/* <Footer /> */}
     </div>

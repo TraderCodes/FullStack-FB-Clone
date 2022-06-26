@@ -3,6 +3,7 @@ import Login from './pages/login';
 import Profile from './pages/profile';
 import Home from './pages/home';
 import Activate from './pages/home/activate';
+import Reset from './pages/reset';
 function App() {
   return (
     <div>
@@ -11,6 +12,7 @@ function App() {
         <Route path="/login" element={<Login />} exact />
         <Route path="/profile" element={<Profile />} exact />
         <Route path="/activate/:token" element={<Activate />} exact />
+        <Route path="/reset" element={<Reset />} exact />
       </Routes>
     </div>
   );

@@ -3,7 +3,7 @@ const { ObjectId } = mongoose.Schema;
 // Schema(code) for Password change
 const codeSchema = new mongoose.Schema({
   code: {
-    type: Number,
+    type: String,
     required: true,
   },
   user: {

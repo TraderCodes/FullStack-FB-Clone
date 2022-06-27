@@ -2,21 +2,19 @@ import './style.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
-import { Form, Formik, formik } from 'formik';
-import LoginInput from '../../components/inputs/logininput';
+import { Form, Formik } from 'formik';
 import { useState } from 'react';
+import LoginInput from '../../components/inputs/logininput';
 import SearchAccount from './SearchAccount';
 import SendEmail from './SendEmail';
 import CodeVerification from './CodeVerification';
 import Footer from '../../components/login/Footer';
 import ChangePassword from './ChangePassword';
-
 export default function Reset() {
+  const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => ({ ...state }));
-
-  const [visible, setVisible] = useState(3);
+  const [visible, setVisible] = useState(0);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -24,7 +22,6 @@ export default function Reset() {
   const [conf_password, setConf_password] = useState('');
   const [error, setError] = useState('');
   const [userInfos, setUserInfos] = useState('');
-
   const logout = () => {
     Cookies.set('user', '');
     dispatch({
@@ -32,8 +29,8 @@ export default function Reset() {
     });
     navigate('/login');
   };
+  console.log(userInfos);
   return (
-    // 🔴HEADER
     <div className="reset">
       <div className="reset_header">
         <img src="../../../icons/facebook.svg" alt="" />
@@ -58,7 +55,6 @@ export default function Reset() {
         )}
       </div>
       <div className="reset_wrap">
-        {/* Change base no visible useState */}
         {visible === 0 && (
           <SearchAccount
             email={email}
@@ -70,7 +66,7 @@ export default function Reset() {
             setVisible={setVisible}
           />
         )}
-        {visible === 1 && (
+        {visible === 1 && userInfos && (
           <SendEmail
             email={email}
             userInfos={userInfos}

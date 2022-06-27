@@ -9,6 +9,8 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { sendVerificationEmail } = require('../helpers/mailer');
+const { findOne } = require('../models/User');
+// const { findOneAndUpdate, findOne } = require('../models/User');
 // 🔴Register add to routes
 exports.register = async (req, res) => {
   try {
@@ -168,6 +170,23 @@ exports.sendVerification = async (req, res) => {
     // pass in name,email and url to verification
     sendVerificationEmail(user.email, user.first_name, url);
     return res.status(200).json({ message: 'Email verification link sent' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+exports.findUser = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email }).select('-password');
+    if (!user) {
+      return res.status(400).json({
+        message: 'Account does not exists.',
+      });
+    }
+    return res.status(200).json({
+      email: user.email,
+      picture: user.picture,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

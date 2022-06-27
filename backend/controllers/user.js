@@ -8,8 +8,10 @@ const { generateToken } = require('../helpers/token');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { sendVerificationEmail } = require('../helpers/mailer');
+const { sendVerificationEmail, sendResetCode } = require('../helpers/mailer');
 const { findOne } = require('../models/User');
+const Code = require('../models/Code');
+const generateCode = require('../helpers/generateCode');
 // const { findOneAndUpdate, findOne } = require('../models/User');
 // 🔴Register add to routes
 exports.register = async (req, res) => {
@@ -186,6 +188,27 @@ exports.findUser = async (req, res) => {
     return res.status(200).json({
       email: user.email,
       picture: user.picture,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+exports.sendResetPasswordCode = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email }).select('-password');
+    await Code.findOneAndRemove({ user: user._id });
+    // generate code
+    const code = generateCode(5);
+    // everytime when request is made we generate new code below and save to database
+    const savedCode = await new Code({
+      code,
+      user: user._id,
+    }).save();
+    // call the email function
+    sendResetCode(user.email, user.first_name, code);
+    return res.status(200).json({
+      message: 'Password reset code has been sent to your email',
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

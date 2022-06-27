@@ -1,5 +1,7 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
+import PuffLoader from 'react-spinners/PuffLoader';
+
 
 export default function SendEmail({
   userInfos,
@@ -13,6 +15,21 @@ export default function SendEmail({
   user
 }) {
 
+    const sendEmail = async () => {
+    try {
+      setLoading(true);
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/sendResetPasswordCode`,
+        { email }
+      );
+      setError("");
+      setVisible(2);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setError(error.response.data.message);
+    }
+  }; 
   return (
     <div className="reset_form dynamic_height">
       <div className="reset_form_header">Reset Your Password</div>
@@ -32,7 +49,8 @@ export default function SendEmail({
         <div className="reset_right">
           <img src={userInfos.picture} alt="" />
           <span>{userInfos.email}</span>
-          <span>Facebook user</span>
+          {/* <span>Facebook user</span> */}
+      <PuffLoader color="#1876f2" loading={loading} size={39} />
         </div>
       </div>
       {error && (
@@ -45,9 +63,9 @@ export default function SendEmail({
           Cancel
         </Link>
         <button
-          // onClick={() => {
-          //   sendEmail();
-          // }}
+          onClick={() => {
+            sendEmail();
+          }}
           className="blue_btn"
         >
           Continue

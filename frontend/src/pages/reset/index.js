@@ -10,6 +10,7 @@ import SendEmail from './SendEmail';
 import CodeVerification from './CodeVerification';
 import Footer from '../../components/login/Footer';
 import ChangePassword from './ChangePassword';
+import PuffLoader from 'react-spinners/PuffLoader';
 export default function Reset() {
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ export default function Reset() {
         )}
       </div>
       <div className="reset_wrap">
+      {/* <PuffLoader color="#1876f2" loading={loading} size={39} /> */}
         {visible === 0 && (
           <SearchAccount
             email={email}

@@ -1,9 +1,25 @@
 import './style.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import Picker from 'emoji-picker-react';
 export default function CreatePostPopup({ user }) {
   const [text, setText] = useState('');
-  const [showPrev, setShowPrev] = useState(false)
-  console.log(text)
+  const [showPrev, setShowPrev] = useState(false);
+  const [picker, setPicker] = useState(false);
+  const textRef = useRef(null);
+// 
+
+
+
+  const handleEmoji = (e,{ emoji }) => {
+    const ref = textRef.current;
+    ref.focus();
+    const start = text.substring(0, ref.selectionStart);
+    const end = text.substring(ref.selectionStart);
+    const newText = start + emoji + end;
+    setText(newText);
+  };
+
+  console.log(text);
   return (
     <div className="blur">
       <div className="postBox">
@@ -29,19 +45,32 @@ export default function CreatePostPopup({ user }) {
             </div>
           </div>
         </div>
-        
-    {!showPrev && (    <div className="flex_center">
-          <textarea
-            maxLength="150"
-            className="post_input"
-            placeholder={`Enter what you like ${user.first_name}`}
-            onChange={(e) => 
-              setText(e.target.value
-            )}
-          ></textarea>
-        </div>)}
+
+        {!showPrev && (
+          <div className="flex_center">
+            <textarea
+              //  set useref so when called it focus on the text area
+              ref={textRef}
+              // 👇IMPORTANT
+              value={text}
+              maxLength="150"
+              className="post_input"
+              placeholder={`Enter what you like ${user.first_name}`}
+              onChange={(e) => setText(e.target.value)}
+            ></textarea>
+          </div>
+        )}
         <div className="post_emojis_wrap">
-          <div className="comment_emoji_picker remove"></div>
+          {picker && (
+            <div className="comment_emoji_picker rlmove">
+              <Picker onEmojiClick={handleEmoji} />
+            </div>
+          )}
+          <img src="../../../icons/colorful.png" alt="" />
+          <i
+            className="emoji_icon_large"
+            onClick={() => setPicker((prev) => !prev)}
+          ></i>
         </div>
       </div>
     </div>

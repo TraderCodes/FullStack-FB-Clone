@@ -1,5 +1,9 @@
 import './style.css';
+import { useState } from 'react';
 export default function CreatePostPopup({ user }) {
+  const [text, setText] = useState('');
+  const [showPrev, setShowPrev] = useState(false)
+  console.log(text)
   return (
     <div className="blur">
       <div className="postBox">
@@ -9,6 +13,7 @@ export default function CreatePostPopup({ user }) {
           </div>
           <span>Create post</span>
         </div>
+        {/* profile section */}
         <div className="box_profile">
           <img src={user.picture} alt="" className="box_profile_img" />
           <div className="box-col">
@@ -23,6 +28,20 @@ export default function CreatePostPopup({ user }) {
               <i className="arrowDown_icon"></i>
             </div>
           </div>
+        </div>
+        
+    {!showPrev && (    <div className="flex_center">
+          <textarea
+            maxLength="150"
+            className="post_input"
+            placeholder={`Enter what you like ${user.first_name}`}
+            onChange={(e) => 
+              setText(e.target.value
+            )}
+          ></textarea>
+        </div>)}
+        <div className="post_emojis_wrap">
+          <div className="comment_emoji_picker remove"></div>
         </div>
       </div>
     </div>

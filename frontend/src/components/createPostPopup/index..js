@@ -47,3 +47,4 @@ export default function CreatePostPopup({ user }) {
     </div>
   );
 }
+// npm i emoji-picker-react

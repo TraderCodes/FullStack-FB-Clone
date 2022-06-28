@@ -1,22 +1,26 @@
 import './style.css';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Picker from 'emoji-picker-react';
 export default function CreatePostPopup({ user }) {
   const [text, setText] = useState('');
   const [showPrev, setShowPrev] = useState(false);
   const [picker, setPicker] = useState(false);
   const textRef = useRef(null);
-// 
+  // run useeffect everytimem cursorPosition changes
+  const [cursorPosition, setCursorPosition] = useState(3);
+  useEffect(() => {
+    textRef.current.selectionEnd = cursorPosition;
+  }, [cursorPosition]);
 
-
-
-  const handleEmoji = (e,{ emoji }) => {
+  const handleEmoji = (e, { emoji }) => {
     const ref = textRef.current;
     ref.focus();
     const start = text.substring(0, ref.selectionStart);
     const end = text.substring(ref.selectionStart);
     const newText = start + emoji + end;
     setText(newText);
+    
+    setCursorPosition(start.length + emoji.length);
   };
 
   console.log(text);

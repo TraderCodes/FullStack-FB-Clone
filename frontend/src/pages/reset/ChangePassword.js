@@ -37,7 +37,7 @@ export default function ChangePassword({
         password,
       });
       setError('');
-      navigate('/');
+      navigate('/login');
     } catch (error) {
       setLoading(false);
       setError(error.response.data.message);

@@ -12,7 +12,20 @@ export default function ImagePreview({
   setImages,
 }) {
   const imageInputRef = useRef(null);
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    // change target to array to accept multiple picture
+    let files = Array.from(e.target.files);
+    console.log(files);
+    files.forEach((image) => {
+      const reader = new FileReader();
+      // read everyimage in array
+      reader.readAsDataURL(image);
+      reader.onloadend = (readerEvent) => {
+        // Add image to setimage in index.js
+        setImages((images) => [...images, readerEvent.target.result]);
+      };
+    });
+  };
   return (
     <div className="overflow_a">
       <EmojiPickerBackgrounds
@@ -50,10 +63,7 @@ export default function ImagePreview({
             >
               <i className="exit_icon"></i>
             </div>
-            <div
-              className="add_col"
-        
-            >
+            <div className="add_col">
               <div className="add_circle">
                 <i className="addPhoto_icon"></i>
               </div>

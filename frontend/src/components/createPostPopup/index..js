@@ -8,9 +8,9 @@ export default function CreatePostPopup({ user }) {
   const [text, setText] = useState('');
   const [showPrev, setShowPrev] = useState(true);
   const [picker, setPicker] = useState(false);
-  const [images , setImages] = useState('')
+  const [images , setImages] = useState([])
   const textRef = useRef(null);
-
+console.log(images)
   // console.log(text);
   return (
     <div className="blur">

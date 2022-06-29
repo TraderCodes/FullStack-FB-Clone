@@ -6,18 +6,26 @@ import Activate from './pages/home/activate';
 import Reset from './pages/reset';
 import CreatePostPopup from './components/createPostPopup/index.';
 import {useSelector} from 'react-redux'
+import NotLoggedInRoutes from './routes/NotLoggedInRoutes';
+import LoggedInRoutes from './routes/LoggedInRoutes';
 function App() {
   const {user} = useSelector((state) => ({ ...state }))
   return (
     <div>
-    <CreatePostPopup user={user}/>
-      <Routes>
-        <Route path="/" element={<Home />} exact />
-        <Route path="/login" element={<Login />} exact />
-        <Route path="/profile" element={<Profile />} exact />
-        <Route path="/activate/:token" element={<Activate />} exact />
-        <Route path="/reset" element={<Reset />} exact />
-      </Routes>
+      <div>
+       {user && <CreatePostPopup user={user} />}
+        <Routes>
+          <Route element={<LoggedInRoutes />}>
+            <Route path="/profile" element={<Profile />} exact />
+            <Route path="/" element={<Home />} exact />
+            <Route path="/activate/:token" element={<Activate />} exact />
+          </Route>
+          <Route element={<NotLoggedInRoutes />}>
+            <Route path="/login" element={<Login />} exact />
+          </Route>
+          <Route path="/reset" element={<Reset />} />
+        </Routes>
+      </div>
     </div>
   );
 }

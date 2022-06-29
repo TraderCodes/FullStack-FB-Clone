@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const fileupload = require('express-fileupload');
 const app = express();
 const { readdirSync } = require('fs'); //read files in the folder
 const dotenv = require('dotenv');
@@ -9,8 +10,12 @@ dotenv.config();
 // filter the website that can connect to
 
 app.use(cors());
-
 app.use(express.json()); // set up json
+app.use(
+  fileupload({
+    useTempFiles: true,
+  })
+);
 
 // app.use('/', useRoutes) ✔ instead of using this we use below ;
 // require('./routes/'+r) is everyfile name we set to
@@ -35,9 +40,10 @@ app.listen(PORT, () => {
 // connect to mongodatabase install mongodb and mongoose
 // set up json
 // set up user regitser
-//work on user validation 
-//  npm i bcrypt for password 
-// adding reccursive validation for username 
+//work on user validation
+//  npm i bcrypt for password
+// adding reccursive validation for username
 // adding jaon web token npm i jsonwebtoken
 // install google api i googleapis nodemailer
-// compress html for mail 
+// compress html for mail
+// install epxress-fileupload

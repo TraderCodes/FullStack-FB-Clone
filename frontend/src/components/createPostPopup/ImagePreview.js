@@ -27,7 +27,7 @@ export default function ImagePreview({
     });
   };
   return (
-    <div className="overflow_a">
+    <div className="overflow_a scrollbar">
       <EmojiPickerBackgrounds
         text={text}
         user={user}
@@ -47,7 +47,26 @@ export default function ImagePreview({
         />
         {/* if images exist */}
         {images && images.length ? (
-          ''
+          <div className="add_pics_inside1 p0">
+            <div className="preview_actions">
+              <button>
+                <i className="edit_icon"></i>
+                Edit
+              </button>
+              <button>
+                <i className="edit_icon"></i>
+                Add Photo / Videos
+              </button>
+            </div>
+            <div className="small_white_circle">
+              <i className="exit_icon"></i>
+            </div>
+            <div >
+              {images.map((img, i) => (
+                <img src={img} alt={i}></img>
+              ))}
+            </div>
+          </div>
         ) : (
           <div
             className="add_pics_inside1"
@@ -67,7 +86,7 @@ export default function ImagePreview({
               <div className="add_circle">
                 <i className="addPhoto_icon"></i>
               </div>
-              <span>Add Photos/Videos</span>
+              <span>Add Photos / Videos</span>
               <span>or drag and drop</span>
             </div>
           </div>

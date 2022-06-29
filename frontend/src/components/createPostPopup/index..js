@@ -8,6 +8,7 @@ export default function CreatePostPopup({ user }) {
   const [text, setText] = useState('');
   const [showPrev, setShowPrev] = useState(true);
   const [picker, setPicker] = useState(false);
+  const [images , setImages] = useState('')
   const textRef = useRef(null);
 
   // console.log(text);
@@ -49,9 +50,17 @@ export default function CreatePostPopup({ user }) {
             />
           </>
         ) : (
-          <ImagePreview />
-          )}
-          <AddToYourPost setShowPrev={setShowPrev} />
+          <ImagePreview
+            text={text}
+            user={user}
+            setText={setText}
+            showPrev={showPrev}
+            images={images}
+            setImages={setImages}
+            setShowPrev={setShowPrev}
+          />
+        )}
+        <AddToYourPost setShowPrev={setShowPrev} />
         <button className="post_submit">Post</button>
       </div>
     </div>

@@ -53,16 +53,26 @@ export default function ImagePreview({
                 <i className="edit_icon"></i>
                 Edit
               </button>
-              <button>
-                <i className="edit_icon"></i>
+              <button
+                className="hover1"
+                onClick={() => {
+                  imageInputRef.current.click();
+                }}
+              >
+                <i className="addPhoto_icon"></i>
                 Add Photo / Videos
               </button>
             </div>
-            <div className="small_white_circle">
-              <i className="exit_icon"></i>
-            </div>
+              <div
+                className="small_white_circle"
+                onClick={() => {
+                  setImages([]);
+                }}
+              >
+                <i className="exit_icon"></i>
+              </div>
             <div
-              className={ 
+              className={
                 images.length === 1
                   ? 'preview1'
                   : images.length === 2

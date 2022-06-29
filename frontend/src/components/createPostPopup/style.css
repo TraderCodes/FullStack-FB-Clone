@@ -172,4 +172,34 @@
 }
 .post_submit:hover , i:hover{
   filter: invert(100%);
+  transition: all 0.3s;
+
+}
+.overflow_a {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.input2 {
+  position: relative;
+  display: block;
+  font-size: 15px;
+  min-height: 15px !important;
+}
+.moveleft {
+  transform: translateX(-10px);
+}
+.movepicker2 {
+  right: 1rem;
+  top: 9.7rem;
+  z-index: 9999;
+}
+.images_input {
+  display: flex;
+}
+.add_pics_wrap {
+  margin: 10px 15px;
+  padding: 10px;
+  border: 1px solid var(--bg-third);
+  border-radius: 10px;
 }

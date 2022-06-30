@@ -4,17 +4,45 @@ import Picker from 'emoji-picker-react';
 import EmojiPickerBackgrounds from './EmojiPickerBackgrounds';
 import AddToYourPost from './AddToYourPost';
 import ImagePreview from './ImagePreview';
+import PulseLoader from 'react-spinners/PulseLoader';
 import useClickOutside from '../../helpers/clickOutside';
-export default function CreatePostPopup({ user ,setPopupVisible}) {
+import { createPost } from '../../function/post';
+export default function CreatePostPopup({ user, setPopupVisible }) {
   const [text, setText] = useState('');
   const [showPrev, setShowPrev] = useState(false);
   const [picker, setPicker] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
   const textRef = useRef(null);
   const closePopup = useRef(null);
   useClickOutside(closePopup, () => {
     setPopupVisible(false);
-  })
+  });
+  const postSubmit = async () => {
+    // if textare contain background text
+    if (background) {
+      
+ 
+          setLoading(true);
+    
+      const response = await createPost(
+        null,
+        background,
+        text,
+        null,
+        user.id,
+        user.token
+        );
+      setLoading(false);
+      if (response === 'ok') {
+        setBackground('');
+        setText('');
+        setPopupVisible(false);
+      } else {
+        setPopupVisible(response);
+      }
+    }
+  };
 
   const [background, setBackground] = useState('');
 
@@ -69,7 +97,14 @@ export default function CreatePostPopup({ user ,setPopupVisible}) {
           />
         )}
         <AddToYourPost setShowPrev={setShowPrev} />
-        <button className="post_submit">Post</button>
+        <button
+          className="post_submit"
+          onClick={() => {
+            postSubmit();
+          }}
+        >
+          {loading ? <PulseLoader color="#fff" size={5} /> : 'Post'}
+        </button>
       </div>
     </div>
   );

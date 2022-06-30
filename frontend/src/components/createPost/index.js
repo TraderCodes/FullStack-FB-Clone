@@ -6,14 +6,12 @@ export default function CreatePost({ user,setPopupVisible }) {
     <div className="createPost">
       <div className="createPost_header">
         <img src={user?.picture} alt="" />
-        <div className="open_post hover2" 
-        onClick={() => setPopupVisible(true)}
-        >
-          Make a post {user?.first_name}
+        <div className="open_post hover2" onClick={() => setPopupVisible(true)}>
+          Make a post {user?.first_name} !
         </div>
       </div>
       <div className="create_splitter"></div>
-      <div className="createPost_body">
+      <div className="createPost_body" onClick={() => setPopupVisible(true)}>
         <div className="createPost_icon hover1">
           <LiveVideo color="#f3425f" />
           Live Video

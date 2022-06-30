@@ -7,12 +7,14 @@ import ImagePreview from './ImagePreview';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useClickOutside from '../../helpers/clickOutside';
 import { createPost } from '../../function/post';
+import PostError from './PostError';
 export default function CreatePostPopup({ user, setPopupVisible }) {
   const [text, setText] = useState('');
   const [showPrev, setShowPrev] = useState(false);
   const [picker, setPicker] = useState(false);
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
+  const [error, setError] = useState('');
   const textRef = useRef(null);
   const closePopup = useRef(null);
   useClickOutside(closePopup, () => {
@@ -21,10 +23,8 @@ export default function CreatePostPopup({ user, setPopupVisible }) {
   const postSubmit = async () => {
     // if textare contain background text
     if (background) {
-      
- 
-          setLoading(true);
-    
+      setLoading(true);
+
       const response = await createPost(
         null,
         background,
@@ -32,7 +32,7 @@ export default function CreatePostPopup({ user, setPopupVisible }) {
         null,
         user.id,
         user.token
-        );
+      );
       setLoading(false);
       if (response === 'ok') {
         setBackground('');
@@ -51,6 +51,8 @@ export default function CreatePostPopup({ user, setPopupVisible }) {
   return (
     <div className="blur">
       <div className="postBox" ref={closePopup}>
+        {error && <PostError error={error} setError={setError} />}
+
         <div className="box_header">
           <div className="small_circle" onClick={() => setPopupVisible(false)}>
             <i className="exit_icon"></i>

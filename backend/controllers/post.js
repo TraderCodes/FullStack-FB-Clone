@@ -8,3 +8,14 @@ exports.createPost = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+exports.getAllPosts = async(req, res) => {
+  try {
+    // find the stored post models
+    const posts = await Post.find();
+    res.json(posts);
+  } catch (error) {
+  }
+    return res.status(500).json({ message: error.message });
+
+}

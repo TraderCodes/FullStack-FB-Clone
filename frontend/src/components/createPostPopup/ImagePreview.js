@@ -10,6 +10,7 @@ export default function ImagePreview({
   setShowPrev,
   images,
   setImages,
+  setError,
 }) {
   const imageInputRef = useRef(null);
   const handleChange = (e) => {
@@ -17,13 +18,31 @@ export default function ImagePreview({
     let files = Array.from(e.target.files);
     console.log(files);
     files.forEach((image) => {
-      const reader = new FileReader();
-      // read everyimage in array
-      reader.readAsDataURL(image);
-      reader.onloadend = (readerEvent) => {
-        // Add image to setimage in index.js
-        setImages((images) => [...images, readerEvent.target.result]);
-      };
+      if (
+        image.type !== 'image/jpeg' &&
+        image.type !== 'image/png' &&
+        image.type !== 'image/webp' &&
+        image.type !== 'image/gif'
+      ) {
+        setError(
+          `${image.name} format is unsupported ! only Jpeg, Png, Webp, Gif are allowed.`
+        );
+        files = files.filter((item) => item.name !== image.name);
+        return;
+      } else if (image.size > 1024 * 1024) {
+        setError(`${image.name} size is too large max 5mb allowed.`);
+        // auto filter out images that is not valid
+        files = files.filter((item) => item.name !== image.name);
+        return;
+      } else {
+        const reader = new FileReader();
+        // read everyimage in array
+        reader.readAsDataURL(image);
+        reader.onloadend = (readerEvent) => {
+          // Add image to setimage in index.js
+          setImages((images) => [...images, readerEvent.target.result]);
+        };
+      }
     });
   };
   return (
@@ -40,6 +59,7 @@ export default function ImagePreview({
       <div className="add_pics_wrap">
         <input
           type="file"
+          accept="image/png , image/jpeg ,image/gif,image/webp"
           multiple
           hidden
           ref={imageInputRef}
@@ -63,14 +83,14 @@ export default function ImagePreview({
                 Add Photo / Videos
               </button>
             </div>
-              <div
-                className="small_white_circle"
-                onClick={() => {
-                  setImages([]);
-                }}
-              >
-                <i className="exit_icon"></i>
-              </div>
+            <div
+              className="small_white_circle"
+              onClick={() => {
+                setImages([]);
+              }}
+            >
+              <i className="exit_icon"></i>
+            </div>
             <div
               className={
                 images.length === 1

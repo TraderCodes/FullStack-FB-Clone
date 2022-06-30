@@ -47,8 +47,14 @@ export default function EmojiPickerBackgrounds({
   // handle text background
   const backgorundHandler = (i) => {
     bgRef.current.style.backgroundImage = `url(${postBackgrounds[i]})`;
+
     setBackground(postBackgrounds[i]);
     bgRef.current.classList.add('bgHandler');
+  };
+  const removeBackground = (i) => {
+    bgRef.current.style.backgroundImage = ``;
+    setBackground('');
+    bgRef.current.classList.remove('bgHandler');
   };
   return (
     <div className={type2 ? 'images_input' : ''}>
@@ -60,13 +66,15 @@ export default function EmojiPickerBackgrounds({
           value={text}
           maxLength="250"
           className={`post_input ${type2 ? 'input2' : ''}`}
-          placeholder={`Enter what you like ${user.first_name}`}
+          placeholder={`Type here if  ${user.first_name}`}
           onChange={(e) => setText(e.target.value)}
+          // 🔴 change textarea padding base of text length
+          // if remove background then padding is 0
           style={{
             paddingTop: `${
-              background && showBgs
+              background
                 ? Math.abs(textRef.current.value.length * 0.1 - 30)
-                : ''
+                : '0'
             }%`,
           }}
         ></textarea>
@@ -90,7 +98,9 @@ export default function EmojiPickerBackgrounds({
         )}
         {!type2 && showBgs && (
           <div className="post_backgrounds">
-            <div className="no_bg">None</div>
+            <div className="no_bg" onClick={() => removeBackground()}>
+              None
+            </div>
             {postBackgrounds.map((bg, i) => (
               <img
                 src={bg}

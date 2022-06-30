@@ -9,14 +9,14 @@ import './style.css';
 import CreatePost from '../../components/createPost';
 import SendVerification from '../../components/home/sendVerification';
 
-export default function Home() {
+export default function Home({setPopupVisible}) {
   // const { user } = useSelector((user) => ({ ...user }));
   const { user } = useSelector((state) => ({ ...state }));
   const [visible, setVisible] = useState(true);
   const el = useRef(null);
   useClickOutside(el, () => {
     setVisible(false);
-    console.log('ga');
+    // console.log('ga');
   });
   return (
     <div className="home">
@@ -25,7 +25,7 @@ export default function Home() {
       <div className="home_middle">
         <Stories />
         {user.verified ===false  && <SendVerification user={user} />}
-        <CreatePost user={user} />
+        <CreatePost user={user} setPopupVisible={setPopupVisible} />
       </div>
       <RightHome user={user} />
     </div>

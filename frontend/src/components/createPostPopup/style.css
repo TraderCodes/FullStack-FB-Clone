@@ -78,7 +78,7 @@
 }
 /* TEXT AREA */
 .flex_center {
-  min-height: 90px;
+  min-height: 150px;
   position: relative;
   display: flex;
   align-items: center;
@@ -93,13 +93,14 @@
   margin-bottom: 10px;
   width: 470px;
   margin-left: 1px;
+
   font-family: inherit;
   font-size: 24px;
   background: var(--bg-primary);
   color: var(--color-primary);
 }
 .flex_center textarea {
-  min-height: 90px;
+  min-height: 150px;
   background: transparent;
   overflow-y: visible;
   position: absolute;
@@ -138,7 +139,7 @@
   align-items: center;
   justify-content: space-evenly;
   gap: 10px;
-  margin: 0 10px;
+  margin: 0 10p      x;
   padding: 10px;
   border-radius: 10px;
   border: 3px solid var(--bg-forth);
@@ -432,6 +433,7 @@
   height: 360px;
   width: 100%;
   background-size: cover;
+  border-radius: 10px;
 }
 .bgHandler textarea {
   text-align: center;

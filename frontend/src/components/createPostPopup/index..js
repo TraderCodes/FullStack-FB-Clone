@@ -6,10 +6,13 @@ import AddToYourPost from './AddToYourPost';
 import ImagePreview from './ImagePreview';
 export default function CreatePostPopup({ user }) {
   const [text, setText] = useState('');
-  const [showPrev, setShowPrev] = useState(true);
+  const [showPrev, setShowPrev] = useState(false);
   const [picker, setPicker] = useState(false);
   const [images, setImages] = useState([]);
   const textRef = useRef(null);
+
+  const [background, setBackground] = useState('');
+
   // console.log(images)
   // console.log(text);
   return (
@@ -45,8 +48,8 @@ export default function CreatePostPopup({ user }) {
               user={user}
               setText={setText}
               showPrev={showPrev}
-              // setBackground={setBackground}
-              // background={background}
+              setBackground={setBackground}
+              background={background}
             />
           </>
         ) : (

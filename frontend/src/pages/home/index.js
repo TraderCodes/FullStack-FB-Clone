@@ -15,19 +15,20 @@ export default function Home({ setPopupVisible, posts }) {
   // const { user } = useSelector((user) => ({ ...user }));
   const { user } = useSelector((state) => ({ ...state }));
   const [visible, setVisible] = useState(true);
-  const [height, setHeight] = useState()
-  const middle = useRef(null)
+  const [height, setHeight] = useState();
+  const middle = useRef(null);
   useEffect(() => {
-    setHeight(middle.current.clientHeight)
-  },[])
-  
+    // fix background image to fully show
+    setHeight(middle.current.clientHeight);
+  },);
+
   const el = useRef(null);
   useClickOutside(el, () => {
     setVisible(false);
     // console.log('ga');
   });
   return (
-    <div className="home" style={{height:`${height}px`}}>
+    <div className="home" style={{ height: `${height + 100}px ` }}>
       <Header />
       <LeftHome user={user} />
       <div className="home_middle" ref={middle}>

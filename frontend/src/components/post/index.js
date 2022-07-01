@@ -2,8 +2,14 @@ import { Link } from 'react-router-dom';
 import { Public,  } from '../../svg';
 import './style.css';
 import Moment from 'react-moment';
+import ReactsPopup from './ReactsPopup';
+import { useState } from 'react';
+
 
 export default function Post({ post , user }) {
+    const [visible, setVisible] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
+
   return (
     <div className="post">
       <div className="post_header">
@@ -82,12 +88,21 @@ export default function Post({ post , user }) {
           <div className="share_count"> share</div>
         </div>
       </div>
-      <div className="post_actions">
-        {/* <ReactsPopup  /> */}
-        <div
-          className="post_action hover1"
-      
-        >
+      <div
+        className="post_actions"
+        onMouseOver={() => {
+          setTimeout(() => {
+            setVisible(true);
+          }, 300);
+        }}
+        onMouseLeave={() => {
+          setTimeout(() => {
+            setVisible(false);
+          }, 500);
+        }}
+      >
+        <ReactsPopup visible={visible} setVisible={setVisible} />
+        <div className="post_action hover1">
           <i className="like_icon"></i>
           <span>Like</span>
         </div>
@@ -104,7 +119,6 @@ export default function Post({ post , user }) {
         <div className="comments_order"></div>
         {/* <CreateComment user={user} /> */}
       </div>
-    
     </div>
 
     // if there is background for textarea

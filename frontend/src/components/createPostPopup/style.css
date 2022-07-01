@@ -172,7 +172,7 @@
 
 }
 .post_submit:hover , i:hover{
-  filter: invert(100%);
+  filter: invert(90%);
   transition: all 0.3s;
    transform: scale(1.01)
 

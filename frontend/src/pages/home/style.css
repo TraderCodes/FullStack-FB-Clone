@@ -38,19 +38,23 @@
   font-weight: 500;
 }
 .loader{
-  margin-top:px;
+  margin-top:1px;
 }
 
 @media (max-width: 1300px) {
   .stories,
-  .createPost, .send_verification{
-    width: 84%;
+  .createPost,
+  .send_verification{
+    width:84%;
   }
   .home_middle {
     margin-left: 5%;
   }
   .right_home {
     width: 18vw;
+  }
+  .post{
+    width: 672px !important;
   }
 }
 @media (max-width: 1060px) {
@@ -88,22 +92,26 @@
     width: 20px;
   }
   .stories,
-  .createPost, .send_verification{
-    width: 100%;
+  .createPost,  .send_verification{
+    width:100%;
   }
   .left_link:nth-child(1) img {
     margin: auto;
   }
+  .post {
+    width: auto !important;
+  }
+
 }
 @media (max-width: 960px) {
-  .createPost, .send_verification{
-    width: 95%;
+  .createPost,  .send_verification{
+    width: 110%;
   }
   .stories {
     width: 95%;
   }
   .home_middle {
-    margin-left: 10%;
+    margin-right: 5%;
   }
   .right_home {
     left: 78%;
@@ -118,13 +126,16 @@
   .contacts_header_right {
     right: 0;
   }
+  .post {
+    width: 105% !important;
+  }
 }
 @media (max-width: 1060px) {
   .right_home {
     display: none;
   }
-  .createPost, .send_verification{
-    width: 110%;
+  .createPost, .post , .send_verification{
+    width: 110% !;
   }
   .stories {
     width: 113%;
@@ -145,7 +156,7 @@
     filter: brightness(96%);
   }
   .stories .white_circle {
-    right: 5px;
+    right: -10px;
   }
   .left_home {
     margin-left: 10px;
@@ -153,6 +164,25 @@
 
   .left_home::-webkit-scrollbar {
     display: none;
+  }
+}
+@media (max-width: 830px){
+    .stories,
+  .createPost,.post,  .send_verification{
+    width:115%;
+  }
+  .post {
+    width:107% !important ;
+  }
+  .home_middle{
+    margin-left: 10%;
+  }
+  .story,
+ .create_story_card{
+width: 94%;
+  }
+  .home_middle{
+    margin-left: 7%;
   }
 }
 @media (max-width: 620px) {
@@ -164,7 +194,7 @@
     margin-left: 0;
   }
   .stories,
-  .createPost, .send_verification{
+  .createPost, .post, .send_verification{
     width: 100%;
   }
   .stories .white_circle {
@@ -185,5 +215,8 @@
   }
   .createPost_icon svg {
     width: 20px;
+  }
+    .post {
+    width:100% !important ;
   }
 }

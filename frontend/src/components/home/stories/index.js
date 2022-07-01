@@ -8,7 +8,7 @@ export default function Stories() {
     query: "(max-width: 1300px)",
   });
   const query1030px = useMediaQuery({
-    query: "(max-width: 1050px)",
+    query: "(max-width: 1056px)",
   });
   const query960px = useMediaQuery({
     query: "(max-width: 960px)",

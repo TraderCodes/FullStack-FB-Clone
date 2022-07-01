@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/createPost',authUser,createPost);
 
-router.get('/getAllPosts' ,getAllPosts);
+router.get('/getAllPosts' ,authUser,getAllPosts);
 
 // router.post('/auth',authUser, auth);
 module.exports = router;

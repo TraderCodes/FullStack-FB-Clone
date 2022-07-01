@@ -9,7 +9,7 @@ import './style.css';
 import CreatePost from '../../components/createPost';
 import SendVerification from '../../components/home/sendVerification';
 
-export default function Home({setPopupVisible}) {
+export default function Home({ setPopupVisible, posts }) {
   // const { user } = useSelector((user) => ({ ...user }));
   const { user } = useSelector((state) => ({ ...state }));
   const [visible, setVisible] = useState(true);
@@ -24,8 +24,13 @@ export default function Home({setPopupVisible}) {
       <LeftHome user={user} />
       <div className="home_middle">
         <Stories />
-        {user.verified ===false  && <SendVerification user={user} />}
+        {user.verified === false && <SendVerification user={user} />}
         <CreatePost user={user} setPopupVisible={setPopupVisible} />
+        {posts.map((post) => (
+          <div className="post" key={post._id}>
+            {post._id}
+          </div>
+        ))}
       </div>
       <RightHome user={user} />
     </div>

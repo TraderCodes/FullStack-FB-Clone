@@ -14,7 +14,7 @@ exports.authUser = async (req, res, next) => {
       if (err) {
         return res.status(400).json({ error: 'Invalid Authentication' });
       }
-      // if is valid
+      // if valid
       // Add user id into user object
       req.user = user;
       next();

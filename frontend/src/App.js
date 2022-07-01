@@ -32,7 +32,7 @@ function reducer(state, action) {
 
 function App() {
   const { user } = useSelector((state) => ({ ...state }));
-  const [{ error, posts }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, posts }, dispatch] = useReducer(reducer, {
     loading: false,
     error: '',
     posts: [],
@@ -57,6 +57,7 @@ function App() {
       );
       dispatch({
         type: 'POSTS_SUCCESS',
+        // data that fetch from backend
         payload: data,
       });
     } catch (error) {
@@ -66,7 +67,7 @@ function App() {
       });
     }
   };
-  console.log(posts)
+  console.log(posts);
   const [popupVisible, setPopupVisible] = useState(false);
   return (
     <div>
@@ -80,7 +81,7 @@ function App() {
             <Route path="/profile" element={<Profile />} exact />
             <Route
               path="/"
-              element={<Home setPopupVisible={setPopupVisible} />}
+              element={<Home setPopupVisible={setPopupVisible} posts={posts} />}
               exact
             />
             <Route path="/activate/:token" element={<Activate />} exact />

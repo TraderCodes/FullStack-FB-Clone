@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 import ReactsPopup from './ReactsPopup';
 import { useState } from 'react';
 import CreateComment from './CreateComment';
+import PostMenu from './PostMenu';
  
 
 export default function Post({ post , user }) {
@@ -120,6 +121,8 @@ export default function Post({ post , user }) {
         <div className="comments_order"></div>
           <CreateComment user={user} />
       </div>
+      {/* Pass  ID's */}
+      <PostMenu userId={user.id}postUserId={post.user._id} />
     </div>
 
     // if there is background for textarea

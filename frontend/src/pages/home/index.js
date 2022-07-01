@@ -17,8 +17,8 @@ export default function Home({ setPopupVisible, posts }) {
   const [visible, setVisible] = useState(true);
   const [height, setHeight] = useState();
   const middle = useRef(null);
-    const [scrolling, setScrolling] = useState(false);
-    const [scrollTop, setScrollTop] = useState(0);
+  const [scrolling, setScrolling] = useState(false);
+  const [scrollTop, setScrollTop] = useState(100);
   useEffect(() => {
     // fix background image to fully show
     const onScroll = (e) => {
@@ -37,7 +37,7 @@ export default function Home({ setPopupVisible, posts }) {
     // console.log('ga');
   });
   return (
-    <div className="home" style={{ height: `${height + 100}px` }}>
+    <div className="home" style={{ height: `${height + 70}px` }}>
       <Header />
       <LeftHome user={user} />
       <div className="home_middle" ref={middle}>
@@ -46,7 +46,7 @@ export default function Home({ setPopupVisible, posts }) {
         <CreatePost user={user} setPopupVisible={setPopupVisible} />
         {posts.map((post) => (
           <div className="post" key={post._id}>
-            <Post post={post} key={post._id} />
+            <Post post={post} key={post._id} user={user} />
           </div>
         ))}
       </div>

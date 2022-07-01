@@ -5,16 +5,73 @@ import Home from './pages/home';
 import Activate from './pages/home/activate';
 import Reset from './pages/reset';
 import CreatePostPopup from './components/createPostPopup/index.';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import NotLoggedInRoutes from './routes/NotLoggedInRoutes';
 import LoggedInRoutes from './routes/LoggedInRoutes';
-import { useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
+import axios from 'axios';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'POSTS_REQUEST':
+      return { ...state, loading: true, error: '' };
+    case 'POSTS_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        posts: action.payload,
+        error: '',
+      };
+    case 'POSTS_ERROR':
+      return { ...state, loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+}
+
 function App() {
   const { user } = useSelector((state) => ({ ...state }));
+  const [{ error, posts }, dispatch] = useReducer(reducer, {
+    loading: false,
+    error: '',
+    posts: [],
+  });
+  // everytime when page refresh fetch data from backend
+  useEffect(() => {
+    getAllPosts();
+  }, []);
+  // fetch all post function
+  const getAllPosts = async () => {
+    try {
+      dispatch({
+        type: 'POSTS_REQUEST',
+      });
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/getAllposts`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      dispatch({
+        type: 'POSTS_SUCCESS',
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: 'POSTS_ERROR',
+        payload: error.response.data.message,
+      });
+    }
+  };
+  console.log(posts)
   const [popupVisible, setPopupVisible] = useState(false);
   return (
     <div>
       <div>
+        {/* when user and popup is true*/}
         {user && popupVisible && (
           <CreatePostPopup user={user} setPopupVisible={setPopupVisible} />
         )}

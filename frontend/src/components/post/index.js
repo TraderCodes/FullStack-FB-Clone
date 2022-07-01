@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Public,  } from '../../svg';
+import { Dots, Public,  } from '../../svg';
 import './style.css';
 import Moment from 'react-moment';
 import ReactsPopup from './ReactsPopup';
@@ -12,6 +12,8 @@ export default function Post({ post , user }) {
     const [visible, setVisible] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
 
+
+    
   return (
     <div className="post">
       <div className="post_header">
@@ -43,6 +45,12 @@ export default function Post({ post , user }) {
             </div>
           </div>
         </Link>
+        <div
+          className="post_header_right hover1"
+          onClick={() => setShowMenu((prev) => !prev)}
+        >
+          <Dots color="#828387" />
+        </div>
       </div>
       {post.background ? (
         <div
@@ -119,10 +127,14 @@ export default function Post({ post , user }) {
       </div>
       <div className="comments_wrap">
         <div className="comments_order"></div>
-          <CreateComment user={user} />
+        <CreateComment user={user} />
       </div>
       {/* Pass  ID's */}
-      <PostMenu userId={user.id}postUserId={post.user._id} />
+   {showMenu && (<PostMenu
+        userId={user.id}
+        postUserId={post.user._id}
+        imagesLength={post?.images?.length}
+      />)}
     </div>
 
     // if there is background for textarea

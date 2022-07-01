@@ -8,6 +8,7 @@ import Stories from '../../components/home/stories/index';
 import './style.css';
 import CreatePost from '../../components/createPost';
 import SendVerification from '../../components/home/sendVerification';
+import Post from '../../components/post';
 
 export default function Home({ setPopupVisible, posts }) {
   // const { user } = useSelector((user) => ({ ...user }));
@@ -28,7 +29,7 @@ export default function Home({ setPopupVisible, posts }) {
         <CreatePost user={user} setPopupVisible={setPopupVisible} />
         {posts.map((post) => (
           <div className="post" key={post._id}>
-            {post._id}
+            <Post post={post} key={post._id} />
           </div>
         ))}
       </div>

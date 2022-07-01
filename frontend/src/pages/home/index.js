@@ -9,21 +9,28 @@ import './style.css';
 import CreatePost from '../../components/createPost';
 import SendVerification from '../../components/home/sendVerification';
 import Post from '../../components/post';
+import { useEffect } from 'react';
 
 export default function Home({ setPopupVisible, posts }) {
   // const { user } = useSelector((user) => ({ ...user }));
   const { user } = useSelector((state) => ({ ...state }));
   const [visible, setVisible] = useState(true);
+  const [height, setHeight] = useState()
+  const middle = useRef(null)
+  useEffect(() => {
+    setHeight(middle.current.clientHeight)
+  },[])
+  
   const el = useRef(null);
   useClickOutside(el, () => {
     setVisible(false);
     // console.log('ga');
   });
   return (
-    <div className="home">
+    <div className="home" style={{height:`${height}px`}}>
       <Header />
       <LeftHome user={user} />
-      <div className="home_middle">
+      <div className="home_middle" ref={middle}>
         <Stories />
         {user.verified === false && <SendVerification user={user} />}
         <CreatePost user={user} setPopupVisible={setPopupVisible} />

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Public } from '../../svg';
+import { Public,  } from '../../svg';
 import './style.css';
 import Moment from 'react-moment';
 
-export default function Post({ post }) {
+export default function Post({ post , user }) {
   return (
     <div className="post">
       <div className="post_header">
@@ -72,7 +72,41 @@ export default function Post({ post }) {
           )}
         </>
       )}
+      <div className="post_infos">
+        <div className="reacts_count">
+          <div className="reacts_count_imgs"></div>
+          <div className="reacts_count_num"></div>
+        </div>
+        <div className="to_right">
+          <div className="comments_count">comments</div>
+          <div className="share_count"> share</div>
+        </div>
+      </div>
+      <div className="post_actions">
+        {/* <ReactsPopup  /> */}
+        <div
+          className="post_action hover1"
+      
+        >
+          <i className="like_icon"></i>
+          <span>Like</span>
+        </div>
+        <div className="post_action hover1">
+          <i className="comment_icon"></i>
+          <span>Comment</span>
+        </div>
+        <div className="post_action hover1">
+          <i className="share_icon"></i>
+          <span>Share</span>
+        </div>
+      </div>
+      <div className="comments_wrap">
+        <div className="comments_order"></div>
+        {/* <CreateComment user={user} /> */}
+      </div>
+    
     </div>
+
     // if there is background for textarea
   );
 }

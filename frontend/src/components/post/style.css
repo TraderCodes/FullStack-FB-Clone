@@ -63,6 +63,11 @@
   background-size: cover;
   border-radius: 10px ;
 }
+.post_text {
+  padding: 0 20px 15px 20px;
+  font-size: 20px;
+}
+
 /*-----------------------------GRID IMAGES----------------*/
 img{
   border-radius: 10px;

@@ -12,6 +12,7 @@ const { sendVerificationEmail, sendResetCode } = require('../helpers/mailer');
 const { findOne } = require('../models/User');
 const Code = require('../models/Code');
 const generateCode = require('../helpers/generateCode');
+const { response } = require('express');
 // const { findOneAndUpdate, findOne } = require('../models/User');
 // 🔴Register add to routes
 exports.register = async (req, res) => {
@@ -243,6 +244,16 @@ exports.changePassword = async (req, res) => {
   return res.status(200).json({ message: 'ok' });
 };
 
+exports.getProfile = async (req, res) => {
+  try {
+    const { username } = req.params;
+    // find user using username from params except password
+    const profile = await User.findOne({ username }).select('-password');
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 // exports.auth = (req, res) => {
 //   res.json('welcome auth');

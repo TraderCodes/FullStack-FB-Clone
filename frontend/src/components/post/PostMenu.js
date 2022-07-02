@@ -9,6 +9,7 @@ export default function PostMenu({
 }) {
   // compaire useId with postid 
   const [test, setTest] = useState(postUserId === userId ? true : false);
+  
   const menu = useRef(null);
   useOnClickOutside(menu, () => setShowMenu(false));
   return (

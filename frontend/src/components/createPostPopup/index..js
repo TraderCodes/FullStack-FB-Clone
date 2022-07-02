@@ -49,7 +49,8 @@ export default function CreatePostPopup({ user, setPopupVisible }) {
       const postImages = images.map((img) => {
         return dataURItoBlob(img);
       });
-      const path = `${user.username}/post Images`;
+      // make sure there is no space orelse won't be able to get images from cloudinary
+      const path = `${user.username}/post_Images`;
       let formData = new FormData();
       formData.append('path', path);
       postImages.forEach((image) => {

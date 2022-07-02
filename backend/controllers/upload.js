@@ -1,5 +1,3 @@
-
-
 const cloudinary = require('cloudinary');
 const fs = require('fs');
 cloudinary.config({
@@ -21,6 +19,26 @@ exports.uploadImages = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
+};
+
+// get data from cloudinary
+exports.listImages = async (req, res) => {
+  const { path, sort, max } = req.body;
+
+  cloudinary.v2.search
+    // expression we send in the path which is the name we want
+    // need to pass as string
+    .expression(`${path}`) //'file/name'
+    // sort with created date
+    .sort_by('created_at', `${sort}`) // desc (order type)
+    .max_results(max)
+    .execute()
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err.error.message);
+    });
 };
 
 const uploadToCloudinary = async (file, path) => {
@@ -47,7 +65,6 @@ const removeTmp = (path) => {
     if (err) throw err;
   });
 };
-
 
 // const Post = require('../models/Post');
 // const cloudinary = require('cloudinary');

@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { useEffect, useReducer } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { profileReducer } from '../../function/reducer';
 export default function Profile() {
   const { username } = useParams();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
   // if username not in the link we send user to current user logged in
   var userName = username === undefined ? user.username : username;
@@ -32,11 +33,15 @@ export default function Profile() {
           },
         }
       );
-      dispatch({
-        type: 'PROFILE_SUCCESS',
-        // data that fetch from backend
-        payload: data,
-      });
+      if (data.error === true) {
+        navigate('/profile');
+      } else {
+        dispatch({
+          type: 'PROFILE_SUCCESS',
+          // data that fetch from backend
+          payload: data,
+        });
+      }
     } catch (error) {
       dispatch({
         type: 'PROFILE_ERROR',

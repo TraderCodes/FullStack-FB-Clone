@@ -249,6 +249,9 @@ exports.getProfile = async (req, res) => {
     const { username } = req.params;
     // find user using username from params except password
     const profile = await User.findOne({ username }).select('-password');
+    if (!profile) {
+      return res.json({ error:true});
+    }
     res.json(profile);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -7,6 +7,7 @@ import Header from '../../components/header/index';
 import './style.css';
 
 import Cover from './Cover.js';
+import ProfilePictureInfos from './ProfilePictureInfos';
 export default function Profile() {
   const { username } = useParams();
   const navigate = useNavigate();
@@ -60,10 +61,8 @@ export default function Profile() {
       <Header page="profile" />
       <div className="profile_top">
         <div className="profile_container">
-          <Cover 
-            cover={profile.cover}
-       
-          />
+          <Cover cover={profile.cover} />
+          <ProfilePictureInfos profile={profile} />
         </div>
       </div>
     </div>

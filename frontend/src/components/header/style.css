@@ -54,6 +54,7 @@ header {
 .header_middle {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   transform: translateX(4px);
 }

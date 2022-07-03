@@ -1,5 +1,5 @@
 .home {
-min-height: 100vh;
+  min-height: 100vh;
   background: var(--bg-secondary);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -7,7 +7,7 @@ min-height: 100vh;
 .home_middle {
   margin-top: 75px;
   position: absolute;
- justify-content: center;
+  justify-content: center;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -38,15 +38,15 @@ min-height: 100vh;
   padding: 10px;
   font-weight: 500;
 }
-.loader{
-  margin-top:1px;
+.loader {
+  margin-top: 1px;
 }
 
 @media (max-width: 1300px) {
   .stories,
   .createPost,
-  .send_verification{
-    width:84%;
+  .send_verification {
+    width: 84%;
   }
   .home_middle {
     margin-left: 5%;
@@ -54,7 +54,7 @@ min-height: 100vh;
   .right_home {
     width: 18vw;
   }
-  .post{
+  .post {
     width: 672px !important;
   }
 }
@@ -93,8 +93,9 @@ min-height: 100vh;
     width: 20px;
   }
   .stories,
-  .createPost,  .send_verification{
-    width:100%;
+  .createPost,
+  .send_verification {
+    width: 100%;
   }
   .left_link:nth-child(1) img {
     margin: auto;
@@ -102,10 +103,10 @@ min-height: 100vh;
   .post {
     width: auto !important;
   }
-
 }
 @media (max-width: 960px) {
-  .createPost,  .send_verification{
+  .createPost,
+  .send_verification {
     width: 110%;
   }
   .stories {
@@ -135,7 +136,9 @@ min-height: 100vh;
   .right_home {
     display: none;
   }
-  .createPost, .post , .send_verification{
+  .createPost,
+  .post,
+  .send_verification {
     width: 110% !;
   }
   .stories {
@@ -167,22 +170,24 @@ min-height: 100vh;
     display: none;
   }
 }
-@media (max-width: 830px){
-    .stories,
-  .createPost,.post,  .send_verification{
-    width:115%;
+@media (max-width: 830px) {
+  .stories,
+  .createPost,
+  .post,
+  .send_verification {
+    width: 115%;
   }
   .post {
-    width:107% !important ;
+    width: 107% !important ;
   }
-  .home_middle{
+  .home_middle {
     margin-left: 10%;
   }
   .story,
- .create_story_card{
-width: 94%;
+  .create_story_card {
+    width: 94%;
   }
-  .home_middle{
+  .home_middle {
     margin-left: 7%;
   }
 }
@@ -195,7 +200,9 @@ width: 94%;
     margin-left: 0;
   }
   .stories,
-  .createPost, .post, .send_verification{
+  .createPost,
+  .post,
+  .send_verification {
     width: 100%;
   }
   .stories .white_circle {
@@ -217,7 +224,7 @@ width: 94%;
   .createPost_icon svg {
     width: 20px;
   }
-    .post {
-    width:100% !important ;
+  .post {
+    width: 100% !important ;
   }
 }

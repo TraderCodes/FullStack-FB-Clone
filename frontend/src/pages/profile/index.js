@@ -3,10 +3,14 @@ import { useEffect, useReducer } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { profileReducer } from '../../function/reducer';
+import Header from '../../components/header/index';
+import './style.css';
+import { useState } from 'react';
 export default function Profile() {
   const { username } = useParams();
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
+  const [showCoverMenu, setShowCoverMenu] = useState(true);
   // if username not in the link we send user to current user logged in
   var userName = username === undefined ? user.username : username;
   const [{ loading, error, profile }, dispatch] = useReducer(profileReducer, {
@@ -50,5 +54,19 @@ export default function Profile() {
     }
   };
   console.log(profile);
-  return <div>Profile</div>;
+  return (
+    <div className="profile">
+      <Header page="profile" />
+
+      <div className="profile_top">
+        <div className="profile_container">
+          <div className="profile_cover">
+            {profile.cover && (
+              <img src={profile.cover} className="cover" alt="" />
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

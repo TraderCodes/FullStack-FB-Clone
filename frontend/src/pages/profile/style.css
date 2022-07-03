@@ -1,0 +1,20 @@
+.profile {
+  color: var(--color-primary);
+}
+.profile_top {
+  margin-top: 56px;
+  box-shadow: 0 1px 2px var(--shadow-1);
+  background: var(--bg-primary);
+}
+.profile_container {
+  max-width: 945px;
+  margin: 0 auto;
+}
+.profile_cover {
+  position: relative;
+  height: 350px;
+  width: 100%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: var(--bg-secondary);
+}

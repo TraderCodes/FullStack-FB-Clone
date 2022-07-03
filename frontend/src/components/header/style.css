@@ -121,7 +121,7 @@ header {
   font-size: 20px;
   line-height: 19px;
   margin-right: 10px;
-   user-select: none !important;
+  user-select: none !important;
 }
 .profile_link img {
   width: 40px;
@@ -156,7 +156,7 @@ header {
   padding: 1px 6px;
   font-size: 13px;
   color: #fff;
-   user-select: none !important;
+  user-select: none !important;
 }
 
 /* SEARCH AREA */
@@ -177,7 +177,7 @@ header {
   min-height: 400px;
   max-height: 70vh;
   padding: 0px 16px 10px 6px;
-   user-select: none !important;
+  user-select: none !important;
 }
 .search_wrap {
   display: flex;
@@ -304,7 +304,6 @@ header {
 .all_menu_col span:first-of-type {
   font-size: 14px;
   font-weight: 500;
-
 }
 .all_menu_col span:last-of-type {
   font-size: 12px;
@@ -481,6 +480,12 @@ header {
 .active_header svg {
   fill: var(--blue-color);
 }
+
+.active_link {
+  background: var(--light-blue-color);
+  color: var(--blue-color);
+}
+/*----Active header----*/
 @media (max-width: 1295px) {
   .middle_icon {
     width: 90px;

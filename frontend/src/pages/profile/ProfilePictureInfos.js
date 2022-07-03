@@ -1,3 +1,5 @@
+import ProfileMenu from "./ProfileMenu";
+
 export default function ProfilePictureInfos({ profile }) {
   return (
     <div className="profile_img_wrap">
@@ -35,6 +37,7 @@ export default function ProfilePictureInfos({ profile }) {
           </div>
         </div>
       )}
+  
     </div>
   );
 }

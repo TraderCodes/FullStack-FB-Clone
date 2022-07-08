@@ -5,9 +5,11 @@ export default function AddFriendSmallCard({ item }) {
         <img src={item.profile_picture} alt="" />
         <div className="addfriend_infos">
           <div className="addfriend_name">
+            {/* if characters are bigger than 11 then slice*/}
             {item.profile_name.length > 11
               ? `${item.profile_name.substring(0, 11)}...`
               : item.profile_name}
+            
           </div>
           <div className="light_blue_btn">
             <img

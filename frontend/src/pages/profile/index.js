@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { profileReducer } from '../../function/reducer';
 import Header from '../../components/header/index';
 import './style.css';
-
+import  CreatePost from '../../components/createPost';
 import Cover from './Cover.js';
 import ProfilePictureInfos from './ProfilePictureInfos';
 import ProfileMenu from './ProfileMenu';
@@ -71,7 +71,17 @@ export default function Profile() {
       <div className="profile_bottom">
         <div className="profile_container">
           {/* add people section  */}
-          <div className="bottom_conttainer"><PplYouMayKnow /></div>
+          <div className="bottom_conttainer">
+            <PplYouMayKnow />
+
+            {/*profile info section  */}
+            <div className="profile_grid">
+              <div className="profile_left"></div>
+              <div className="profile_right">
+                <CreatePost/>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

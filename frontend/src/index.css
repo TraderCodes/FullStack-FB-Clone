@@ -54,6 +54,22 @@ a {
   cursor: pointer;
   transition: 0.5s;
 }
+.light_blue_btn {
+  border: none;
+  background-color: var(--light-blue-color);
+  outline: none;
+  padding: 0.5px 12px;
+  border-radius: 7px;
+  font-weight: 600;
+  font-family: inherit;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: 0.5s;
+}
 .gray_btn {
   border: none;
   background-color: var(--bg-secondary);

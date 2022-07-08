@@ -9,6 +9,7 @@ import './style.css';
 import Cover from './Cover.js';
 import ProfilePictureInfos from './ProfilePictureInfos';
 import ProfileMenu from './ProfileMenu';
+import PplYouMayKnow from './PplYouMayKnow';
 export default function Profile() {
   const { username } = useParams();
   const navigate = useNavigate();
@@ -65,7 +66,12 @@ export default function Profile() {
           <Cover cover={profile.cover} />
           <ProfilePictureInfos profile={profile} />
           <ProfileMenu />
-
+        </div>
+      </div>
+      <div className="profile_bottom">
+        <div className="profile_container">
+          {/* add people section  */}
+          <div className="bottom_conttainer"><PplYouMayKnow /></div>
         </div>
       </div>
     </div>

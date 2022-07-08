@@ -1,7 +1,7 @@
 import { Feeling, LiveVideo, Photo } from '../../svg';
 import UserMenu from '../header/userMenu';
 import './style.css';
-export default function CreatePost({ user,setPopupVisible }) {
+export default function CreatePost({ user, setPopupVisible, profile }) {
   return (
     <div className="createPost">
       <div className="createPost_header">
@@ -20,10 +20,18 @@ export default function CreatePost({ user,setPopupVisible }) {
           <Photo color="#4bbf67" />
           Photo/Video
         </div>
-        <div className="createPost_icon hover1">
-          <Feeling color="#f7b928" />
-          Feelings
-        </div>
+        {/* when in profile page */}
+        {profile ? (
+          <div className="createPost_icon hover1">
+            <i className="lifeEvent_icon"></i>
+            Life event
+          </div>
+        ) : (
+          <div className="createPost_icon hover1">
+            <Feeling color="#f7b928" />
+            Feelings
+          </div>
+        )}
       </div>
     </div>
   );

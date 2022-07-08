@@ -10,7 +10,7 @@ import Cover from './Cover.js';
 import ProfilePictureInfos from './ProfilePictureInfos';
 import ProfileMenu from './ProfileMenu';
 import PplYouMayKnow from './PplYouMayKnow';
-export default function Profile() {
+export default function Profile({setPopupVisible}) {
   const { username } = useParams();
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
@@ -78,7 +78,11 @@ export default function Profile() {
             <div className="profile_grid">
               <div className="profile_left"></div>
               <div className="profile_right">
-                <CreatePost/>
+                <CreatePost
+                  user={user}
+                  profile={profile}
+                  setPopupVisible={setPopupVisible}
+                />
               </div>
             </div>
           </div>

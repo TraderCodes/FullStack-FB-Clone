@@ -79,9 +79,9 @@ function App() {
         )}
         <Routes>
           <Route element={<LoggedInRoutes />}>
-            <Route path="/profile" element={<Profile />} exact />
+            <Route path="/profile" element={<Profile setPopupVisible={setPopupVisible} />} exact />
             {/* when entered with id we compare to BackE to check if user exists */}
-            <Route path="/profile/:username" element={<Profile />} exact />
+            <Route path="/profile/:username" element={<Profile setPopupVisible={setPopupVisible}/>} exact />
             <Route
               path="/"
               element={<Home setPopupVisible={setPopupVisible} posts={posts} />}

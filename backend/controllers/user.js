@@ -6,6 +6,7 @@ const {
 } = require('../helpers/validation');
 const { generateToken } = require('../helpers/token');
 const User = require('../models/User');
+const Post = require('../models/Post');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { sendVerificationEmail, sendResetCode } = require('../helpers/mailer');
@@ -250,9 +251,10 @@ exports.getProfile = async (req, res) => {
     // find user using username from params except password
     const profile = await User.findOne({ username }).select('-password');
     if (!profile) {
-      return res.json({ error:true});
+      return res.json({ error: true });
     }
-    res.json(profile);
+    const posts = await Post.find({ user: profile._id }).populate('user');
+    res.json({ ...profile.toObject(), posts });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

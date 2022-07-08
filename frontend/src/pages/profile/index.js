@@ -11,6 +11,7 @@ import ProfilePictureInfos from './ProfilePictureInfos';
 import ProfileMenu from './ProfileMenu';
 import PplYouMayKnow from './PplYouMayKnow';
 import GridPosts from './GridPosts';
+import Post from '../../components/post';
 export default function Profile({setPopupVisible}) {
   const { username } = useParams();
   const navigate = useNavigate();
@@ -85,8 +86,17 @@ export default function Profile({setPopupVisible}) {
                   setPopupVisible={setPopupVisible}
                 />
                 <GridPosts />
-              </div>  
-              
+                <div className="posts">
+                  {/* only return perosna; profile post  */}
+                  {profile.posts && profile.posts.length ? (
+                    profile.posts.map((post) => (
+                      <Post post={post} user={user} key={post._id} profile />
+                    ))
+                  ) : (
+                    <div className="no_posts">No posts available</div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>

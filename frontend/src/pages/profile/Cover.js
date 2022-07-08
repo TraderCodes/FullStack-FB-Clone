@@ -1,14 +1,14 @@
 import { useState, useRef } from 'react';
 import useClickOutside from '../../helpers/clickOutside';
 
-export default function Cover({ cover }) {
+export default function Cover({ cover,visitor }) {
   const [showCoverMenu, setShowCoverMenu] = useState(false);
   const menuRef = useRef(null);
   useClickOutside(menuRef, () => setShowCoverMenu(false));
   return (
     <div className="profile_cover" ref={menuRef}>
       {cover && <img src={cover} className="cover" alt="" />}
-      <div className="update_cover_wrapper">
+      {!visitor &&(<div className="update_cover_wrapper">
         <div
           className="open_cover_update"
           onClick={() => setShowCoverMenu((prev) => !prev)}
@@ -28,7 +28,7 @@ export default function Cover({ cover }) {
             </div>
           </div>
         )}
-      </div>
+      </div>)}
     </div>
   );
 }

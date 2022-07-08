@@ -25,10 +25,19 @@ export default function Profile({setPopupVisible}) {
     profile: {},
   });
 
+
   // Call useEffect when name change
   useEffect(() => {
     getProfile();
   }, [userName]);
+// check if user is a visitor
+
+var visitor = userName === user.username ?false :true;
+// console.log("🚀 ~ visitor", visitor)
+
+
+
+
 
   const getProfile = async (name) => {
     try {
@@ -65,7 +74,7 @@ export default function Profile({setPopupVisible}) {
       <Header page="profile" />
       <div className="profile_top">
         <div className="profile_container">
-          <Cover cover={profile.cover} />
+          <Cover cover={profile.cover} visitor={visitor} />
           <ProfilePictureInfos profile={profile} />
           <ProfileMenu />
         </div>

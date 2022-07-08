@@ -75,7 +75,7 @@ var visitor = userName === user.username ?false :true;
       <div className="profile_top">
         <div className="profile_container">
           <Cover cover={profile.cover} visitor={visitor} />
-          <ProfilePictureInfos profile={profile} />
+          <ProfilePictureInfos profile={profile} visitor={visitor} />
           <ProfileMenu />
         </div>
       </div>

@@ -1,6 +1,6 @@
-import ProfileMenu from "./ProfileMenu";
+import ProfileMenu from './ProfileMenu';
 
-export default function ProfilePictureInfos({ profile }) {
+export default function ProfilePictureInfos({ profile, visitor }) {
   return (
     <div className="profile_img_wrap">
       <div className="profile_w_left">
@@ -25,7 +25,9 @@ export default function ProfilePictureInfos({ profile }) {
           <div className="profile_friend_imgs"></div>
         </div>
       </div>
-      { (
+      {visitor ? (
+        ''
+      ) : (
         <div className="profile_w_right">
           <div className="blue_btn">
             <img src="../../../icons/plus.png" alt="" className="invert" />
@@ -37,7 +39,6 @@ export default function ProfilePictureInfos({ profile }) {
           </div>
         </div>
       )}
-  
     </div>
   );
 }

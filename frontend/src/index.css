@@ -103,8 +103,8 @@ a {
 
 /* Button */
 .hover1:hover {
-  background: var(--bg-secondary);
-  transition: 0.5s;
+  background: rgba(195, 195, 195, 0.561) !important;
+  transition: 0.5s  ;
 }
 .hover2:hover {
   background: var(--bg-third);

@@ -89,11 +89,11 @@ var visitor = userName === user.username ?false :true;
             <div className="profile_grid">
               <div className="profile_left"></div>
               <div className="profile_right">
-                <CreatePost
+         {!visitor &&(       <CreatePost
                   user={user}
                   profile={profile}
                   setPopupVisible={setPopupVisible}
-                />
+                />)}
                 <GridPosts />
                 <div className="posts">
                   {/* only return perosna; profile post  */}

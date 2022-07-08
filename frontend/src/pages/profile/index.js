@@ -10,6 +10,7 @@ import Cover from './Cover.js';
 import ProfilePictureInfos from './ProfilePictureInfos';
 import ProfileMenu from './ProfileMenu';
 import PplYouMayKnow from './PplYouMayKnow';
+import GridPosts from './GridPosts';
 export default function Profile({setPopupVisible}) {
   const { username } = useParams();
   const navigate = useNavigate();
@@ -83,7 +84,9 @@ export default function Profile({setPopupVisible}) {
                   profile={profile}
                   setPopupVisible={setPopupVisible}
                 />
-              </div>
+                <GridPosts />
+              </div>  
+              
             </div>
           </div>
         </div>

@@ -134,4 +134,6 @@ margin: 15px auto;
   position: relative;
   width: 97%;
   margin-top: 2rem;
+    color: var(--color-secondary);
+ font-size: 12px;
 }

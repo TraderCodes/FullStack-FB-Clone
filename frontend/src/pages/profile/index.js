@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useReducer,useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { profileReducer } from '../../function/reducer';
 import Header from '../../components/header/index';
 import './style.css';
@@ -13,6 +13,7 @@ import PplYouMayKnow from './PplYouMayKnow';
 import GridPosts from './GridPosts';
 import Post from '../../components/post';
 import Photos from './Photos';
+import Friends from './Friends';
 
 export default function Profile({setPopupVisible}) {
   const { username } = useParams();
@@ -109,6 +110,23 @@ var visitor = userName === user.username ?false :true;
                   token={user.token}
                   photos={photos}
                 />
+                <Friends
+                  username={userName}
+                  freinds={profile.freinds}
+                  photos={photos}
+                  token={user.token}
+                />
+                <div className='relative_fb_copyright'>
+                  <Link to="/">
+                    Hey Visitors !
+                    {/* <img src="../../images/github.svg"></img> */}
+                    <br />
+                  </Link>
+                  <Link to="/"></Link>This is Made by
+                  <br /> <Link to="/"> Jamal Sheriff </Link>
+                  <br />
+                  Project to Challenge myself 2022 ©
+                </div>
               </div>
               <div className="profile_right">
                 {!visitor && (

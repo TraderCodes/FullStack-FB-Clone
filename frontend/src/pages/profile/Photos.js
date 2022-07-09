@@ -1,8 +1,54 @@
 import axios from "axios";
 import { useEffect, useReducer } from "react";
+import { photosReducer } from "../../function/reducer";
 
 
-export default function Photos({ photos }) {
+export default function Photos({ username,token}) {
+   const [{ loading, error, photos }, dispatch] = useReducer(photosReducer, {
+     loading: false,
+     error: '',
+    phtos: {},
+   });
+
+
+   // Call useEffect when name change
+   useEffect(() => {
+     getPhotos();
+   }, [username]);
+   // check if user is a visitor
+   const path=`${username}/*`
+   const max =30;
+   const sort = 'desc'
+
+
+   const getPhotos = async (name) => {
+     try {
+       dispatch({
+         type: 'PHOTOS_REQUEST',
+       });
+       const { data } = await axios.post(
+         `${process.env.REACT_APP_BACKEND_URL}/listImages`,{path,sort,max},
+         {
+           headers: {
+             Authorization: `Bearer ${token}`,
+           },
+         }
+       );
+  
+         dispatch({
+           type: 'PHOTOS_SUCCESS',
+           // data that fetch from backend
+           payload: data,
+         });
+       
+     } catch (error) {
+       dispatch({
+         type: 'PHOTOS_ERROR',
+         payload: error.response.data.message,
+       });
+     }
+   };
+   console.log(photos)
   return (
     <div className="profile_card">
       <div className="profile_card_header">
@@ -13,7 +59,7 @@ export default function Photos({ photos }) {
         {/* {photos.total_count === 0
           ? ""
           : photos.total_count === 1
-          ? "1 Photo"
+          ? "1 PhotoPHOTOS
           : `${photos.total_count} photos`} */}
       </div>
       <div className="profile_card_grid">

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer,useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { profileReducer } from '../../function/reducer';
@@ -12,8 +12,12 @@ import ProfileMenu from './ProfileMenu';
 import PplYouMayKnow from './PplYouMayKnow';
 import GridPosts from './GridPosts';
 import Post from '../../components/post';
+import Photos from './Photos';
+
 export default function Profile({setPopupVisible}) {
   const { username } = useParams();
+  const [photos, setPhotos] = useState({});
+
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
 
@@ -87,13 +91,21 @@ var visitor = userName === user.username ?false :true;
 
             {/*profile info section  */}
             <div className="profile_grid">
-              <div className="profile_left"></div>
+              <div className="profile_left">
+                <Photos
+                  username={userName}
+                  token={user.token}
+                  photos={photos}
+                />
+              </div>
               <div className="profile_right">
-         {!visitor &&(       <CreatePost
-                  user={user}
-                  profile={profile}
-                  setPopupVisible={setPopupVisible}
-                />)}
+                {!visitor && (
+                  <CreatePost
+                    user={user}
+                    profile={profile}
+                    setPopupVisible={setPopupVisible}
+                  />
+                )}
                 <GridPosts />
                 <div className="posts">
                   {/* only return perosna; profile post  */}

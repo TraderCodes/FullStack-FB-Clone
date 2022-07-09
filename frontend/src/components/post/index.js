@@ -15,7 +15,7 @@ export default function Post({ post , user,profile }) {
 
     
   return (
-    <div className="post" style={{ width:`${profile && '100%'}` }}>
+    <div className="post" style={{ width:`${profile && '80%'}` }}>
       
       <div className="post_header">
         <Link

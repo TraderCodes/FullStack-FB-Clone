@@ -39,10 +39,9 @@ export default function Profile({setPopupVisible}) {
 var visitor = userName === user.username ?false :true;
 // console.log("🚀 ~ visitor", visitor)
 
-
-
-
-
+  const path = `${userName}/*`;
+  const max = 30;
+  const sort = 'desc';
   const getProfile = async (name) => {
     try {
       dispatch({
@@ -59,6 +58,20 @@ var visitor = userName === user.username ?false :true;
       if (data.error === true) {
         navigate('/profile');
       } else {
+        try {
+          const images = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/listImages`,
+            { path, sort, max },
+            {
+              headers: {
+                Authorization: `Bearer ${user.token}`,
+              },
+            }
+          );
+          setPhotos(images.data);
+        } catch (error) {
+          console.log(error);
+        }
         dispatch({
           type: 'PROFILE_SUCCESS',
           // data that fetch from backend
@@ -86,9 +99,8 @@ var visitor = userName === user.username ?false :true;
       <div className="profile_bottom">
         <div className="profile_container">
           {/* add people section  */}
-          <div className="bottom_conttainer">
+          <div className="bottom_container">
             <PplYouMayKnow />
-
             {/*profile info section  */}
             <div className="profile_grid">
               <div className="profile_left">

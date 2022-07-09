@@ -12,6 +12,8 @@
   color: var(--color-primary);
   margin-bottom: 10px;
 }
+
+
 .post_header {
   display: flex;
   align-items: center;

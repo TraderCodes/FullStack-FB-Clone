@@ -1,8 +1,13 @@
 import ProfileMenu from './ProfileMenu';
+import ProfilePicture from '../../components/profilePicture';
+import { useState } from 'react';
 
 export default function ProfilePictureInfos({ profile, visitor }) {
+  const [ show, setShow ] = useState(true);
   return (
     <div className="profile_img_wrap">
+      {show && <ProfilePicture/>}
+
       <div className="profile_w_left">
         <div className="profile_w_img">
           <div
@@ -12,9 +17,11 @@ export default function ProfilePictureInfos({ profile, visitor }) {
               backgroundImage: `url(${profile.picture})`,
             }}
           ></div>
-        {!visitor && (  <div className="profile_circle hover1">
-            <i className="camera_filled_icon "></i>
-          </div>)}
+          {!visitor && (
+            <div className="profile_circle hover1">
+              <i className="camera_filled_icon "></i>
+            </div>
+          )}
         </div>
         <div className="profile_w_col">
           <div className="profile_name">

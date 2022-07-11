@@ -5,28 +5,27 @@ import UpdateProfilePicture from './UpdateProfilePicture';
 export default function ProfilePicture() {
   const [image, setImage] = useState('');
   const refInput = useRef(null);
-  const [error, setError] = useState('')
-    const handleImage = (e) => {
-      let file = e.target.files[0];
-      if (
-        file.type !== 'image/jpeg' &&
-        file.type !== 'image/png' &&
-        file.type !== 'image/webp' &&
-        file.type !== 'image/gif'
-      ) {
-        setError(`${file.name} format is not supported.`);
-        return;
-      } else if (file.size > 1024 * 1024 * 5) {
-        setError(`${file.name} is too large max 5mb allowed.`);
-        return;
-      }
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (event) => {
-        setImage(event.target.result);
-      };
+  const [error, setError] = useState('');
+  const handleImage = (e) => {
+    let file = e.target.files[0];
+    if (
+      file.type !== 'image/jpeg' &&
+      file.type !== 'image/png' &&
+      file.type !== 'image/webp' &&
+      file.type !== 'image/gif'
+    ) {
+      setError(`${file.name} format is not supported.`);
+      return;
+    } else if (file.size > 1024 * 1024 * 5) {
+      setError(`${file.name} is too large max 5mb allowed.`);
+      return;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      setImage(event.target.result);
     };
-  
+  };
 
   return (
     <div className="blur">
@@ -71,7 +70,7 @@ export default function ProfilePicture() {
       </div>
 
       {/* when image is pass in to usestate */}
-      {image && <UpdateProfilePicture/>}
+      {image && <UpdateProfilePicture setImage={setImage} />}
     </div>
   );
 }

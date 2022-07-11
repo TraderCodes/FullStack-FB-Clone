@@ -62,7 +62,7 @@ i:hover {
   border-radius: 10px;
   box-shadow: 0 12px 28px 0 var(--shadow-1), 0 2px 4px 0 var(--shadow-2),
     inset 0 0 0 px var(--shadow-inset);
-  z-index: 99999;
+  z-index: 9999;
 }
 .open_cover_menu_item {
   display: flex;
@@ -91,9 +91,10 @@ i:hover {
 .profile_w_img {
   position: relative;
 
-  z-index: 9999;
+  z-index: 9;
 }
 .profile_w_bg {
+
   width: 180px;
   height: 180px;
   transform: translateY(-3.6rem);

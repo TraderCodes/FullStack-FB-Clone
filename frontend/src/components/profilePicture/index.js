@@ -70,7 +70,7 @@ export default function ProfilePicture() {
       </div>
 
       {/* when image is pass in to usestate */}
-      {image && <UpdateProfilePicture setImage={setImage} />}
+      {image && <UpdateProfilePicture setImage={setImage} image={image} />}
     </div>
   );
 }

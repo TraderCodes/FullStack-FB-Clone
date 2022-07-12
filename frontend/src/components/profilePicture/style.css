@@ -132,6 +132,7 @@
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
+  
 }
 .update_submit_wrap button {
   width: 110px !important;
@@ -162,4 +163,8 @@
 }
 .old_pictures:first-of-type {
   border-bottom: 1px solid var(--bg-third);
+}
+.update_submit_wrap button{
+  width:110px !important;
+  height:40px !important
 }

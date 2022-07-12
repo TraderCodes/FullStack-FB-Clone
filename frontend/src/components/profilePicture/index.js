@@ -61,7 +61,7 @@ export default function ProfilePicture() {
         {error && (
           <div className="postError comment_error">
             <div className="postError_error">{error}</div>
-            <button className="blue_btn" onClick={() => setError('')}>
+            <button className="blue_btn " onClick={() => setError('')}>
               Try again
             </button>
           </div>

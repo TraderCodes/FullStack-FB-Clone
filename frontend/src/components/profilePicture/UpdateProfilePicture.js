@@ -5,7 +5,7 @@ export default function UpdateProfilePicture({ setImage, image }) {
   // crop
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-    const slider = useRef(null);
+  const slider = useRef(null);
   const zoomIn = () => {
     slider.current.stepUp();
     setZoom(slider.current.value);
@@ -48,7 +48,7 @@ export default function UpdateProfilePicture({ setImage, image }) {
             showGrid={false}
           />
         </div>
-       <div className="slider">
+        <div className="slider">
           <div className="slider_circle hover1" onClick={() => zoomOut()}>
             <i className="minus_icon"></i>
           </div>
@@ -64,7 +64,31 @@ export default function UpdateProfilePicture({ setImage, image }) {
           <div className="slider_circle hover1" onClick={() => zoomIn()}>
             <i className="plus_icon"></i>
           </div>
-    </div>
+        </div>
+      </div>
+      <div className="flex_up ">
+        <div className="gray_btn bheight hover1">
+          <i className="crop_icon"></i>Crop photo
+        </div>
+        <div className="gray_btn  bheight hover1">
+          <i className="temp_icon"></i>Make Temporary
+        </div>
+      </div>
+      <div className="flex_p_t">
+        <i className="public_icon"></i>
+        Your profile picture is public
+      </div>
+      <div className="update_submit_wrap bheight">
+        <div className="blue_link hover1  " onClick={() => setImage('')}>
+          Cancel
+        </div>
+        <button
+          className="blue_btn bheigh"
+          // disabled={loading}
+          // onClick={() => updateProfielPicture()}
+        >
+          {/* {loading ? <PulseLoader color="#fff" size={5} /> : 'Save'} */}
+        </button>
       </div>
     </div>
   );

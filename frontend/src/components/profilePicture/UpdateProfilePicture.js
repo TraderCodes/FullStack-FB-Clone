@@ -6,6 +6,9 @@ export default function UpdateProfilePicture({ setImage, image }) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const slider = useRef(null);
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    console.log(croppedArea, croppedAreaPixels);
+  }, []);
   const zoomIn = () => {
     slider.current.stepUp();
     setZoom(slider.current.value);
@@ -14,9 +17,6 @@ export default function UpdateProfilePicture({ setImage, image }) {
     slider.current.stepDown();
     setZoom(slider.current.value);
   };
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    console.log(croppedArea, croppedAreaPixels);
-  }, []);
   const [description, setDescription] = useState('');
   return (
     <div className="postBox update_img">

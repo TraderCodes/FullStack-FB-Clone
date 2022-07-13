@@ -1,12 +1,15 @@
 import { useCallback, useRef, useState } from 'react';
 import Cropper from 'react-easy-crop';
+import getCroppedImg from '../../helpers/getCroppedImg';
 import './style.css';
 export default function UpdateProfilePicture({ setImage, image }) {
   // crop
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const slider = useRef(null);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
     console.log(croppedArea, croppedAreaPixels);
   }, []);
   const zoomIn = () => {
@@ -17,6 +20,23 @@ export default function UpdateProfilePicture({ setImage, image }) {
     slider.current.stepDown();
     setZoom(slider.current.value);
   };
+  const getCroppedImage = useCallback(
+    async (show) => {
+      try {
+        const img = await getCroppedImg(image, croppedAreaPixels);
+        if (show) {
+          setZoom(1);
+          setCrop({ x: 0, y: 0 });
+          setImage(img);
+        } else {
+          return img;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [croppedAreaPixels]
+  );
   const [description, setDescription] = useState('');
   return (
     <div className="postBox update_img">
@@ -24,6 +44,7 @@ export default function UpdateProfilePicture({ setImage, image }) {
         <div className="small_circle" onClick={() => setImage('')}>
           <i className="exit_icon"></i>
         </div>
+
         <span>Change Picture</span>
       </div>
       <div className="update_image_desc">
@@ -67,7 +88,9 @@ export default function UpdateProfilePicture({ setImage, image }) {
         </div>
       </div>
       <div className="flex_up ">
-        <div className="gray_btn bheight hover1">
+        <div className="gray_btn bheight hover1"
+        onClick={() => getCroppedImage('show')}
+        >
           <i className="crop_icon"></i>Crop photo
         </div>
         <div className="gray_btn  bheight hover1">
@@ -83,9 +106,9 @@ export default function UpdateProfilePicture({ setImage, image }) {
           Cancel
         </div>
         <button
-          className="blue_btn bheigh"
+          className="blue_btn bheight"
           // disabled={loading}
-          // onClick={() => updateProfielPicture()}
+          onClick={() => getCroppedImage()}
         >
           {/* {loading ? <PulseLoader color="#fff" size={5} /> : 'Save'} */}
         </button>

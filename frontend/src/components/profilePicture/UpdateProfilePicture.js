@@ -143,7 +143,8 @@ export default function UpdateProfilePicture({ setImage, image, setError }) {
         Your profile picture is public
       </div>
       <div className="update_submit_wrap bheight">
-        <div className="blue_link hover1  " onClick={() => setImage('')}>
+        <div className="blue_link hover1  " onClick={() => setImage('')}
+        >
           Cancel
         </div>
         <button

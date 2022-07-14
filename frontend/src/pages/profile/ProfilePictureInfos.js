@@ -3,10 +3,10 @@ import ProfilePicture from '../../components/profilePicture';
 import { useState } from 'react';
 
 export default function ProfilePictureInfos({ profile, visitor }) {
-  const [ show, setShow ] = useState(true);
+  const [ show, setShow ] = useState(false);
   return (
     <div className="profile_img_wrap">
-      {show && <ProfilePicture/>}
+      {show && <ProfilePicture setShow={setShow} />}
 
       <div className="profile_w_left">
         <div className="profile_w_img">
@@ -18,7 +18,13 @@ export default function ProfilePictureInfos({ profile, visitor }) {
             }}
           ></div>
           {!visitor && (
-            <div className="profile_circle hover1">
+            <div className="profile_circle hover1"
+            onClick={ 
+
+              () => setShow(true)
+            }
+
+            >
               <i className="camera_filled_icon "></i>
             </div>
           )}

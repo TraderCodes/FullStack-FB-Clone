@@ -3,7 +3,7 @@ import './style.css';
 import UpdateProfilePicture from './UpdateProfilePicture';
 // import UpdateProfilePicture from './UpdateProfilePicture';
 
-export default function ProfilePicture() {
+export default function ProfilePicture({username,setShow}) {
   const [image, setImage] = useState('');
   const refInput = useRef(null);
   const [error, setError] = useState('');
@@ -39,7 +39,7 @@ export default function ProfilePicture() {
       />
       <div className="postBox pictureBox">
         <div className="box_header">
-          <div className="small_circle">
+          <div className="small_circle" onClick={() => setShow(false)}>
             <i className="exit_icon"></i>
           </div>
           <span>Change Picture</span>
@@ -71,7 +71,13 @@ export default function ProfilePicture() {
       </div>
 
       {/* when image is pass in to usestate */}
-      {image && <UpdateProfilePicture setImage={setImage} image={image} setError={setError} />}
+      {image && (
+        <UpdateProfilePicture
+          setImage={setImage}
+          image={image}
+          setError={setError}
+        />
+      )}
     </div>
   );
 }

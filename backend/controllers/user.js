@@ -262,15 +262,13 @@ exports.getProfile = async (req, res) => {
 
 exports.updateProfilePicture = async (req, res) => {
   try {
-    const {url} = req.bodya
-    const res = await User.findByIdAndUpdate(req.user.id)
+    const { url } = req.body;
+    const res = await User.findByIdAndUpdate(req.user.id, { picture: url });
+    res.json(url);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-
-
-
-}
+};
 // exports.auth = (req, res) => {
 //   res.json('welcome auth');
 // };

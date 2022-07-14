@@ -1,12 +1,17 @@
 import { useCallback, useRef, useState } from 'react';
 import Cropper from 'react-easy-crop';
+import {  useSelector } from 'react-redux';
+import { updateProfilePicture1 } from '../../function/user';
+import { createPost } from '../../function/post';
+import { uploadImages } from '../../function/uploadImages';
 import getCroppedImg from '../../helpers/getCroppedImg';
 import './style.css';
-export default function UpdateProfilePicture({ setImage, image }) {
+export default function UpdateProfilePicture({ setImage, image, setError }) {
   // crop
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const slider = useRef(null);
+  const { user } = useSelector((state) => ({ ...state }));
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -37,6 +42,29 @@ export default function UpdateProfilePicture({ setImage, image }) {
     },
     [croppedAreaPixels]
   );
+  const updateProfilePicture = async () => {
+    try {
+      let img = await getCroppedImage();
+      let blob = await fetch(img).then((b) => b.blob());
+      const path = `${user.username}/profile_pictures`;
+      let formData = new FormData();
+      formData.append('file', blob);
+      formData.append('path', path);
+      const res = await uploadImages(formData, path, user.token);
+      const updated_picture = await updateProfilePicture1(
+        res[0].url,user.token
+      )
+
+      // create post when new profile picture is updated
+      if(updated_picture === "ok") {
+    const new_post= await createPost('profilePicture',null,description,res[0].url,user.id,user.token)
+      }else {
+        setError(updated_picture)
+      }
+    } catch (error) {
+      setError(error.response.data.error);
+    }
+  };
   const [description, setDescription] = useState('');
   return (
     <div className="postBox update_img">
@@ -88,8 +116,9 @@ export default function UpdateProfilePicture({ setImage, image }) {
         </div>
       </div>
       <div className="flex_up ">
-        <div className="gray_btn bheight hover1"
-        onClick={() => getCroppedImage('show')}
+        <div
+          className="gray_btn bheight hover1"
+          onClick={() => getCroppedImage('show')}
         >
           <i className="crop_icon"></i>Crop photo
         </div>
@@ -108,7 +137,7 @@ export default function UpdateProfilePicture({ setImage, image }) {
         <button
           className="blue_btn bheight"
           // disabled={loading}
-          onClick={() => getCroppedImage()}
+          onClick={() => updateProfilePicture()}
         >
           {/* {loading ? <PulseLoader color="#fff" size={5} /> : 'Save'} */}
         </button>

@@ -22,6 +22,7 @@ router.post('/sendResetPasswordCode', sendResetPasswordCode);
 router.post('/validateResetCode', validateResetCode);
 router.post('/changePassword', changePassword);
 router.get('/getProfile/:username',authUser, getProfile);
-router.get('/updateProfilePicture', authUser, updateProfilePicture);
+// update user profile
+router.put('/updateProfilePicture', authUser, updateProfilePicture);
 // router.post('/auth',authUser, auth);
 module.exports = router;

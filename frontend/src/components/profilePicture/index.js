@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import './style.css';
 import UpdateProfilePicture from './UpdateProfilePicture';
+// import UpdateProfilePicture from './UpdateProfilePicture';
 
 export default function ProfilePicture() {
   const [image, setImage] = useState('');
@@ -70,7 +71,7 @@ export default function ProfilePicture() {
       </div>
 
       {/* when image is pass in to usestate */}
-      {image && <UpdateProfilePicture setImage={setImage} image={image} />}
+      {image && <UpdateProfilePicture setImage={setImage} image={image} setError={setError} />}
     </div>
   );
 }

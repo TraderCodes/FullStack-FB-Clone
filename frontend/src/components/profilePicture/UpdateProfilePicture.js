@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 import Cropper from 'react-easy-crop';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { updateProfilePicture1 } from '../../function/user';
 import { createPost } from '../../function/post';
 import { uploadImages } from '../../function/uploadImages';
@@ -52,14 +52,26 @@ export default function UpdateProfilePicture({ setImage, image, setError }) {
       formData.append('path', path);
       const res = await uploadImages(formData, path, user.token);
       const updated_picture = await updateProfilePicture1(
-        res[0].url,user.token
-      )
+        res[0].url,
+        user.token
+      );
 
       // create post when new profile picture is updated
-      if(updated_picture === "ok") {
-    const new_post= await createPost('profilePicture',null,description,res[0].url,user.id,user.token)
-      }else {
-        setError(updated_picture)
+      if (updated_picture === 'ok') {
+        const new_post = await createPost(
+          'profilePicture',
+          null,
+          description,
+          res[0].url,
+          user.id,
+          user.token
+        );
+        if (new_post === 'ok') {
+        } else {
+          setError(new_post);
+        }
+      } else {
+        setError(updated_picture);
       }
     } catch (error) {
       setError(error.response.data.error);
@@ -139,7 +151,7 @@ export default function UpdateProfilePicture({ setImage, image, setError }) {
           // disabled={loading}
           onClick={() => updateProfilePicture()}
         >
-          {/* {loading ? <PulseLoader color="#fff" size={5} /> : 'Save'} */}
+        save  {/* {loading ? <PulseLoader color="#fff" size={5} /> : 'Save'} */}
         </button>
       </div>
     </div>

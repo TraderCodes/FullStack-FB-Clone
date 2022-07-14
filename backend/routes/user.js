@@ -5,6 +5,7 @@ const {
   login,
   auth,
   sendVerification,
+  updateProfilePicture,
   findUser,
   sendResetPasswordCode,
   validateResetCode,

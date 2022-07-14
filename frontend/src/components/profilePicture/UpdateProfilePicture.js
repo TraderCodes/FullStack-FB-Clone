@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 import Cropper from 'react-easy-crop';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateProfilePicture1 } from '../../function/user';
 import { createPost } from '../../function/post';
 import { uploadImages } from '../../function/uploadImages';
@@ -16,6 +16,7 @@ export default function UpdateProfilePicture({
   pRef,
 }) {
   // crop
+  const dispatch = useDispatch();
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const slider = useRef(null);
@@ -80,6 +81,15 @@ export default function UpdateProfilePicture({
           setLoading(false);
           setImage('');
           pRef.current.style.backgroundImage = `url(${res[0].url})`;
+ // change cookie
+          Cookies.set('user', JSON.stringify({
+            ...user,
+            picture: res[0].url,
+          }));
+          dispatch({
+            type:'UPDATEPICTURE',
+            payload:res[0].url
+          })
           setShow(false);
         } else {
           setError(new_post);

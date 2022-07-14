@@ -253,7 +253,10 @@ exports.getProfile = async (req, res) => {
     if (!profile) {
       return res.json({ error: true });
     }
-    const posts = await Post.find({ user: profile._id }).populate('user');
+    const posts = await Post.find({ user: profile._id })
+      .populate('user')
+      // sort post base on created time for updated profile pics
+      .sort({ createdAt: -1 });
     res.json({ ...profile.toObject(), posts });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -263,7 +266,7 @@ exports.getProfile = async (req, res) => {
 exports.updateProfilePicture = async (req, res) => {
   try {
     const { url } = req.body;
- await User.findByIdAndUpdate(req.user.id, { picture: url });
+    await User.findByIdAndUpdate(req.user.id, { picture: url });
     res.json(url);
   } catch (error) {
     res.status(500).json({ message: error.message });

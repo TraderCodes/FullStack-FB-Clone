@@ -3,7 +3,7 @@ import './style.css';
 import UpdateProfilePicture from './UpdateProfilePicture';
 // import UpdateProfilePicture from './UpdateProfilePicture';
 
-export default function ProfilePicture({username,setShow}) {
+export default function ProfilePicture({username,setShow , pRef}) {
   const [image, setImage] = useState('');
   const refInput = useRef(null);
   const [error, setError] = useState('');
@@ -76,6 +76,8 @@ export default function ProfilePicture({username,setShow}) {
           setImage={setImage}
           image={image}
           setError={setError}
+          setShow={setShow}
+          pRef={pRef}
         />
       )}
     </div>

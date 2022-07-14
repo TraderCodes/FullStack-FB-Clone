@@ -1,29 +1,28 @@
 import ProfileMenu from './ProfileMenu';
 import ProfilePicture from '../../components/profilePicture';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 export default function ProfilePictureInfos({ profile, visitor }) {
-  const [ show, setShow ] = useState(false);
+  const [show, setShow] = useState(false);
+  const pRef = useRef(null)
   return (
     <div className="profile_img_wrap">
-      {show && <ProfilePicture setShow={setShow} />}
+      {show && <ProfilePicture setShow={setShow} pRef={pRef} />}
 
       <div className="profile_w_left">
         <div className="profile_w_img">
           <div
             className="profile_w_bg"
+            ref={pRef}
             style={{
               backgroundSize: 'cover',
               backgroundImage: `url(${profile.picture})`,
             }}
           ></div>
           {!visitor && (
-            <div className="profile_circle hover1"
-            onClick={ 
-
-              () => setShow(true)
-            }
-
+            <div
+              className="profile_circle hover1"
+              onClick={() => setShow(true)}
             >
               <i className="camera_filled_icon "></i>
             </div>

@@ -62,7 +62,7 @@ export default function UpdateProfilePicture({ setImage, image, setError }) {
           'profilePicture',
           null,
           description,
-          res[0].url,
+          res,
           user.id,
           user.token
         );

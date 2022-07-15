@@ -117,7 +117,10 @@ var visitor = userName === user.username ?false :true;
             {/*profile info section  */}
             <div className="profile_grid">
               <div className="profile_left">
-                <Intro details={profile.details} />
+                <Intro details={profile.details} 
+                visitor={visitor}
+                />
+                
                 <Photos
                   username={userName}
                   token={user.token}

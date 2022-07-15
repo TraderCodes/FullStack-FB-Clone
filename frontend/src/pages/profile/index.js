@@ -95,8 +95,16 @@ var visitor = userName === user.username ?false :true;
       <Header page="profile" />
       <div className="profile_top">
         <div className="profile_container">
-          <Cover cover={profile.cover} visitor={visitor} />
-          <ProfilePictureInfos profile={profile} visitor={visitor} photos={photos.resources}   />
+          <Cover
+            cover={profile.cover}
+            visitor={visitor}
+            photos={photos.resources}
+          />
+          <ProfilePictureInfos
+            profile={profile}
+            visitor={visitor}
+            photos={photos.resources}
+          />
           <ProfileMenu />
         </div>
       </div>
@@ -119,7 +127,7 @@ var visitor = userName === user.username ?false :true;
                   photos={photos}
                   token={user.token}
                 />
-                <div className='relative_fb_copyright'>
+                <div className="relative_fb_copyright">
                   <Link to="/">
                     Hey Visitors !
                     {/* <img src="../../images/github.svg"></img> */}

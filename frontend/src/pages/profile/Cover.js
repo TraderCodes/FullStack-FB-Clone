@@ -7,12 +7,15 @@ import { createPost } from '../../function/post';
 import { uploadImages } from '../../function/uploadImages';
 import { updateCover } from '../../function/user';
 import { useSelector } from 'react-redux';
+import OldCovers from './OldCovers';
 
 export default function Cover({ cover, visitor ,photos}) {
   const [showCoverMenu, setShowCoverMenu] = useState(false);
   const [coverPicture, setCoverPicture] = useState('');
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
+  const [show, setShow] = useState(false);
+
   const cRef = useRef(null);
   const menuRef = useRef(null);
   const refInput = useRef(null);
@@ -173,7 +176,10 @@ export default function Cover({ cover, visitor ,photos}) {
           </div>
           {showCoverMenu && (
             <div className="open_cover_menu" ref={menuRef}>
-              <div className="open_cover_menu_item hover1">
+              <div
+                className="open_cover_menu_item hover1 "
+                onClick={() => setShow(true)}
+              >
                 <i className="photo_icon"></i>
                 Select Photo
               </div>
@@ -187,6 +193,13 @@ export default function Cover({ cover, visitor ,photos}) {
             </div>
           )}
         </div>
+      )}
+      {show && (
+        <OldCovers
+          photos={photos}
+          setCoverPicture={setCoverPicture}
+          setShow={setShow}
+        />
       )}
     </div>
   );

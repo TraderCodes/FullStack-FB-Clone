@@ -5,7 +5,6 @@
 }
 body {
   font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
-
 }
 html {
   overflow-y: scroll;
@@ -97,14 +96,14 @@ a {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 99;
+  z-index: 9999;
   background: rgba(255, 255, 255, 0.56);
 }
 
 /* Button */
 .hover1:hover {
   background: rgba(195, 195, 195, 0.561) !important;
-  transition: 0.5s  ;
+  transition: 0.5s;
 }
 .hover2:hover {
   background: var(--bg-third);

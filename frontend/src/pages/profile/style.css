@@ -1,3 +1,6 @@
+*{
+  user-select: none;
+}
 i:hover {
   filter: invert(10%) !important;
 }

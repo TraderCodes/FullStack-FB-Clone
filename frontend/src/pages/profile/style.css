@@ -87,10 +87,10 @@ i:hover {
   display: flex;
   gap: 1rem;
   padding: 1rem 13px 0 13px;
+
 }
 .profile_w_img {
   position: relative;
-
   z-index: 9;
 }
 .profile_w_bg {

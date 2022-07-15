@@ -1,46 +1,69 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Bio from './Bio';
 import './style.css';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-
-// getting data from models
-export default function Intro({ details, visitor }) {
+// import EditDetails from './EditDetails
+export default function Intro({ detailss, visitor, setOthername }) {
   const { user } = useSelector((state) => ({ ...state }));
-
+  const [details, setDetails] = useState();
   const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    // !everytime when detail changes run useeffct
+    setDetails(detailss);
+    setInfos(detailss);
+  }, [detailss]);
   const initial = {
-    // if details . bio exist
     bio: details?.bio ? details.bio : '',
-    othername: details?.othername ? details.othername : '',
+    otherName: details?.otherName ? details.otherName : '',
     job: details?.job ? details.job : '',
-    workplace: details?.workplace ? details.workplace : 'Google',
-    highSchool: details?.highSchool ? details.highSchool : 'high school',
-    college: details?.college ? details.college : 'college',
-    currentCity: details?.currentCity ? details.currentCity : 'Tanger',
-    hometown: details?.hometown ? details.hometown : 'Taiwan',
-    relationship: details?.relationship ? details.relationship : 'Single',
-    instagram: details?.instagram ? details.instagram : 'none',
+    workplace: details?.workplace ? details.workplace : '',
+    highSchool: details?.highSchool ? details.highSchool : '',
+    college: details?.college ? details.college : '',
+    currentCity: details?.currentCity ? details.currentCity : '',
+    hometown: details?.hometown ? details.hometown : '',
+    relationship: details?.relationship ? details.relationship : '',
+    instagram: details?.instagram ? details.instagram : '',
   };
   const [infos, setInfos] = useState(initial);
-  const [showBio, setShowBio] = useState(true);
-  // claculate amount of text in bio text area
+  const [showBio, setShowBio] = useState(false);
   const [max, setMax] = useState(infos?.bio ? 100 - infos?.bio.length : 100);
+
+  const updateDetails = async () => {
+    try {
+      console.log('sent');
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_BACKEND_URL}/updateDetails`,
+        {
+          infos,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      setShowBio(false);
+      setDetails(data);
+      setOthername(data.otherName);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInfos({ ...infos, [name]: value });
     setMax(100 - e.target.value.length);
   };
-
   return (
     <div className="profile_card">
       <div className="profile_card_header">Intro</div>
-      {infos?.bio &&  (
+      {details?.bio && !showBio && (
         <div className="info_col">
-          <span className="info_text">{infos.bio} </span>
+          <span className="info_text">{details?.bio}</span>
           {!visitor && (
             <button
-              className="gray_btn hover1 bheight"
+              className="gray_btn hover1"
               onClick={() => setShowBio(true)}
             >
               Edit Bio
@@ -48,79 +71,103 @@ export default function Intro({ details, visitor }) {
           )}
         </div>
       )}
-      {/* bio */}
+      {!details?.bio && !showBio && !visitor && (
+        <button
+          className="gray_btn hover1 w100"
+          onClick={() => setShowBio(true)}
+        >
+          Add Bio
+        </button>
+      )}
       {showBio && (
         <Bio
           infos={infos}
           max={max}
           handleChange={handleChange}
           setShowBio={setShowBio}
-          // updateDetails={updateDetails}
+          updateDetails={updateDetails}
           placeholder="Add Bio"
           name="bio"
         />
       )}
-      {infos.job && infos.workplace ? (
+      {details?.job && details?.workplace ? (
         <div className="info_profile">
           <img src="../../../icons/job.png" alt="" />
-          Works as{infos.job} at<b>{infos.workplace}</b>
+          works as {details?.job} at <b>{details?.workplace}</b>
         </div>
-      ) : infos.job && !infos.workplace ? (
+      ) : details?.job && !details?.workplace ? (
         <div className="info_profile">
           <img src="../../../icons/job.png" alt="" />
-          Works as<b>{infos.job}</b>
+          works as {details?.job}
         </div>
       ) : (
-        infos.workplace &&
-        !infos.job && (
+        details?.workplace &&
+        !details?.job && (
           <div className="info_profile">
             <img src="../../../icons/job.png" alt="" />
-            Works at <b>{infos.workplace}</b>
+            works at {details?.workplace}
           </div>
         )
       )}
-      {infos?.relationship && (
+      {details?.relationship && (
         <div className="info_profile">
           <img src="../../../icons/relationship.png" alt="" />
-          <b>{infos.relationship}</b>
+          {details?.relationship}
         </div>
       )}
-      {infos?.college && (
+      {details?.college && (
         <div className="info_profile">
           <img src="../../../icons/studies.png" alt="" />
-          Studied at <b>{infos.college}</b>
+          studied at {details?.college}
         </div>
       )}
-      {infos?.highSchool && (
+      {details?.highSchool && (
         <div className="info_profile">
           <img src="../../../icons/studies.png" alt="" />
-          Studied at <b>{infos.highSchool}</b>
+          studied at {details?.highSchool}
         </div>
       )}
-      {infos?.currentCity && (
+      {details?.currentCity && (
         <div className="info_profile">
           <img src="../../../icons/home.png" alt="" />
-          Lives in <b>{infos.currentCity}</b>
+          Lives in {details?.currentCity}
         </div>
       )}
-      {infos?.hometown && (
+      {details?.hometown && (
         <div className="info_profile">
           <img src="../../../icons/home.png" alt="" />
-          From <b>{infos.hometown}</b>
+          From {details?.hometown}
         </div>
       )}
-      {infos?.hometown && (
+      {details?.hometown && (
         <div className="info_profile">
           <img src="../../../icons/instagram.png" alt="" />
           <a
-            href={`https://www.instagram.com/${infos.instagram}`}
+            href={`https://www.instagram.com/${details?.instagram}`}
             target="_blank"
           >
-            {' '}
-            <b>{infos.instagram}</b>
+            {details?.instagram}
           </a>
         </div>
       )}
+      {!visitor && (
+        <button
+          className="gray_btn hover1 w100"
+          onClick={() => setVisible(true)}
+        >
+          Edit Details
+        </button>
+      )}
+      {/* {visible && !visitor && (
+        <EditDetails
+          details={details}
+          handleChange={handleChange}
+          updateDetails={updateDetails}
+          infos={infos}
+          setVisible={setVisible}
+        />
+      )} */}
+
       {!visitor && (
         <button className="gray_btn hover1 w100">Add Hobbies</button>
       )}

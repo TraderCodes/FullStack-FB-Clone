@@ -1,7 +1,14 @@
 import { useState } from 'react';
+import Bio from './Bio';
 import './style.css';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+
 // getting data from models
 export default function Intro({ details,visitor }) {
+  const { user } = useSelector((state) => ({ ...state }));
+
+  const [visible, setVisible] = useState(false);
   const initial = {
     // if details . bio exist
     bio: details?.bio ? details.bio : 'Welcome to my profile',
@@ -16,6 +23,15 @@ export default function Intro({ details,visitor }) {
     instagram: details?.instagram ? details.instagram : 'none',
   };
   const [infos, setInfos] = useState(initial);
+  const [showBio, setShowBio] = useState(true)
+  const [max, setMax] = useState(infos?.bio ? 100 - infos?.bio.length : 100);
+
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setInfos({ ...infos, [name]: value });
+      setMax(100 - e.target.value.length);
+    };
+    
   return (
     <div className="profile_card">
       <div className="profile_card_header">Intro</div>
@@ -26,6 +42,18 @@ export default function Intro({ details,visitor }) {
             <button className="gray_btn hover1 bheight">Edit Bio</button>
           )}
         </div>
+      )}
+      {/* bio */}
+      {showBio && (
+        <Bio
+          infos={infos}
+          max={max}
+          handleChange={handleChange}
+          setShowBio={setShowBio}
+          // updateDetails={updateDetails}
+          placeholder="Add Bio"
+          name="bio"
+        />
       )}
       {infos.job && infos.workplace ? (
         <div className="info_profile">
@@ -88,7 +116,6 @@ export default function Intro({ details,visitor }) {
           </a>
         </div>
       )}
-
       {!visitor && (
         <button className="gray_btn hover1 w100">Add Hobbies</button>
       )}

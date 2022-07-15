@@ -91,7 +91,7 @@ export default function Cover({ cover, visitor ,photos}) {
           if (new_post === 'ok') {
             setLoading(false);
             setCoverPicture('');
-            cRef.current.src =   `url(${res[0].url})`
+            cRef.current.src = res[0].url
           } else {
             setLoading(false);
             setError(new_post);

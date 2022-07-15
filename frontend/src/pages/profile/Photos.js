@@ -6,9 +6,6 @@ import { photosReducer } from "../../function/reducer";
 export default function Photos({ photos}) {
 
 
-
-
-
   //  console.log(photos)
   return (
     <div className="profile_card">

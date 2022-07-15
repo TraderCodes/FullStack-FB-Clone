@@ -12,7 +12,7 @@ export default function ProfilePictureInfos({ profile, visitor,photos }) {
       <div className="profile_w_left">
         <div className="profile_w_img">
           <div
-            className="profile_w_bg"z
+            className="profile_w_bg"
             ref={pRef}
             style={{
               backgroundSize: 'cover',

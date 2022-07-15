@@ -77,7 +77,7 @@ export default function ProfilePicture({ username, setShow, pRef ,photos}) {
           {photos.filter(
             (img) => img.folder === `${user.username}/profile_pictures`
           ).map((photo) => 
-          <img src={photo.secure_url} alt="img" key = {photo.public_id} />
+          <img src={photo.secure_url} alt="img" key = {photo.public_id} style={{width:'100px'}} />
            )
           
 

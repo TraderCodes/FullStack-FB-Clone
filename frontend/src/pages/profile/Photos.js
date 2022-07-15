@@ -4,50 +4,11 @@ import { photosReducer } from "../../function/reducer";
 
 
 export default function Photos({ photos}) {
-  //  const [{ photos }, dispatch] = useReducer(photosReducer, {
-   
-  //    error: '',
-  //   phtos: {},
-  //  });
 
 
-  //  // Call useEffect when name change
-  //  useEffect(() => {
-  //    getPhotos();
-  //  }, [username]);
-  //  // check if user is a visitor
-  //  const path=`${username}/*`
-  //  const max =30;
-  //  const sort = 'desc'
 
 
-  //  const getPhotos = async (name) => {
-  //    try {
-  //      dispatch({
-  //        type: 'PHOTOS_REQUEST',
-  //      });
-  //      const { data } = await axios.post(
-  //        `${process.env.REACT_APP_BACKEND_URL}/listImages`,{path,sort,max},
-  //        {
-  //          headers: {
-  //            Authorization: `Bearer ${token}`,
-  //          },
-  //        }
-  //      );
-  
-  //        dispatch({
-  //          type: 'PHOTOS_SUCCESS',
-  //          // data that fetch from backend
-  //          payload: data,
-  //        });
-       
-  //    } catch (error) {
-  //      dispatch({
-  //        type: 'PHOTOS_ERROR',
-  //        payload: error.response.data.message,
-  //      });
-  //    }
-  //  };
+
   //  console.log(photos)
   return (
     <div className="profile_card">

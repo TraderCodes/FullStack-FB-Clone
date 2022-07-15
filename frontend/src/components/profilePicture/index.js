@@ -3,8 +3,12 @@ import './style.css';
 import UpdateProfilePicture from './UpdateProfilePicture';
 // import UpdateProfilePicture from './UpdateProfilePicture';
 import useClickOutside from '../../helpers/clickOutside';
-export default function ProfilePicture({ username, setShow, pRef }) {
+import { photosReducer } from '../../function/reducer';
+import { useSelector } from 'react-redux';
+export default function ProfilePicture({ username, setShow, pRef ,photos}) {
   const popup = useRef(null);
+  const { user } = useSelector((state) => ({ ...state }));
+
   useClickOutside(popup, () => setShow(false));
   const [image, setImage] = useState('');
   const refInput = useRef(null);
@@ -69,7 +73,16 @@ export default function ProfilePicture({ username, setShow, pRef }) {
             </button>
           </div>
         )}
-        <div className="old_picture_wrap"></div>
+        <div className="old_picture_wrap">
+          {photos.filter(
+            (img) => img.folder === `${user.username}/profile_pictures`
+          ).map((photo) => 
+          <img src={photo.secure_url} alt="img" key = {photo.public_id} />
+           )
+          
+
+          }
+        </div>
       </div>
 
       {/* when image is pass in to usestate */}

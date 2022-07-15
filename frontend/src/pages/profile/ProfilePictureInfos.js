@@ -2,17 +2,17 @@ import ProfileMenu from './ProfileMenu';
 import ProfilePicture from '../../components/profilePicture';
 import { useRef, useState } from 'react';
 
-export default function ProfilePictureInfos({ profile, visitor }) {
+export default function ProfilePictureInfos({ profile, visitor,photos }) {
   const [show, setShow] = useState(false);
   const pRef = useRef(null)
   return (
     <div className="profile_img_wrap">
-      {show && <ProfilePicture setShow={setShow} pRef={pRef} />}
+      {show && <ProfilePicture setShow={setShow} pRef={pRef} photos={photos} />}
 
       <div className="profile_w_left">
         <div className="profile_w_img">
           <div
-            className="profile_w_bg"
+            className="profile_w_bg"z
             ref={pRef}
             style={{
               backgroundSize: 'cover',

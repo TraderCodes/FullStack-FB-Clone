@@ -59,6 +59,9 @@ var visitor = userName === user.username ?false :true;
       if (data.error === true) {
         navigate('/profile');
       } else {
+        
+
+  
         try {
           const images = await axios.post(
             `${process.env.REACT_APP_BACKEND_URL}/listImages`,
@@ -93,7 +96,7 @@ var visitor = userName === user.username ?false :true;
       <div className="profile_top">
         <div className="profile_container">
           <Cover cover={profile.cover} visitor={visitor} />
-          <ProfilePictureInfos profile={profile} visitor={visitor} />
+          <ProfilePictureInfos profile={profile} visitor={visitor} photos={photos.resources}   />
           <ProfileMenu />
         </div>
       </div>

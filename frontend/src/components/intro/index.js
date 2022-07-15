@@ -5,16 +5,16 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 // getting data from models
-export default function Intro({ details,visitor }) {
+export default function Intro({ details, visitor }) {
   const { user } = useSelector((state) => ({ ...state }));
 
   const [visible, setVisible] = useState(false);
   const initial = {
     // if details . bio exist
-    bio: details?.bio ? details.bio : 'Welcome to my profile',
+    bio: details?.bio ? details.bio : '',
     othername: details?.othername ? details.othername : '',
     job: details?.job ? details.job : '',
-    workplace: details?.workplace ? details.workplace :'Google',
+    workplace: details?.workplace ? details.workplace : 'Google',
     highSchool: details?.highSchool ? details.highSchool : 'high school',
     college: details?.college ? details.college : 'college',
     currentCity: details?.currentCity ? details.currentCity : 'Tanger',
@@ -23,23 +23,28 @@ export default function Intro({ details,visitor }) {
     instagram: details?.instagram ? details.instagram : 'none',
   };
   const [infos, setInfos] = useState(initial);
-  const [showBio, setShowBio] = useState(true)
+  const [showBio, setShowBio] = useState(true);
+  // claculate amount of text in bio text area
   const [max, setMax] = useState(infos?.bio ? 100 - infos?.bio.length : 100);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInfos({ ...infos, [name]: value });
+    setMax(100 - e.target.value.length);
+  };
 
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setInfos({ ...infos, [name]: value });
-      setMax(100 - e.target.value.length);
-    };
-    
   return (
     <div className="profile_card">
       <div className="profile_card_header">Intro</div>
-      {infos?.bio && (
+      {infos?.bio &&  (
         <div className="info_col">
           <span className="info_text">{infos.bio} </span>
           {!visitor && (
-            <button className="gray_btn hover1 bheight">Edit Bio</button>
+            <button
+              className="gray_btn hover1 bheight"
+              onClick={() => setShowBio(true)}
+            >
+              Edit Bio
+            </button>
           )}
         </div>
       )}

@@ -3,6 +3,7 @@ import Bio from './Bio';
 import './style.css';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import EditDetails from './EditDetails';
 // import EditDetails from './EditDetails
 export default function Intro({ detailss, visitor, setOthername }) {
   const { user } = useSelector((state) => ({ ...state }));
@@ -63,7 +64,7 @@ export default function Intro({ detailss, visitor, setOthername }) {
           <span className="info_text">{details?.bio}</span>
           {!visitor && (
             <button
-              className="gray_btn hover1"
+              className="gray_btn hover1 bheight"
               onClick={() => setShowBio(true)}
             >
               Edit Bio
@@ -152,13 +153,13 @@ export default function Intro({ detailss, visitor, setOthername }) {
       )}
       {!visitor && (
         <button
-          className="gray_btn hover1 w100"
+          className="gray_btn hover1 w100 bheight"
           onClick={() => setVisible(true)}
         >
           Edit Details
         </button>
       )}
-      {/* {visible && !visitor && (
+      {visible && !visitor && (
         <EditDetails
           details={details}
           handleChange={handleChange}
@@ -166,13 +167,13 @@ export default function Intro({ detailss, visitor, setOthername }) {
           infos={infos}
           setVisible={setVisible}
         />
-      )} */}
+      )}
 
       {!visitor && (
-        <button className="gray_btn hover1 w100">Add Hobbies</button>
+        <button className="gray_btn hover1 w100 bheight">Add Hobbies</button>
       )}
       {!visitor && (
-        <button className="gray_btn hover1 w100">Add Featured</button>
+        <button className="gray_btn hover1 w100 bheight">Add Featured</button>
       )}
     </div>
   );

@@ -306,7 +306,7 @@ i:hover {
     width: 100% !important;
   }
   .bottom_container {
-    padding: 9px;
+    padding: 20px;
   }
 }
 @media (max-width: 650px) {

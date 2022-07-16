@@ -37,6 +37,7 @@
   outline-color: var(--blue-color) !important;
   outline-offset: 1px !important;
 }
+
 .remaining {
   font-size: 12px;
   color: var(--color-secondary);
@@ -55,13 +56,13 @@
   filter: invert(40%);
 }
 .infosBox {
-  height: 650px;
+  height: 700px;
   width: 800px !important;
 }
 .details_wrapper {
   padding: 1rem;
   overflow-y: auto;
-  height: 75vh;
+  height: 60vh;
 }
 .details_col {
   display: flex;

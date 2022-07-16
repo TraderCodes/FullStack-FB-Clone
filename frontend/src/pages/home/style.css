@@ -42,11 +42,11 @@
   margin-top: 1px;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
   .stories,
   .createPost,
   .send_verification {
-    width: 84%;
+    width: 100%;
   }
   .home_middle {
     margin-left: 5%;
@@ -55,7 +55,7 @@
     width: 18vw;
   }
   .post {
-    width: 672px !important;
+    width: 672px ;
   }
 }
 @media (max-width: 1060px) {

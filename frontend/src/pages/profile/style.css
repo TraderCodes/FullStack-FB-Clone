@@ -256,13 +256,20 @@ i:hover {
 .pplumayknow_list .light_blue_btn {
   color: var(--blue-color);
 }
-.profile_grid {
+/* .profile_grid {
   display: flex;
   grid-template-columns: 1fr 1fr ;
   gap: 5px;
   justify-content: center;
   
+} */
+.profile_grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 10px;
 }
+
 
 @media (max-width: 900px) {
   .profile_w_left {
@@ -290,8 +297,26 @@ i:hover {
     display: none;
   }
   .profile_grid {
+    display: grid;
     grid-template-columns: 1fr;
-    width: 95%;
+
+
+  }
+  .profile_grid .createPost {
+    width: 100% !important;
+  }
+  .bottom_container {
+    padding: 5px;
+  }
+}
+@media (max-width: 650px) {
+  .profile_menu_wrap {
+    display: none;
+  }
+}
+@media (max-width: 510px) {
+  .udpate_cover_wrapper {
+    bottom: 3rem;
   }
 }
 .left_header_grid {
@@ -387,10 +412,7 @@ i:hover {
   object-fit: cover;
   width: 100%;
 }
-.profile_right{
-  width: 70%;
- 
-}
+
 .cover_crooper .reactEasyCrop_Container {
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;

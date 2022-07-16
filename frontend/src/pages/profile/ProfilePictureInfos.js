@@ -2,9 +2,9 @@ import ProfileMenu from './ProfileMenu';
 import ProfilePicture from '../../components/profilePicture';
 import { useRef, useState } from 'react';
 
-export default function ProfilePictureInfos({ profile, visitor,photos }) {
+export default function ProfilePictureInfos({ profile, visitor, photos,othername }) {
   const [show, setShow] = useState(false);
-  const pRef = useRef(null)
+  const pRef = useRef(null);
   return (
     <div className="profile_img_wrap">
       {show && <ProfilePicture setShow={setShow} pRef={pRef} photos={photos} />}
@@ -31,7 +31,7 @@ export default function ProfilePictureInfos({ profile, visitor,photos }) {
         <div className="profile_w_col">
           <div className="profile_name">
             {profile.first_name} {profile.last_name}
-            <div className="othername"> (name)</div>
+            <div className="othername"> {othername && `(${othername})`}</div>
           </div>
           <div className="profile_friend_count"></div>
           <div className="profile_friend_imgs"></div>

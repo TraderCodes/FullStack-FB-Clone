@@ -18,6 +18,7 @@ export default function Bio({
           name={name}
           value={infos.relationship}
           onChange={handleChange}
+ 
         >
           <option value="Single">Single</option>
           <option value="In a relationship">In a relationship</option>

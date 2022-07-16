@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { useEffect, useReducer,useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { profileReducer } from '../../function/reducer';
 import Header from '../../components/header/index';
 import './style.css';
-import  CreatePost from '../../components/createPost';
+import CreatePost from '../../components/createPost';
 import Cover from './Cover.js';
 import ProfilePictureInfos from './ProfilePictureInfos';
 import ProfileMenu from './ProfileMenu';
@@ -16,13 +16,12 @@ import Photos from './Photos';
 import Friends from './Friends';
 import Intro from '../../components/intro';
 
-export default function Profile({setPopupVisible}) {
+export default function Profile({ setPopupVisible }) {
   const { username } = useParams();
   const [photos, setPhotos] = useState({});
-
+  const [othername, setOthername] = useState();
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
-
   // if username not in the link we send user to current user logged in
   var userName = username === undefined ? user.username : username;
   const [{ loading, error, profile }, dispatch] = useReducer(profileReducer, {
@@ -30,16 +29,18 @@ export default function Profile({setPopupVisible}) {
     error: '',
     profile: {},
   });
-
-
+  
   // Call useEffect when name change
   useEffect(() => {
     getProfile();
   }, [userName]);
-// check if user is a visitor
+  useEffect(() => {
+    setOthername(profile?.details?.otherName);
+  }, [profile]);
+  // check if user is a visitor
 
-var visitor = userName === user.username ?false :true;
-// console.log("🚀 ~ visitor", visitor)
+  var visitor = userName === user.username ? false : true;
+  // console.log("🚀 ~ visitor", visitor)
 
   const path = `${userName}/*`;
   const max = 30;
@@ -60,9 +61,6 @@ var visitor = userName === user.username ?false :true;
       if (data.error === true) {
         navigate('/profile');
       } else {
-        
-
-  
         try {
           const images = await axios.post(
             `${process.env.REACT_APP_BACKEND_URL}/listImages`,
@@ -105,6 +103,7 @@ var visitor = userName === user.username ?false :true;
             profile={profile}
             visitor={visitor}
             photos={photos.resources}
+            othername={othername}
           />
           <ProfileMenu />
         </div>
@@ -117,10 +116,8 @@ var visitor = userName === user.username ?false :true;
             {/*profile info section  */}
             <div className="profile_grid">
               <div className="profile_left">
-                <Intro detailss={profile.details} 
-                visitor={visitor}
-                />
-                
+                <Intro detailss={profile.details} visitor={visitor} />
+
                 <Photos
                   username={userName}
                   token={user.token}

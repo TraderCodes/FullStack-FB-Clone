@@ -191,7 +191,7 @@
     margin-left: 7%;
   }
 }
-@media (max-width: 620px) {
+@media (max-width: 950px) {
   .left_home {
     display: none;
   }

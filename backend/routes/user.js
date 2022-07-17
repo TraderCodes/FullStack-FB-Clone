@@ -17,6 +17,7 @@ const {
   cancelRequest,
   follow,
   unfollow,
+  acceptRequest,
 } = require('../controllers/user');
 const { authUser } = require('../middlewares/auth');
 const router = express.Router();
@@ -40,4 +41,5 @@ router.put('/addFriend/:id', authUser, addFriend);
 router.put('/cancelRequest/:id', authUser, cancelRequest);
 router.put('/follow/:id', authUser, follow);
 router.put('/unfollow/:id', authUser, unfollow);
+router.put('/acceptRequest/:id', authUser, acceptRequest);
 module.exports = router;

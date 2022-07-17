@@ -343,9 +343,9 @@ exports.cancelRequest = async (req, res) => {
     if (req.user.id !== req.params.id) {
       const sender = await User.findById(req.user.id);
       const receiver = await User.findById(req.params.id);
-      // first check if friend and not in request
+      // if is the req
       if (
-        !receiver.request.includes(sender._id) &&
+        receiver.request.includes(sender._id) &&
         !receiver.friends.includes(sender._id)
       ) {
         await receiver.updateOne({
@@ -402,20 +402,54 @@ exports.unfollow = async (req, res) => {
       const receiver = await User.findById(req.params.id);
       // first check if friend and not in request
       if (
-        !receiver.followers.includes(sender._id) &&
-        !sender.following.includes(receiver._id)
+        receiver.followers.includes(sender._id) &&
+        sender.following.includes(receiver._id)
       ) {
         await receiver.updateOne({
-          $push: { followers: sender._id },
+          $pull: { followers: sender._id },
         });
 
         await sender.updateOne({
-          $push: { following: receiver._id },
+          $pull: { following: receiver._id },
         });
         res.json({ message: 'unFollow success' });
       } else {
         return res.status(400).json({ message: 'Not following' });
       }
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+exports.acceptRequest = async (req, res) => {
+  try {
+    if (req.user.id !== req.params.id) {
+      const receiver = await User.findById(req.user.id);
+      const sender = await User.findById(req.params.id);
+      // first check if friend and not in request
+      if (
+        receiver.followers.includes(sender._id) &&
+        sender.following.includes(receiver._id)
+      ) {
+        await receiver.update({
+          $push: { friends: sender._id, following: sender._id },
+        });
+
+        await sender.update({
+          $push: { friends: receiver._id,followers:receiver._id },
+        });
+        // remove request after sending
+        await sender.updateOne({
+          $pull: { requests: sender._id },
+        });
+        res.json({ message: 'unFollow success' });
+      } else {
+        return res.status(400).json({ message: 'Already friend' });
+      }
+    } else {
+      return res
+        .status(400)
+        .json({ message: "You can't accept a request from  yourself" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

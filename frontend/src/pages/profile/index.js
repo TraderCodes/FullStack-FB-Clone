@@ -90,19 +90,29 @@ export default function Profile({ setPopupVisible }) {
   };
   const profileTop = useRef(null);
   // check height
-  const [height, setHeight] = useState();
   const leftSide = useRef(null);
+  const [height, setHeight] = useState();
   const [leftHeight, setLeftHeight] = useState();
+  const [scrollHeight, setScrollHeight] = useState();
   useEffect(() => {
-    setHeight(profileTop.current.clientHeight + 300);
-    setLeftHeight(leftSide.current.clientHeight + 300);
-  }, [loading]);
+    setHeight(profileTop.current.clientHeight + 343);
+    setLeftHeight(leftSide.current.clientHeight);
+    window.addEventListener('scroll', getScroll, { passive: true });
+    // cleaner function
+    return () => {
+      window.addEventListener('scroll', getScroll, { passive: true });
+    };
+  }, [loading, scrollHeight]);
 
   const check = useMediaQuery({
     query: '(min-width:901px)',
   });
-  console.log('🚀 ~ height', height);
+  // console.log('🚀 ~ height', height);
+  // console.log('🚀 ~ left', leftHeight);
 
+  const getScroll = () => {
+    setScrollHeight(window.pageYOffset);
+  };
   // console.log(profile);
   return (
     <div className="profile">
@@ -129,8 +139,14 @@ export default function Profile({ setPopupVisible }) {
           <div className="bottom_container">
             <PplYouMayKnow />
             {/*profile info section  */}
-            <div className="profile_grid">
-              <div className="profile_left" ref ={leftSide}>
+            <div
+              className={`profile_grid ${
+                check && scrollHeight >= height && leftHeight > 1030
+                  ? 'scrollFixed showLess'
+                  : check && scrollHeight >= height && leftHeight < 1030 && 'scrollFixed showMore'
+              }`}
+            >
+              <div className="profile_left" ref={leftSide}>
                 <Intro detailss={profile.details} visitor={visitor} />
 
                 <Photos

@@ -1,4 +1,4 @@
-*{
+* {
   user-select: none;
 }
 i:hover {
@@ -90,14 +90,12 @@ i:hover {
   display: flex;
   gap: 1rem;
   padding: 1rem 13px 0 13px;
-
 }
 .profile_w_img {
   position: relative;
   z-index: 9;
 }
 .profile_w_bg {
-
   width: 180px;
   height: 180px;
   transform: translateY(-3.6rem);
@@ -194,8 +192,6 @@ i:hover {
 .profile_bottom {
   margin-top: 1px;
   background: var(--bg-secondary);
-
-
 }
 
 .pplumayknow_list {
@@ -212,7 +208,6 @@ i:hover {
   border: 3px solid var(--blue-color);
   padding: 20px 15px;
   margin-top: 10px;
-
 }
 
 .pplumayknow_header {
@@ -270,7 +265,6 @@ i:hover {
   gap: 10px;
 }
 
-
 @media (max-width: 900px) {
   .profile_w_left {
     flex-direction: column;
@@ -299,8 +293,6 @@ i:hover {
   .profile_grid {
     display: grid;
     grid-template-columns: 1fr;
-
-
   }
   .profile_grid .createPost {
     width: 100% !important;
@@ -357,8 +349,6 @@ i:hover {
   font-size: 20px;
   color: var(--color-secondary);
 }
-
-
 
 /* PROFILE PHOTO  */
 .profile_card {
@@ -476,4 +466,21 @@ i:hover {
 .selectCoverBox_link:first-of-type {
   color: var(--blue-color);
   border-bottom: 3px solid var(--blue-color);
+}
+.scrollFixed .profile_left {
+  position: fixed;
+  width: 376.5px;
+}
+.scrollFixed .profile_right {
+  margin-left:387.0px ;
+  width: 527px;
+}
+.showLess .profile_left{
+  bottom: 15px;
+  
+}
+.showMore .profile_left{
+ top:59px;
+
+  
 }

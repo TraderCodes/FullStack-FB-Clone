@@ -436,7 +436,7 @@ exports.acceptRequest = async (req, res) => {
         });
 
         await sender.update({
-          $push: { friends: receiver._id,followers:receiver._id },
+          $push: { friends: receiver._id, followers: receiver._id },
         });
         // remove request after sending
         await sender.updateOne({
@@ -450,6 +450,71 @@ exports.acceptRequest = async (req, res) => {
       return res
         .status(400)
         .json({ message: "You can't accept a request from  yourself" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+exports.unfriend = async (req, res) => {
+  try {
+    if (req.user.id !== req.params.id) {
+      const sender = await User.findById(req.user.id);
+      const receiver = await User.findById(req.params.id);
+      // first check if friend and not in request
+      if (
+        receiver.freinds.includes(sender._id) &&
+        sender.friends.includes(receiver._id)
+      ) {
+        await receiver.update({
+          $pull: {
+            friends: sender._id,
+            following: sender._id,
+            followers: sender._id,
+          },
+        });
+        await sender.update({
+          $pull: {
+            friends: receiver._id,
+            following: receiver._id,
+            followers: receiver._id,
+          },
+        });
+
+        res.json({ message: 'unfriend' });
+      } else {
+        return res.status(400).json({ message: '' });
+      }
+    } else {
+      return res.status(400).json({ message: "You can't unfriend yourself" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+exports.deleteRequest = async (req, res) => {
+  try {
+    if (req.user.id !== req.params.id) {
+      const receiver = await User.findById(req.user.id);
+      const sender = await User.findById(req.params.id);
+      if (receiver.requests.includes(sender._id)) {
+        await receiver.update({
+          $pull: {
+            requests: sender._id,
+            followers: sender._id,
+          },
+        });
+        await sender.update({
+          $pull: {
+            following: receiver._id,
+          },
+        });
+
+        res.json({ message: 'delete request accepted' });
+      } else {
+        return res.status(400).json({ message: 'Already deleted' });
+      }
+    } else {
+      return res.status(400).json({ message: "You can't delete yourself" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { profileReducer } from '../../function/reducer';
@@ -15,7 +15,7 @@ import Post from '../../components/post';
 import Photos from './Photos';
 import Friends from './Friends';
 import Intro from '../../components/intro';
-
+import { useMediaQuery } from 'react-responsive';
 export default function Profile({ setPopupVisible }) {
   const { username } = useParams();
   const [photos, setPhotos] = useState({});
@@ -29,7 +29,7 @@ export default function Profile({ setPopupVisible }) {
     error: '',
     profile: {},
   });
-  
+
   // Call useEffect when name change
   useEffect(() => {
     getProfile();
@@ -88,11 +88,26 @@ export default function Profile({ setPopupVisible }) {
       });
     }
   };
+  const profileTop = useRef(null);
+  // check height
+  const [height, setHeight] = useState();
+  const leftSide = useRef(null);
+  const [leftHeight, setLeftHeight] = useState();
+  useEffect(() => {
+    setHeight(profileTop.current.clientHeight + 300);
+    setLeftHeight(leftSide.current.clientHeight + 300);
+  }, [loading]);
+
+  const check = useMediaQuery({
+    query: '(min-width:901px)',
+  });
+  console.log('🚀 ~ height', height);
+
   // console.log(profile);
   return (
     <div className="profile">
       <Header page="profile" />
-      <div className="profile_top">
+      <div className="profile_top" ref={profileTop}>
         <div className="profile_container">
           <Cover
             cover={profile.cover}
@@ -115,7 +130,7 @@ export default function Profile({ setPopupVisible }) {
             <PplYouMayKnow />
             {/*profile info section  */}
             <div className="profile_grid">
-              <div className="profile_left">
+              <div className="profile_left" ref ={leftSide}>
                 <Intro detailss={profile.details} visitor={visitor} />
 
                 <Photos

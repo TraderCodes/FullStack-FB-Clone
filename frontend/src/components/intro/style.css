@@ -62,7 +62,7 @@
 .details_wrapper {
   padding: 1rem;
   overflow-y: auto;
-  height: 60vh;
+  height: 45vh;
 }
 .details_col {
   display: flex;

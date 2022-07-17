@@ -304,7 +304,7 @@ exports.updateDetails = async (req, res) => {
   }
 };
 
-exports.updateDetails = async (req, res) => {
+exports.addFriends = async (req, res) => {
   try {
     if (req.user.id !== req.params.id) {
       const sender = await User.findById(req.user.id);
@@ -333,6 +333,40 @@ exports.updateDetails = async (req, res) => {
       return res
         .status(400)
         .json({ message: 'you cant send request to yourself' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+exports.cancelRequest = async (req, res) => {
+  try {
+    if (req.user.id !== req.params.id) {
+      const sender = await User.findById(req.user.id);
+      const receiver = await User.findById(req.params.id);
+      // first check if friend and not in request
+      if (
+        !receiver.request.includes(sender._id) &&
+        !receiver.friends.includes(sender._id)
+      ) {
+    
+        await receiver.updateOne({
+          $pull: { request: sender._id },
+        });
+   
+        await receiver.updateOne({
+          $pull: { followers: sender._id },
+        });
+        await sender.updateOne({
+          $pull: { following: sender._id },
+        });
+        res.json({ message: 'friend request deleted' });
+      } else {
+        return res.status(400).json({ message: 'already Canceled' });
+      }
+    } else {
+      return res
+        .status(400)
+        .json({ message: 'failed' });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

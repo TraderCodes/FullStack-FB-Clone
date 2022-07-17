@@ -13,7 +13,8 @@ const {
   changePassword,
   updateDetails,
   getProfile,
-  addFriend
+  addFriend,
+  cancelRequest,
 } = require('../controllers/user');
 const { authUser } = require('../middlewares/auth');
 const router = express.Router();
@@ -33,5 +34,6 @@ router.put('/updateCover', authUser, updateCover);
 router.put('/updateDetails', authUser, updateDetails);
 // router.post('/auth',authUser, auth);
 // add friend
-router.put('/addFriend/:id', authUser, addFriend)
+router.put('/addFriend/:id', authUser, addFriend);
+router.put('/cancelRequest/:id', authUser, cancelRequest);
 module.exports = router;

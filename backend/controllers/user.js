@@ -348,11 +348,10 @@ exports.cancelRequest = async (req, res) => {
         !receiver.request.includes(sender._id) &&
         !receiver.friends.includes(sender._id)
       ) {
-    
         await receiver.updateOne({
           $pull: { request: sender._id },
         });
-   
+
         await receiver.updateOne({
           $pull: { followers: sender._id },
         });
@@ -364,9 +363,59 @@ exports.cancelRequest = async (req, res) => {
         return res.status(400).json({ message: 'already Canceled' });
       }
     } else {
-      return res
-        .status(400)
-        .json({ message: 'failed' });
+      return res.status(400).json({ message: 'failed' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+exports.follow = async (req, res) => {
+  try {
+    if (req.user.id !== req.params.id) {
+      const sender = await User.findById(req.user.id);
+      const receiver = await User.findById(req.params.id);
+      // first check if friend and not in request
+      if (
+        !receiver.followers.includes(sender._id) &&
+        !sender.following.includes(receiver._id)
+      ) {
+        await receiver.updateOne({
+          $push: { followers: sender._id },
+        });
+
+        await sender.updateOne({
+          $push: { following: receiver._id },
+        });
+        res.json({ message: 'Follow success' });
+      } else {
+        return res.status(400).json({ message: 'Already followed' });
+      }
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+exports.unfollow = async (req, res) => {
+  try {
+    if (req.user.id !== req.params.id) {
+      const sender = await User.findById(req.user.id);
+      const receiver = await User.findById(req.params.id);
+      // first check if friend and not in request
+      if (
+        !receiver.followers.includes(sender._id) &&
+        !sender.following.includes(receiver._id)
+      ) {
+        await receiver.updateOne({
+          $push: { followers: sender._id },
+        });
+
+        await sender.updateOne({
+          $push: { following: receiver._id },
+        });
+        res.json({ message: 'unFollow success' });
+      } else {
+        return res.status(400).json({ message: 'Not following' });
+      }
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

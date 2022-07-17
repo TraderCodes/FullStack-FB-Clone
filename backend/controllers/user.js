@@ -286,7 +286,6 @@ exports.updateCover = async (req, res) => {
   }
 };
 
-
 exports.updateDetails = async (req, res) => {
   try {
     const { infos } = req.body;
@@ -300,6 +299,41 @@ exports.updateDetails = async (req, res) => {
       }
     );
     res.json(updated.details);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.updateDetails = async (req, res) => {
+  try {
+    if (req.user.id !== req.params.id) {
+      const sender = await User.findById(req.user.id);
+      const receiver = await User.findById(req.params.id);
+      // first check if friend and not in request
+      if (
+        !receiver.request.includes(sender._id) &&
+        !receiver.friends.includes(sender._id)
+      ) {
+        // update/add id into request
+        await receiver.updateOne({
+          $push: { request: sender._id },
+        });
+        // when send you also follows
+        await receiver.updateOne({
+          $push: { followers: sender._id },
+        });
+        await sender.updateOne({
+          $push: { following: sender._id },
+        });
+        res.json({ message: 'friend request sent' });
+      } else {
+        return res.status(400).json({ message: 'already sent' });
+      }
+    } else {
+      return res
+        .status(400)
+        .json({ message: 'you cant send request to yourself' });
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

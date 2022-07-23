@@ -249,31 +249,7 @@ exports.getProfile = async (req, res) => {
   try {
     const { username } = req.params;
     // find user using username from params except password
-    const user = await User.findById(req.user.id);
     const profile = await User.findOne({ username }).select('-password');
-    // friendship data
-    const friendship = {
-      friends: false,
-      following: false,
-      requestSent: false,
-      requestReceived: false,
-    };
-    if (
-      user.friends.includes(profile._id) &&
-      profile.friends.includes(user._id)
-    ) {
-      friendship.friends = ture;
-    }
-    if (user.following.includes(profile._id)) {
-      friendship.following = true;
-    }
-    if (user.requests.includes(profile._id)) {
-      friendship.requestReceived = true;
-    }
-    if (profile.requests.includes(user._id)) {
-      friendship.requestSent = true;
-    }
-
     if (!profile) {
       return res.json({ error: true });
     }
@@ -286,6 +262,7 @@ exports.getProfile = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 exports.updateProfilePicture = async (req, res) => {
   try {
@@ -328,7 +305,7 @@ exports.updateDetails = async (req, res) => {
   }
 };
 
-exports.addFriends = async (req, res) => {
+exports.addFriend = async (req, res) => {
   try {
     if (req.user.id !== req.params.id) {
       const sender = await User.findById(req.user.id);

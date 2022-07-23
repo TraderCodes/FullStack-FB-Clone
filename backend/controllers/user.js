@@ -262,12 +262,12 @@ exports.getProfile = async (req, res) => {
       return res.json({ error: true });
     }
     // 🔴Bug need to be fixed
-        // if (
-        //   user.friends.includes(profile._id) ||
-        //   profile.friends.includes(user._id)
-        // ) {
-        //   friendship.friends = true;
-        // }
+        if (
+          user.friends.includes(profile._id) ||
+          profile.friends.includes(user._id)
+        ) {
+          friendship.friends = true;
+        }
         if (user.following.includes(profile._id)) {
           friendship.following = true;
         }

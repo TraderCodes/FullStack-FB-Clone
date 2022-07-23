@@ -55,7 +55,7 @@ export default function Friendship() {
         ) : (
           !friendship?.requestSent &&
           !friendship?.requestReceived && (
-            <button className="blue_btn" >
+            <button className="blue_btn">
               <img
                 src="../../../icons/addFriend.png"
                 alt=""
@@ -66,6 +66,41 @@ export default function Friendship() {
           )
         )
       }
+      {friendship?.requestSent ? (
+        <button className="blue_btn">
+          <img
+            src="../../../icons/cancelRequest.png"
+            className="invert"
+            alt=""
+          />
+          <span>Cancel Request</span>
+        </button>
+      ) : (
+        friendship?.requestReceived && (
+          <div className="friends_menu_wrap">
+            <button className="gray_btn" >
+              <img src="../../../icons/friends.png" alt="" />
+              <span>Respond</span>
+            </button>
+            {respondMenu && (
+              <div className="open_cover_menu" ref={menu1}>
+                <div
+                  className="open_cover_menu_item hover1"
+               
+                >
+                  Confirm
+                </div>
+                <div
+                  className="open_cover_menu_item hover1"
+                
+                >
+                  Delete
+                </div>
+              </div>
+            )}
+          </div>
+        )
+      )}
     </div>
   );
 }

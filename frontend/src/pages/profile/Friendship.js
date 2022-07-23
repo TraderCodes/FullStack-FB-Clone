@@ -1,11 +1,14 @@
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
+import useClickOutside from '../../helpers/clickOutside';
 
 export default function Friendship() {
-  const [friendsMenu, setFriendsMenu] = useState(true);
+  const [friendsMenu, setFriendsMenu] = useState(false);
   const menu = useRef(null);
+  useClickOutside(menu, () => setFriendsMenu(false));
+  // useClickOutside(menu1, () => setRespondMenu(false));
 
   const friendship = {
-    friends: true,
+    friends: false,
     following: false,
     requestSent: false,
     requestReceived: false,
@@ -17,7 +20,7 @@ export default function Friendship() {
 
         friendship.friends ? (
           <div className="friends_menu_wrap">
-            <button classNamde="gray_btn">
+            <button className="gray_btn" onClick={() => setFriendsMenu(true)}>
               <img src="../../../icons/friends.png" alt="friends" />
               <span>Friends</span>
             </button>
@@ -32,26 +35,17 @@ export default function Friendship() {
                   Edit Friend list
                 </div>
                 {friendship?.following ? (
-                  <div
-                    className="open_cover_menu_item hover1"
-                
-                  >
+                  <div className="open_cover_menu_item hover1">
                     <img src="../../../icons/unfollowOutlined.png" alt="" />
                     Unfollow
                   </div>
                 ) : (
-                  <div
-                    className="open_cover_menu_item hover1"
-           
-                  >
+                  <div className="open_cover_menu_item hover1">
                     <img src="../../../icons/unfollowOutlined.png" alt="" />
                     Follow
                   </div>
                 )}
-                <div
-                  className="open_cover_menu_item hover1"
-              
-                >
+                <div className="open_cover_menu_item hover1">
                   <i className="unfriend_outlined_icon"></i>
                   Unfriend
                 </div>
@@ -59,7 +53,17 @@ export default function Friendship() {
             )}
           </div>
         ) : (
-          ''
+          !friendship?.requestSent &&
+          !friendship?.requestReceived && (
+            <button className="blue_btn" >
+              <img
+                src="../../../icons/addFriend.png"
+                alt=""
+                className="invert"
+              />
+              <span>Add Friend</span>
+            </button>
+          )
         )
       }
     </div>

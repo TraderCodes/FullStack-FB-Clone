@@ -3,15 +3,19 @@ import useClickOutside from '../../helpers/clickOutside';
 
 export default function Friendship() {
   const [friendsMenu, setFriendsMenu] = useState(false);
+  const [respondMenu, setRespondMenu] = useState(false);
   const menu = useRef(null);
+  const menu1 = useRef(null);
   useClickOutside(menu, () => setFriendsMenu(false));
+  useClickOutside(menu1, () => setRespondMenu(false));
+
   // useClickOutside(menu1, () => setRespondMenu(false));
 
   const friendship = {
     friends: false,
     following: false,
     requestSent: false,
-    requestReceived: false,
+    requestReceived: true,
   };
   return (
     <div className="friendship">
@@ -78,29 +82,41 @@ export default function Friendship() {
       ) : (
         friendship?.requestReceived && (
           <div className="friends_menu_wrap">
-            <button className="gray_btn" >
+            <button className="gray_btn" onClick={() => setRespondMenu(true)}>
               <img src="../../../icons/friends.png" alt="" />
               <span>Respond</span>
             </button>
+            {/* When respond is true only show confirm or delte */}
             {respondMenu && (
               <div className="open_cover_menu" ref={menu1}>
-                <div
-                  className="open_cover_menu_item hover1"
-               
-                >
-                  Confirm
-                </div>
-                <div
-                  className="open_cover_menu_item hover1"
-                
-                >
-                  Delete
-                </div>
+                <div className="open_cover_menu_item hover1">Confirm</div>
+                <div className="open_cover_menu_item hover1">Delete</div>
               </div>
             )}
           </div>
         )
       )}
+      <div className="flex">
+        {friendship?.following ? (
+          <button className="gray_btn" >
+            <img src="../../../icons/follow.png" alt="" />
+            <span>Following</span>
+          </button>
+        ) : (
+          <button className="blue_btn" >
+            <img src="../../../icons/follow.png" className="invert" alt="" />
+            <span>Follow</span>
+          </button>
+        )}
+        <button className={friendship?.friends ? 'blue_btn' : 'gray_btn'}>
+          <img
+            src="../../../icons/message.png"
+            className={friendship?.friends && 'invert'}
+            alt=""
+          />
+          <span>Message</span>
+        </button>
+      </div>
     </div>
   );
 }

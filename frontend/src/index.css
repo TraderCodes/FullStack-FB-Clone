@@ -88,8 +88,24 @@ a {
 }
 .blue_btn:hover {
   filter: brightness(90%);
+    transform: scale(1.01)
 }
+.gray_btn:hover{
+  
+  transform: scale(1.02);
 
+}
+.light_blue_btn:active {
+    transform: translateY(2px);
+}
+.blue_btn:active {
+    transform: translateY(2px);
+    
+}
+.gray_btn:active {
+  background-color: #cdd4cd;
+  transform: translateY(1.5px);
+}
 /* all 0 cover all  screen */
 .blur {
   position: fixed;
@@ -113,7 +129,9 @@ a {
 .hover3:hover {
   background: #d4d6da4a;
   transition: 0.5s;
+
 }
+
 .card {
   height: 500px;
   width: 500px;
@@ -139,6 +157,11 @@ a {
   margin-right: 10px;
   background-color: var(--bg-third);
   cursor: pointer;
+}
+.small_circle:active{
+  
+    transform: translateY(1px);
+
 }
 
 /*----filters---*/

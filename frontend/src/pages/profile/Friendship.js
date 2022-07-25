@@ -81,14 +81,14 @@ export default function Friendship() {
         </button>
       ) : (
         friendship?.requestReceived && (
-          <div className="friends_menu_wrap">
+          <div className="friends_menu_wrap  ">
             <button className="gray_btn" onClick={() => setRespondMenu(true)}>
               <img src="../../../icons/friends.png" alt="" />
               <span>Respond</span>
             </button>
             {/* When respond is true only show confirm or delte */}
             {respondMenu && (
-              <div className="open_cover_menu" ref={menu1}>
+              <div className="open_cover_menu " ref={menu1}>
                 <div className="open_cover_menu_item hover1">Confirm</div>
                 <div className="open_cover_menu_item hover1">Delete</div>
               </div>
@@ -98,12 +98,13 @@ export default function Friendship() {
       )}
       <div className="flex">
         {friendship?.following ? (
-          <button className="gray_btn" >
+          <button className="gray_btn ">
             <img src="../../../icons/follow.png" alt="" />
             <span>Following</span>
           </button>
         ) : (
-          <button className="blue_btn" >
+          // if not follow then show click to follow button
+          <button className="blue_btn ">
             <img src="../../../icons/follow.png" className="invert" alt="" />
             <span>Follow</span>
           </button>

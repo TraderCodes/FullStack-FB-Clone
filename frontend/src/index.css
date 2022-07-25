@@ -86,13 +86,17 @@ a {
   cursor: pointer;
   transition: 0.5s;
 }
+  
+.img:active{
+     transform: scale(0.98)
+}
 .blue_btn:hover {
-  filter: brightness(90%);
-    transform: scale(1.01)
+ 
+    transform: scale(1.04)
 }
 .gray_btn:hover{
   
-  transform: scale(1.02);
+  transform: scale(1.04);
 
 }
 .light_blue_btn:active {

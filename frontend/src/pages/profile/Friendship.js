@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import useClickOutside from '../../helpers/clickOutside';
 
-export default function Friendship() {
+export default function Friendship({friendship}) {
   const [friendsMenu, setFriendsMenu] = useState(false);
   const [respondMenu, setRespondMenu] = useState(false);
   const menu = useRef(null);
@@ -11,18 +11,18 @@ export default function Friendship() {
 
   // useClickOutside(menu1, () => setRespondMenu(false));
 
-  const friendship = {
-    friends: false,
-    following: false,
-    requestSent: false,
-    requestReceived: true,
-  };
+  // const friendship = {
+  //   friends: false,
+  //   following: false,
+  //   requestSent: false,
+  //   requestReceived: true,
+  // };
   return (
     <div className="friendship">
       {
         // 🔴 If Have Friends
 
-        friendship.friends ? (
+        friendship?.friends ? (
           <div className="friends_menu_wrap">
             <button className="gray_btn" onClick={() => setFriendsMenu(true)}>
               <img src="../../../icons/friends.png" alt="friends" />

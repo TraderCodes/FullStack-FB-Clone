@@ -1,13 +1,22 @@
 import { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { addFriend } from '../../function/user';
 import useClickOutside from '../../helpers/clickOutside';
 
-export default function Friendship({friendship}) {
+export default function Friendship({friendship, profileid}) {
+  const {user} = useSelector((state) =>( {...state}));
+
   const [friendsMenu, setFriendsMenu] = useState(false);
   const [respondMenu, setRespondMenu] = useState(false);
   const menu = useRef(null);
   const menu1 = useRef(null);
   useClickOutside(menu, () => setFriendsMenu(false));
   useClickOutside(menu1, () => setRespondMenu(false));
+  const addFriendHandler = async () => {
+    await addFriend(profileid,user.token)
+
+
+  }
 
   // useClickOutside(menu1, () => setRespondMenu(false));
 
@@ -59,7 +68,7 @@ export default function Friendship({friendship}) {
         ) : (
           !friendship?.requestSent &&
           !friendship?.requestReceived && (
-            <button className="blue_btn">
+            <button className="blue_btn" onClick={() => addFriendHandler()}>
               <img
                 src="../../../icons/addFriend.png"
                 alt=""

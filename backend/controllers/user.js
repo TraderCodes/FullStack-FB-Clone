@@ -482,9 +482,8 @@ exports.unfriend = async (req, res) => {
     if (req.user.id !== req.params.id) {
       const sender = await User.findById(req.user.id);
       const receiver = await User.findById(req.params.id);
-      // first check if friend and not in request
       if (
-        receiver.freinds.includes(sender._id) &&
+        receiver.friends.includes(sender._id) &&
         sender.friends.includes(receiver._id)
       ) {
         await receiver.update({
@@ -502,9 +501,9 @@ exports.unfriend = async (req, res) => {
           },
         });
 
-        res.json({ message: 'unfriend' });
+        res.json({ message: 'unfriend request accepted' });
       } else {
-        return res.status(400).json({ message: '' });
+        return res.status(400).json({ message: 'Already not friends' });
       }
     } else {
       return res.status(400).json({ message: "You can't unfriend yourself" });

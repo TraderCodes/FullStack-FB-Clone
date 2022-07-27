@@ -1,10 +1,5 @@
-
-![image](https://user-images.githubusercontent.com/85665271/181254461-766fb841-6e22-4ee2-b247-17ec74a1efce.png)
-
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/85665271/181255006-40cfa8ec-b204-4150-84c2-07fbffdbe395.gif)
 
 
 
-
-https://user-images.githubusercontent.com/85665271/181253232-0a1da94d-5b49-4bd9-9011-a325b3a76841.mp4
-
-
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/85665271/181254663-7cb068d0-3a68-45c0-bd26-a786e92888ad.gif)

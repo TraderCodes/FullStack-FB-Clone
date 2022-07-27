@@ -17,3 +17,5 @@
 
 ## Add/Delete/Cancel/follow Friend feature
 ![ezgif com-gif-maker (7)](https://user-images.githubusercontent.com/85665271/181266177-31ca7910-7974-4da3-9119-4c679f344683.gif)
+# Responsive
+![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/85665271/181269293-95afa4b5-9159-4f79-8b59-88990661d559.gif)

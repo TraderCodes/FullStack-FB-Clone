@@ -14,6 +14,7 @@ export default function Friendship({friendship, profileid}) {
   useClickOutside(menu1, () => setRespondMenu(false));
   const addFriendHandler = async () => {
     await addFriend(profileid,user.token)
+    setFriendship({...friendship,requestSent:true,following:true})
 
 
   }

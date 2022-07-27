@@ -261,9 +261,9 @@ exports.getProfile = async (req, res) => {
     if (!profile) {
       return res.json({ error: true });
     }
-    // 🔴Bug need to be fixed
+
         if (
-          user.friends.includes(profile._id) ||
+          user.friends.includes(profile._id) &&
           profile.friends.includes(user._id)
         ) {
           friendship.friends = true;
@@ -334,30 +334,27 @@ exports.addFriend = async (req, res) => {
     if (req.user.id !== req.params.id) {
       const sender = await User.findById(req.user.id);
       const receiver = await User.findById(req.params.id);
-      // first check if friend and not in request
       if (
-        !receiver.request.includes(sender._id) &&
+        !receiver.requests.includes(sender._id) &&
         !receiver.friends.includes(sender._id)
       ) {
-        // update/add id into request
         await receiver.updateOne({
-          $push: { request: sender._id },
+          $push: { requests: sender._id },
         });
-        // when send you also follows
         await receiver.updateOne({
           $push: { followers: sender._id },
         });
         await sender.updateOne({
-          $push: { following: sender._id },
+          $push: { following: receiver._id },
         });
-        res.json({ message: 'friend request sent' });
+        res.json({ message: 'friend request has  sent' });
       } else {
-        return res.status(400).json({ message: 'already sent' });
+        return res.status(400).json({ message: 'Already sent' });
       }
     } else {
       return res
         .status(400)
-        .json({ message: 'you cant send request to yourself' });
+        .json({ message: "You can't send a request to yourself" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -370,11 +367,11 @@ exports.cancelRequest = async (req, res) => {
       const receiver = await User.findById(req.params.id);
       // if is the req
       if (
-        receiver.request.includes(sender._id) &&
+        receiver.requests.includes(sender._id) &&
         !receiver.friends.includes(sender._id)
       ) {
         await receiver.updateOne({
-          $pull: { request: sender._id },
+          $pull: { requests: sender._id },
         });
 
         await receiver.updateOne({

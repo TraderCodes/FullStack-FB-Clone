@@ -113,7 +113,7 @@ export default function Profile({ setPopupVisible }) {
   const getScroll = () => {
     setScrollHeight(window.pageYOffset);
   };
-  console.log(profile);  
+  // console.log(profile);  
   return (
     <div className="profile">
       <Header page="profile" />
@@ -156,7 +156,7 @@ export default function Profile({ setPopupVisible }) {
                 />
                 <Friends
                   username={userName}
-                  freinds={profile.freinds}
+                  freinds={profile.friends}
                   photos={photos}
                   token={user.token}
                 />

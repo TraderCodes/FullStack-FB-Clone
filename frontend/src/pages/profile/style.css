@@ -437,6 +437,21 @@ i:hover {
   object-fit: cover;
   width: 100%;
 }
+/* profile image under account name  */
+.profile_friend_imgs {
+  display: flex;
+  align-items: center;
+}
+.profile_friend_imgs img {
+  width: 32px;
+  height: 32px;
+  margin-right:3px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px var(--shadow-1);
+}
+.profile_friend_imgs img:hover {
+  filter: brightness(110%);
+}
 /* 🔴*/
 .friendship {
   z-index: 9;

@@ -60,7 +60,9 @@ export default function ProfilePictureInfos({
                     src={friend.picture}
                     alt=""
                     style={{
+                      // as index increase the closer it gets
                       transform: `translateX(${-i * 7}px)`,
+                      // the next image will always be on top of another 
                       zIndex: `${i}`,
                     }}
                   />

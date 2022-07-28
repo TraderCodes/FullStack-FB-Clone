@@ -156,7 +156,7 @@ export default function Profile({ setPopupVisible }) {
                 />
                 <Friends
                   username={userName}
-                  freinds={profile.friends}
+                  friends={profile.friends}
                   photos={photos}
                   token={user.token}
                 />

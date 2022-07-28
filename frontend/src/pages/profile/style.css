@@ -300,6 +300,21 @@ i:hover {
   .bottom_container {
     padding: 20px;
   }
+ 
+  .friendship {
+    transform: translateY(-4rem);
+  }
+  .othername {
+    transform: translateY(-10px);
+  }
+    .profile_friend_count {
+    text-align: center;
+    transform: translateY(-15px);
+  }
+  .profile_friend_imgs {
+    justify-content: center;
+    transform: translateY(-10px);
+  }
 }
 @media (max-width: 650px) {
   .profile_menu_wrap {
@@ -491,4 +506,9 @@ i:hover {
 }
 .showMore .profile_left {
   top: 53px;
+}
+@media (min-width: 900px) {
+  .friendship {
+    transform: translateX(-2rem);
+  }
 }

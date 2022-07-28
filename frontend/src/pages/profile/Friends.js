@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Friends({ friends }) {
   // console.log(friends)
   return (
@@ -19,7 +21,16 @@ export default function Friends({ friends }) {
         {friends &&
           friends
             .slice(0, 9)
-            .map((friend,i) => <div className="profile_photo_card" key={i}></div>)}
+            .map((friend,i) =>  <Link
+              to={`/profile/${friend.username}`}
+              className="profile_photo_card"
+              key={i}
+            >
+              <img src={friend.picture} alt="" />
+              <span>
+                {friend.first_name} {friend.last_name}
+              </span>
+            </Link>)}
       </div>
     </div>
   );

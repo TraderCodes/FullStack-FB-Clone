@@ -110,21 +110,21 @@ export default function Post({ post, user, profile }) {
           <div className="share_count"> share</div>
         </div>
       </div>
-      <div
-        className="post_actions"
-        onMouseOver={() => {
-          setTimeout(() => {
-            setVisible(true);
-          }, 300);
-        }}
-        onMouseLeave={() => {
-          setTimeout(() => {
-            setVisible(false);
-          }, 500);
-        }}
-      >
+      <div className="post_actions ">
         <ReactsPopup visible={visible} setVisible={setVisible} />
-        <div className="post_action hover1">
+        <div
+          className="post_action hover1"
+          onMouseOver={() => {
+            setTimeout(() => {
+              setVisible(true);
+            }, 300);
+          }}
+          onMouseLeave={() => {
+            setTimeout(() => {
+              setVisible(false);
+            }, 500);
+          }}
+        >
           <i className="like_icon"></i>
           <span>Like</span>
         </div>

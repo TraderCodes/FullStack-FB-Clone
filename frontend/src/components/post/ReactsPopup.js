@@ -27,6 +27,9 @@ const reactsArray = [
   },
 ];
 export default function ReactsPopup({ visible, setVisible }) {
+  const reactHandler= async(type)=>{
+    
+  }
   return (
     <>
       {visible && (

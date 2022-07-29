@@ -2,13 +2,13 @@ const React = require('../models/React');
 const User = require('../models/User');
 const mongoose = require('mongoose');
 
-exports.reactPost = async (req, res, next) => {
+exports.reactPost = async (req, res) => {
   try {
     const { postId, react } = req.body;
-    const check = await React.findById({
+    const check = await React.findOne({
       postRef: postId,
       // bellow is from authuser middleware
-      reactBy: mongoose.Type.ObjectId(req.user.id),
+      reactBy: mongoose.Types.ObjectId(req.user.id),
     });
     // if no react in database we creat one
     if (check == null) {
@@ -19,10 +19,7 @@ exports.reactPost = async (req, res, next) => {
       });
       // save react
       await newReact.save();
-      return res.status(200).json({
-        success: true,
-        message: 'success',
-      });
+      
     }
     // if the emote is the same we remove that user emote
     else {

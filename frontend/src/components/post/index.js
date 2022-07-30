@@ -3,14 +3,23 @@ import { Dots, Public } from '../../svg';
 import './style.css';
 import Moment from 'react-moment';
 import ReactsPopup from './ReactsPopup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CreateComment from './CreateComment';
 import PostMenu from './PostMenu';
+import { getReacts } from '../../function/post';
 
 export default function Post({ post, user, profile }) {
   const [visible, setVisible] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-
+  const [reacts, setReacts] = useState();
+  useEffect(() => {
+    getPostReacts();
+  }, [post]);
+  const getPostReacts = async () => {
+    const res = await getReacts(post._id, user.token);
+    setReacts(res);
+    console.log(res);
+  };
   return (
     <div className="post" style={{ width: `${profile && '100%'}` }}>
       <div className="post_header">
@@ -111,7 +120,11 @@ export default function Post({ post, user, profile }) {
         </div>
       </div>
       <div className="post_actions ">
-        <ReactsPopup visible={visible} setVisible={setVisible} postId = {post._id}/>
+        <ReactsPopup
+          visible={visible}
+          setVisible={setVisible}
+          postId={post._id}
+        />
         <div
           className="post_action hover1"
           onMouseOver={() => {

@@ -12,14 +12,16 @@ export default function Post({ post, user, profile }) {
   const [visible, setVisible] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [reacts, setReacts] = useState();
+  const [check, setCheck] = useState();
   useEffect(() => {
     getPostReacts();
   }, [post]);
   const getPostReacts = async () => {
     const res = await getReacts(post._id, user.token);
-    setReacts(res);
-    console.log(res);
+    setReacts(res.reacts);
+    setCheck(res.check);
   };
+
   return (
     <div className="post" style={{ width: `${profile && '100%'}` }}>
       <div className="post_header">
@@ -138,7 +140,16 @@ export default function Post({ post, user, profile }) {
             }, 500);
           }}
         >
-          <i className="like_icon"></i>
+          {check ? (
+            <img
+              src={`../../../reacts/${check}.svg`}
+              alt="cool"
+              className="small_react"
+              style={{ width: '20px' }}
+            />
+          ) : (
+            <i className="like_icon"></i>
+          )}{' '}
           <span>Like</span>
         </div>
         <div className="post_action hover1">

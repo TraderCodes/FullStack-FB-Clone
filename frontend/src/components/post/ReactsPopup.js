@@ -27,23 +27,7 @@ const reactsArray = [
     image: '../../../reacts/angry.gif',
   },
 ];
-export default function ReactsPopup({
-  visible,
-  setVisible,
-  postId,
-  check,
-  setCheck,
-}) {
-  const { user } = useSelector((state) => ({ ...state }));
-  const reactHandler = async (type) => {
-    // get user using useselector
-    reactPost(postId, type, user.token);
-    if (check == type) {
-      setCheck();
-    } else {
-      setCheck(type);
-    }
-  };
+export default function ReactsPopup({ visible, setVisible, reactHandler }) {
   return (
     <>
       {visible && (

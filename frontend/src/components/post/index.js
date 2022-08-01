@@ -6,13 +6,15 @@ import ReactsPopup from './ReactsPopup';
 import { useEffect, useState } from 'react';
 import CreateComment from './CreateComment';
 import PostMenu from './PostMenu';
-import { getReacts } from '../../function/post';
+import { getReacts,reactPost } from '../../function/post';
+// import { reactPost } from '../../../../backend/control、lers/react';
 
 export default function Post({ post, user, profile }) {
   const [visible, setVisible] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [reacts, setReacts] = useState();
   const [check, setCheck] = useState();
+
   useEffect(() => {
     getPostReacts();
   }, [post]);
@@ -21,7 +23,15 @@ export default function Post({ post, user, profile }) {
     setReacts(res.reacts);
     setCheck(res.check);
   };
-
+  const reactHandler = async (type) => {
+    // get user using useselector
+    reactPost(post._id, type, user.token);
+    if (check == type) {
+      setCheck();
+    } else {
+      setCheck(type);
+    }
+  };
   return (
     <div className="post" style={{ width: `${profile && '100%'}` }}>
       <div className="post_header">
@@ -128,6 +138,7 @@ export default function Post({ post, user, profile }) {
           postId={post._id}
           check={check}
           setCheck={setCheck}
+          reactHandler={reactHandler}
         />
         <div
           className="post_action hover1"

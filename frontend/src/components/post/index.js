@@ -152,6 +152,7 @@ export default function Post({ post, user, profile }) {
               setVisible(false);
             }, 500);
           }}
+          onClick={() =>reactHandler(check?check:"Like")}
         >
           {check ? (
             <img

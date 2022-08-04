@@ -49,8 +49,10 @@ exports.getReacts = async (req, res) => {
        let key = react['react'];
        group[key] = group[key] || [];
        group[key].push(react);
+          return group;
+
       }, {});
-       return group;
+        
 
      const reacts = [
        {
@@ -78,15 +80,15 @@ exports.getReacts = async (req, res) => {
          count: newReacts.angry ? newReacts.angry.length : 0,
        },
      ];
-    const reacts = await React.find({ postRef: req.params.id });
+    // const reacts = await React.find({ postRef: req.params.id });
     const check = await React.findOne({
       postRef: req.params.id,
       reactBy: req.user.id,
     });
-    //  const user = await User.findById(req.user.id);
-    //  const checkSaved = user?.savedPosts.find(
-    //    (x) => x.post.toString() === req.params.id
-    //  );
+     const user = await User.findById(req.user.id);
+     const checkSaved = user?.savedPosts.find(
+       (x) => x.post.toString() === req.params.id
+     );
     res.json({
       reacts,
       //   //  check can be undefined

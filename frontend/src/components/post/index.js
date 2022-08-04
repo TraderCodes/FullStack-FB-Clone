@@ -124,7 +124,24 @@ export default function Post({ post, user, profile }) {
       )}
       <div className="post_infos">
         <div className="reacts_count">
-          <div className="reacts_count_imgs"></div>
+          <div className="reacts_count_imgs">
+            {reacts &&
+              reacts
+                .sort((a, b) => {
+                  return b.count - a.count;
+                })
+                .slice(0, 3)
+                .map(
+                  (react, i) =>
+                    react.count > 0 && (
+                      <img
+                        src={`../../../reacts/${react.react}.svg`}
+                        alt=""
+                        key={i}
+                      />
+                    )
+                )}
+          </div>
           <div className="reacts_count_num"></div>
         </div>
         <div className="to_right">
@@ -153,7 +170,7 @@ export default function Post({ post, user, profile }) {
               setVisible(false);
             }, 500);
           }}
-          onClick={() =>reactHandler(check?check:"Like")}
+          onClick={() => reactHandler(check ? check : 'Like')}
         >
           {check ? (
             <img

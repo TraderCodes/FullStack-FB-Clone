@@ -3,7 +3,6 @@ import Picker from 'emoji-picker-react';
 import React from 'react';
 import { comment } from '../../function/post';
 
-
 export default function CreateComment({ user, postId }) {
   const [picker, setPicker] = useState(false);
   const [cursorPosition, setCursorPosition] = useState();
@@ -53,6 +52,7 @@ export default function CreateComment({ user, postId }) {
       if (commentImage != '') {
       } else {
         const comments = await comment(postId, text, ',user.token');
+        console.log(comments);
       }
     }
   };

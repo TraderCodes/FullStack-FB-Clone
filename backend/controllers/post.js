@@ -35,8 +35,8 @@ exports.comment = async (req, res) => {
         },
       },
       { new: true }
-    ).populate('comments', commentBy);
-    res.json(newComment.comments)
+    ).populate('comments.commentBy' ,'picture first_name last_name username');
+    res.json(newComment.comments );
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

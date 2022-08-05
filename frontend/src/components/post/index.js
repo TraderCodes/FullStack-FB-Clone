@@ -6,7 +6,7 @@ import ReactsPopup from './ReactsPopup';
 import { useEffect, useState } from 'react';
 import CreateComment from './CreateComment';
 import PostMenu from './PostMenu';
-import { getReacts,reactPost } from '../../function/post';
+import { getReacts, reactPost } from '../../function/post';
 // import { reactPost } from '../../../../backend/control、lers/react';
 
 export default function Post({ post, user, profile }) {
@@ -14,7 +14,7 @@ export default function Post({ post, user, profile }) {
   const [showMenu, setShowMenu] = useState(false);
   const [reacts, setReacts] = useState();
   const [check, setCheck] = useState();
-  const [ total,setTotal] = useState(0);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     getPostReacts();
@@ -23,7 +23,7 @@ export default function Post({ post, user, profile }) {
     const res = await getReacts(post._id, user.token);
     setReacts(res.reacts);
     setCheck(res.check);
-     setTotal(res.total);
+    setTotal(res.total);
   };
   const reactHandler = async (type) => {
     reactPost(post._id, type, user.token);
@@ -136,7 +136,6 @@ export default function Post({ post, user, profile }) {
           />
         </div>
       ) : (
-
         <div className="post_cover_wrap">
           <img src={post.images[0].url} alt="" />
         </div>
@@ -161,7 +160,7 @@ export default function Post({ post, user, profile }) {
                     )
                 )}
           </div>
-          <div className="reacts_count_num">{total>0&& total}</div>
+          <div className="reacts_count_num">{total > 0 && total}</div>
         </div>
         <div className="to_right">
           <div className="comments_count">comments</div>
@@ -238,7 +237,7 @@ export default function Post({ post, user, profile }) {
       </div>
       <div className="comments_wrap">
         <div className="comments_order"></div>
-        <CreateComment user={user} />
+        <CreateComment user={user} postId={post._id} />
       </div>
       {/* Pass  ID's */}
       {showMenu && (

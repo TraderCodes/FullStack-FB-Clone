@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import Picker from 'emoji-picker-react';
 import React from 'react';
+import { comment } from '../../function/post';
 
-export default function CreateComment({ user }) {
+
+export default function CreateComment({ user, postId }) {
   const [picker, setPicker] = useState(false);
   const [cursorPosition, setCursorPosition] = useState();
   const textRef = useRef(null);
@@ -24,15 +26,14 @@ export default function CreateComment({ user }) {
     const newText = start + emoji + end;
     setText(newText);
     setCursorPosition(start.length + emoji.length);
-
   };
-    const handleImage = (e) => {
+  const handleImage = (e) => {
     let file = e.target.files[0];
     if (
-      file.type !== "image/jpeg" &&
-      file.type !== "image/png" &&
-      file.type !== "image/webp" &&
-      file.type !== "image/gif"
+      file.type !== 'image/jpeg' &&
+      file.type !== 'image/png' &&
+      file.type !== 'image/webp' &&
+      file.type !== 'image/gif'
     ) {
       setError(`${file.name} format is not supported.`);
       return;
@@ -40,12 +41,21 @@ export default function CreateComment({ user }) {
       setError(`${file.name} is too large max 5mb allowed.`);
       return;
     }
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (event) => {
-          setCommentImage(event.target.result);
-        };
-  }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      setCommentImage(event.target.result);
+    };
+  };
+  const handleComment = async (e) => {
+    if (e.key === 'Enter') {
+      // if comment image is empty
+      if (commentImage != '') {
+      } else {
+        const comments = await comment(postId, text, ',user.token');
+      }
+    }
+  };
   return (
     <div className="create_comment_wrap">
       <div className="create_comment">
@@ -79,6 +89,7 @@ export default function CreateComment({ user }) {
             value={text}
             placeholder={'Leave a comment'}
             onChange={(e) => setText(e.target.value)}
+            onKeyUp={handleComment}
           />
           <div
             className="comment_circle_icon hover1 filter1"

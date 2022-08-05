@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import Picker from 'emoji-picker-react';
 import React from 'react';
 import { comment } from '../../function/post';
+import dataURItoBlob from '../../helpers/dataURItoBlob';
+import { uploadImages } from '../../function/uploadImages';
 
 export default function CreateComment({ user, postId }) {
   const [picker, setPicker] = useState(false);
@@ -9,6 +11,7 @@ export default function CreateComment({ user, postId }) {
   const textRef = useRef(null);
   const imageInput = useRef(null);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const [commentImage, setCommentImage] = useState('');
   // const bgRef = useRef(null);
   const [text, setText] = useState('');
@@ -46,13 +49,34 @@ export default function CreateComment({ user, postId }) {
       setCommentImage(event.target.result);
     };
   };
-  const handleComment = async (e) => {
+  const handleComment = async(e) => {
     if (e.key === 'Enter') {
       // if comment image is empty
       if (commentImage != '') {
+        setLoading(true);
+        const img = dataURItoBlob(commentImage);
+
+        // make sure there is no space orelse won't be able to get images from cloudinary
+        const path = `${user.username}/post_Images/${postId}`;
+        let formData = new FormData();
+        formData.append('path', path);
+        formData.append('file', img);
+        const imgComment = await uploadImages(formData, path, user.token);
+        const comments = await comment(
+          postId,
+          text,
+          imgComment[0].url,
+          user.token
+        );
+
+        console.log(comments)
+        setLoading(false);
       } else {
-        const comments = await comment(postId, text, ',user.token');
+        setLoading(true);
+
+        const comments = await comment(postId, text, '', user.token);
         console.log(comments);
+        setLoading(false);
       }
     }
   };

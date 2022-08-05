@@ -21,9 +21,8 @@ exports.getAllPosts = async (req, res) => {
 };
 exports.comment = async (req, res) => {
   try {
-    // get comments image post from body
     const { comment, image, postId } = req.body;
-    let newComment = await Post.findByIdAndUpdate(
+    let newComments = await Post.findByIdAndUpdate(
       postId,
       {
         $push: {
@@ -31,12 +30,15 @@ exports.comment = async (req, res) => {
             comment: comment,
             image: image,
             commentBy: req.user.id,
+            commentAt: new Date(),
           },
         },
       },
-      { new: true }
-    ).populate('comments.commentBy' ,'picture first_name last_name username');
-    res.json(newComment.comments );
+      {
+        new: true,
+      }
+    ).populate('comments.commentBy', 'picture first_name last_name username');
+    res.json(newComments.comments);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

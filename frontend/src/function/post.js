@@ -63,11 +63,16 @@ export const getReacts = async (postId, token) => {
     return error.response.data.message;
   }
 };
-export const comment = async (postId, token, comment, image) => {
+export const comment = async (postId, comment, image, token) => {
   try {
     const { data } = await axios.put(
       `${process.env.REACT_APP_BACKEND_URL}/comment`,
-{postId,comment,image},
+      {
+        postId,
+        comment,
+        image,
+      },
+
       {
         headers: {
           Authorization: `Bearer ${token}`,

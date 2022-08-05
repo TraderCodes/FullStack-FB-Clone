@@ -398,6 +398,7 @@ i{
   font-weight: 600;
   font-size: 14px;
   transform: translateY(-1px);
+  text-transform: capitalize;
 }
 /* EMOJI BACKGROUND */
 .reacts_popup {

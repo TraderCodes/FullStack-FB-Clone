@@ -5,6 +5,5 @@ const router = express.Router();
 
 router.put('/reactPost',authUser,reactPost)
 router.get('/getReacts/:id',authUser,getReacts)
-
 // router.post('/auth',authUser, auth);
 module.exports = router;

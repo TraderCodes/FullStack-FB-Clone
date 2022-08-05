@@ -19,3 +19,10 @@ exports.getAllPosts = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+exports.comment = async (req, res) => {
+  try {
+
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};

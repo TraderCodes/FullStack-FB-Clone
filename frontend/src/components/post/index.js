@@ -196,7 +196,7 @@ export default function Post({ post, user, profile }) {
               src={`../../../reacts/${check}.svg`}
               alt="cool"
               className="small_react"
-              style={{ width: '20px' }}
+              style={{ width: '22px' }}
             />
           ) : (
             <i className="like_icon"></i>

@@ -86,9 +86,7 @@ exports.getReacts = async (req, res) => {
       reactBy: req.user.id,
     });
     // sorting the count
-    reacts.sort((a,b)=>{
-      return b.count - a.count;
-    })
+   
     // const user = await User.findById(req.user.id);
     // const checkSaved = user?.savedPosts.find(
     //   (x) => x.post.toString() === req.params.id

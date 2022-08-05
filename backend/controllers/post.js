@@ -3,7 +3,7 @@ exports.createPost = async (req, res) => {
   try {
     // save to post in module
     const post = await new Post(req.body).save();
-    res.json(post)
+    res.json(post);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -21,7 +21,22 @@ exports.getAllPosts = async (req, res) => {
 };
 exports.comment = async (req, res) => {
   try {
-
+    // get comments image post from body
+    const { comment, image, postId } = req.body;
+    let newComment = await Post.findByIdAndUpdate(
+      postId,
+      {
+        $push: {
+          comments: {
+            comment: comment,
+            image: image,
+            commentBy: req.user.id,
+          },
+        },
+      },
+      { new: true }
+    ).populate('comments', commentBy);
+    res.json(newComment.comments)
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

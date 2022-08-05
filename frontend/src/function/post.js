@@ -25,12 +25,10 @@ export const createPost = async (
     );
     return 'ok';
   } catch (error) {
-    return error.response.data.message; 
+    return error.response.data.message;
   }
 };
-export const reactPost = async (
- postId,react,token
-) => {
+export const reactPost = async (postId, react, token) => {
   try {
     const { data } = await axios.put(
       `${process.env.REACT_APP_BACKEND_URL}/reactPost`,
@@ -54,6 +52,22 @@ export const getReacts = async (postId, token) => {
     const { data } = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/getReacts/${postId}`,
 
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    return error.response.data.message;
+  }
+};
+export const comment = async (postId, token, comment, image) => {
+  try {
+    const { data } = await axios.put(
+      `${process.env.REACT_APP_BACKEND_URL}/comment`,
+{postId,coment,image},
       {
         headers: {
           Authorization: `Bearer ${token}`,

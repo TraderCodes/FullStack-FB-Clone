@@ -6,7 +6,7 @@ import ReactsPopup from './ReactsPopup';
 import { useEffect, useState } from 'react';
 import CreateComment from './CreateComment';
 import PostMenu from './PostMenu';
-import { getReacts, reactPost } from '../../function/post';
+import { comment, getReacts, reactPost } from '../../function/post';
 import Comment from './Comment';
 // import { reactPost } from '../../../../backend/control、lers/react';
 
@@ -16,8 +16,8 @@ export default function Post({ post, user, profile }) {
   const [reacts, setReacts] = useState();
   const [check, setCheck] = useState();
   const [total, setTotal] = useState(0);
-  const [count, setCount] = useState(1);
-  const [comments, setComments] = useState(post?.comments);
+  const [count, setCount] = useState(2);
+  const [comments, setComments] = useState([]);
   useEffect(() => {
     getPostReacts();
   }, [post]);
@@ -171,7 +171,7 @@ export default function Post({ post, user, profile }) {
           <div className="reacts_count_num">{total > 0 && total}</div>
         </div>
         <div className="to_right">
-          <div className="comments_count"> comments</div>
+          <div className="comments_count">{comments.length} comments</div>
           <div className="share_count"> share</div>
         </div>
       </div>

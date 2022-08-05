@@ -84,7 +84,7 @@ function App() {
             <Route path="/profile/:username" element={<Profile setPopupVisible={setPopupVisible}/>} exact />
             <Route
               path="/"
-              element={<Home setPopupVisible={setPopupVisible} posts={posts} />}
+              element={<Home setPopupVisible={setPopupVisible} posts={posts} loading={loading} />}
               exact
             />
             <Route path="/activate/:token" element={<Activate />} exact />

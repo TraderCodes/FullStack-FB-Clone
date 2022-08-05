@@ -11,7 +11,7 @@ import SendVerification from '../../components/home/sendVerification';
 import Post from '../../components/post';
 import { useEffect } from 'react';
 
-export default function Home({ setPopupVisible, posts }) {
+export default function Home({ setPopupVisible, posts ,loading}) {
   // const { user } = useSelector((user) => ({ ...user }));
   const { user } = useSelector((state) => ({ ...state }));
   const [visible, setVisible] = useState(true);
@@ -21,15 +21,15 @@ export default function Home({ setPopupVisible, posts }) {
   const [scrollTop, setScrollTop] = useState(100);
   useEffect(() => {
     // fix background image to fully show
-    const onScroll = (e) => {
-      setScrollTop(e.target.documentElement.scrollTop);
-      setScrolling(e.target.documentElement.scrollTop > scrollTop);
-    };
-    window.addEventListener('scroll', onScroll);
+    // const onScroll = (e) => {
+    //   setScrollTop(e.target.documentElement.scrollTop);
+    //   setScrolling(e.target.documentElement.scrollTop > scrollTop);
+    // };
+    // window.addEventListener('scroll', onScroll);
 
     setHeight(middle.current.clientHeight);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [scrollTop]);
+    // return () => window.removeEventListener('scroll', onScroll);
+  }, [loading,height]);
 
   const el = useRef(null);
   useClickOutside(el, () => {

@@ -21,4 +21,5 @@
 ![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/85665271/181269293-95afa4b5-9159-4f79-8b59-88990661d559.gif)
 
 # Add emoji to post 
-![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/85665271/183017477-b5e8ae04-846c-4704-aabb-76571ee70ffd.gif)
+
+![ezgif com-gif-maker (10)](https://user-images.githubusercontent.com/85665271/183019699-67ee5c58-22ee-4ac6-8b31-9d4e4bb85bd5.gif)

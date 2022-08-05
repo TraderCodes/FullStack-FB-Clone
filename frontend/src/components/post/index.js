@@ -27,6 +27,7 @@ export default function Post({ post, user, profile }) {
     // get user using useselector
     reactPost(post._id, type, user.token);
     if (check == type) {
+      // if check is the same then we remove emoji
       setCheck();
     } else {
       setCheck(type);

@@ -38,46 +38,48 @@ exports.reactPost = async (req, res) => {
 };
 exports.getReacts = async (req, res) => {
   try {
-    const reacts = await React.find({ postRef: req.params.id });
+    const reactsArray = await React.find({ postRef: req.params.id });
 
     /*
     const check1 = reacts.find(
       (x) => x.reactBy.toString() == req.user.id
     )?.react;
     */
-    // const newReacts = reactsArray.reduce((group, react) => {
-    //   let key = react['react'];
-    //   group[key] = group[key] || [];
-    //   group[key].push(react);
-    //   return group;
-    // }, {});
+    const newReacts = reactsArray.reduce((group, react) => {
+      //  "react" is  end object and react is every obeject inside the array
+      //add all the oject 
+      let key = react['react'];
+      group[key] = group[key] || [];
+      group[key].push(react);
+      return group;
+    }, {});
 
-    // const reacts = [
-    //   {
-    //     react: 'like',
-    //     count: newReacts.like ? newReacts.like.length : 0,
-    //   },
-    //   {
-    //     react: 'love',
-    //     count: newReacts.love ? newReacts.love.length : 0,
-    //   },
-    //   {
-    //     react: 'haha',
-    //     count: newReacts.haha ? newReacts.haha.length : 0,
-    //   },
-    //   {
-    //     react: 'sad',
-    //     count: newReacts.sad ? newReacts.sad.length : 0,
-    //   },
-    //   {
-    //     react: 'wow',
-    //     count: newReacts.wow ? newReacts.wow.length : 0,
-    //   },
-    //   {
-    //     react: 'angry',
-    //     count: newReacts.angry ? newReacts.angry.length : 0,
-    //   },
-    // ];
+    const reacts = [
+      {
+        react: 'like',
+        count: newReacts.like ? newReacts.like.length : 0,
+      },
+      {
+        react: 'love',
+        count: newReacts.love ? newReacts.love.length : 0,
+      },
+      {
+        react: 'haha',
+        count: newReacts.haha ? newReacts.haha.length : 0,
+      },
+      {
+        react: 'sad',
+        count: newReacts.sad ? newReacts.sad.length : 0,
+      },
+      {
+        react: 'wow',
+        count: newReacts.wow ? newReacts.wow.length : 0,
+      },
+      {
+        react: 'angry',
+        count: newReacts.angry ? newReacts.angry.length : 0,
+      },
+    ];
 
     const check = await React.findOne({
       postRef: req.params.id,
@@ -97,4 +99,3 @@ exports.getReacts = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-

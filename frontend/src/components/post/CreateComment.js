@@ -4,6 +4,7 @@ import React from 'react';
 import { comment } from '../../function/post';
 import dataURItoBlob from '../../helpers/dataURItoBlob';
 import { uploadImages } from '../../function/uploadImages';
+import { ClipLoader } from 'react-spinners';
 
 export default function CreateComment({ user, postId }) {
   const [picker, setPicker] = useState(false);
@@ -49,7 +50,7 @@ export default function CreateComment({ user, postId }) {
       setCommentImage(event.target.result);
     };
   };
-  const handleComment = async(e) => {
+  const handleComment = async (e) => {
     if (e.key === 'Enter') {
       // if comment image is empty
       if (commentImage != '') {
@@ -69,14 +70,18 @@ export default function CreateComment({ user, postId }) {
           user.token
         );
 
-        console.log(comments)
+        console.log(comments);
         setLoading(false);
+        setText('');
+        setCommentImage('');
       } else {
         setLoading(true);
 
         const comments = await comment(postId, text, '', user.token);
         console.log(comments);
         setLoading(false);
+        setText('');
+        setCommentImage('');
       }
     }
   };
@@ -115,6 +120,10 @@ export default function CreateComment({ user, postId }) {
             onChange={(e) => setText(e.target.value)}
             onKeyUp={handleComment}
           />
+          <div className="comment_circle" style={{ marginTop: '5px' }}>
+            <ClipLoader size={20} color="#1876f2" loading={loading} />
+          </div>
+
           <div
             className="comment_circle_icon hover1 filter1"
             onClick={() => setPicker((prev) => !prev)}

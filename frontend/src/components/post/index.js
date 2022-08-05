@@ -14,6 +14,7 @@ export default function Post({ post, user, profile }) {
   const [showMenu, setShowMenu] = useState(false);
   const [reacts, setReacts] = useState();
   const [check, setCheck] = useState();
+  const [ total,setTotal] = useState(0);
 
   useEffect(() => {
     getPostReacts();
@@ -22,13 +23,15 @@ export default function Post({ post, user, profile }) {
     const res = await getReacts(post._id, user.token);
     setReacts(res.reacts);
     setCheck(res.check);
+     setTotal(res.total);
   };
   const reactHandler = async (type) => {
     // get user using useselector
     reactPost(post._id, type, user.token);
     if (check == type) {
-      // if check is the same then we remove emoji
+      // if check is the same then we remove
       setCheck();
+     
     } else {
       setCheck(type);
     }
@@ -143,7 +146,7 @@ export default function Post({ post, user, profile }) {
                     )
                 )}
           </div>
-          <div className="reacts_count_num"></div>
+          <div className="reacts_count_num">{total>0&& total}</div>
         </div>
         <div className="to_right">
           <div className="comments_count">comments</div>

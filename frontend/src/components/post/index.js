@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import CreateComment from './CreateComment';
 import PostMenu from './PostMenu';
 import { getReacts, reactPost } from '../../function/post';
+import Comment from './Comment';
 // import { reactPost } from '../../../../backend/control、lers/react';
 
 export default function Post({ post, user, profile }) {
@@ -55,9 +56,9 @@ export default function Post({ post, user, profile }) {
       }
     }
   };
-    // const showMore = () => {
-    //   setCount((prev) => prev + 3);
-    // };
+    const showMore = () => {
+      setCount((prev) => prev + 3);
+    };
   return (
     <div className="post" style={{ width: `${profile && '100%'}` }}>
       <div className="post_header">
@@ -247,10 +248,10 @@ export default function Post({ post, user, profile }) {
         <CreateComment
           user={user}
           postId={post._id}
-          // setComments={setComments}
-          // setCount={setCount}
+          setComments={setComments}
+          setCount={setCount}
         />
-        {/* {comments &&
+        {comments &&
           comments
             .sort((a, b) => {
               return new Date(b.commentAt) - new Date(a.commentAt);
@@ -261,7 +262,7 @@ export default function Post({ post, user, profile }) {
           <div className="view_comments" onClick={() => showMore()}>
             View more comments
           </div>
-        )} */}
+        )}
       </div>
       {/* Pass  ID's */}
       {showMenu && (

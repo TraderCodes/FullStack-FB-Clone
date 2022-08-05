@@ -67,7 +67,7 @@ export const comment = async (postId, token, comment, image) => {
   try {
     const { data } = await axios.put(
       `${process.env.REACT_APP_BACKEND_URL}/comment`,
-{postId,coment,image},
+{postId,comment,image},
       {
         headers: {
           Authorization: `Bearer ${token}`,

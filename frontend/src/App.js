@@ -75,7 +75,7 @@ function App() {
       <div>
         {/* when user and popup is true*/}
         {user && popupVisible && (
-          <CreatePostPopup user={user} setPopupVisible={setPopupVisible} />
+          <CreatePostPopup user={user} setPopupVisible={setPopupVisible} dispatch = {dispatch} posts={posts} />
         )}
         <Routes>
           <Route element={<LoggedInRoutes />}>

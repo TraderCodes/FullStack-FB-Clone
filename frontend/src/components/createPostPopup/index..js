@@ -10,7 +10,12 @@ import { createPost } from '../../function/post';
 import PostError from './PostError';
 import dataURItoBlob from '../../helpers/dataURItoBlob';
 import { uploadImages } from '../../function/uploadImages';
-export default function CreatePostPopup({ user, setPopupVisible }) {
+export default function CreatePostPopup({
+  user,
+  setPopupVisible,
+  posts,
+  dispatch,
+}) {
   const [text, setText] = useState('');
   const [showPrev, setShowPrev] = useState(false);
   const [picker, setPicker] = useState(false);
@@ -37,14 +42,18 @@ export default function CreatePostPopup({ user, setPopupVisible }) {
         user.token
       );
       setLoading(false);
-      if (response === 'ok') {
+      if (response.status === 'ok') {
+        dispatch({
+          type: 'POSTS_SUCCESS',
+          payload: [response.data, ...posts],
+        });
         setBackground('');
         setText('');
         setPopupVisible(false);
       } else {
         setPopupVisible(response);
       }
-    }else if (images && images.length) {
+    } else if (images && images.length) {
       setLoading(true);
       const postImages = images.map((img) => {
         return dataURItoBlob(img);
@@ -66,7 +75,11 @@ export default function CreatePostPopup({ user, setPopupVisible }) {
         user.token
       );
       setLoading(false);
-      if (res === 'ok') {
+      if (res.status === 'ok') {
+        dispatch({
+          type: 'POSTS_SUCCESS',
+          payload: [res.data, ...posts],
+        });
         setText('');
         setImages('');
         setPopupVisible(false);
@@ -84,8 +97,14 @@ export default function CreatePostPopup({ user, setPopupVisible }) {
         user.token
       );
       setLoading(false);
-      if (response === 'ok') {
+      if (response.status === 'ok') {
+        dispatch({
+          type: 'POSTS_SUCCESS',
+          payload: [response.data, ...posts],
+        });
+
         setBackground('');
+
         setText('');
         setPopupVisible(false);
       } else {
@@ -95,8 +114,6 @@ export default function CreatePostPopup({ user, setPopupVisible }) {
       console.log('nothing');
     }
   };
-
-
 
   // console.log(images)
   // console.log(text);

@@ -3,6 +3,7 @@ exports.createPost = async (req, res) => {
   try {
     // save to post in module
     const post = await new Post(req.body).save();
+    await post.populate("user",'first_name last_name cover picture') 
     res.json(post);
   } catch (error) {
     return res.status(500).json({ message: error.message });

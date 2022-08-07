@@ -12,6 +12,7 @@ export default function PostMenu({
   token,
   postId,
   images,
+  postRef,
 }) {
   // compaire useId with postid
   const [test, setTest] = useState(postUserId === userId ? true : false);
@@ -24,7 +25,10 @@ export default function PostMenu({
     });
   };
   const deleteHandler = async () => {
-    deletePost(postId, token);
+    const res = await deletePost(postId, token);
+    if (res.status === 'ok') {
+      postRef.current.remove();
+    }
   };
   return (
     <ul className="post_menu" ref={menu}>

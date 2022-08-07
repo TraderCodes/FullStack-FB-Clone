@@ -3,7 +3,7 @@ import { Dots, Public } from '../../svg';
 import './style.css';
 import Moment from 'react-moment';
 import ReactsPopup from './ReactsPopup';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CreateComment from './CreateComment';
 import PostMenu from './PostMenu';
 import { comment, getReacts, reactPost } from '../../function/post';
@@ -59,8 +59,11 @@ export default function Post({ post, user, profile }) {
     const showMore = () => {
       setCount((prev) => prev + 3);
     };
+    
+    // useref for deletepost refresh 
+    const postRef = useRef(null)
   return (
-    <div className="post" style={{ width: `${profile && '100%'}` }}>
+    <div className="post" style={{ width: `${profile && '100%'}` }} ref={postRef}>
       <div className="post_header">
         <Link
           to={`/profile/${post.user.username}`}
@@ -275,6 +278,7 @@ export default function Post({ post, user, profile }) {
           images= {post.images}
           postId = {post._id}
           token={user.token}
+          postRef = {postRef}
         />
       )}
     </div>

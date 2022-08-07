@@ -273,6 +273,8 @@ export default function Post({ post, user, profile }) {
           imagesLength={post?.images?.length}
           setShowMenu={setShowMenu}
           images= {post.images}
+          postId = {post._id}
+          token={user.token}
         />
       )}
     </div>

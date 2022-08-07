@@ -2,23 +2,30 @@ import { useRef, useState } from 'react';
 import MenuItem from './MenuItem';
 import useOnClickOutside from '../../helpers/clickOutside';
 import { saveAs } from 'file-saver';
+import { deletePost } from '../../function/post';
+
 export default function PostMenu({
   postUserId,
   userId,
   imagesLength,
   setShowMenu,
-  images
+  token,
+  postId,
+  images,
 }) {
   // compaire useId with postid
   const [test, setTest] = useState(postUserId === userId ? true : false);
 
   const menu = useRef(null);
   useOnClickOutside(menu, () => setShowMenu(false));
-  const downloadImages = async()=>{
+  const downloadImages = async () => {
     images.map((img) => {
-      saveAs(img.url,'image.jpg')
-    })
-  }
+      saveAs(img.url, 'image.jpg');
+    });
+  };
+  const deleteHandler = async () => {
+    deletePost(postId, token);
+  };
   return (
     <ul className="post_menu" ref={menu}>
       {test && <MenuItem icon="pin_icon" title="Pin Post" />}
@@ -61,11 +68,13 @@ export default function PostMenu({
       )}
       {/* {test && <MenuItem icon="archive_icon" title="Move to archive" />} */}
       {test && (
-        <MenuItem
-          icon="trash_icon"
-          title="Move to trash"
-          subtitle="items in your trash are deleted after 30 days"
-        />
+        <div onClick={() => deleteHandler()}>
+          <MenuItem
+            icon="trash_icon"
+            title="Move to trash"
+            subtitle="items in your trash are deleted after 30 days"
+          />
+        </div>
       )}
       {!test && <div className="line"></div>}
       {/* {!test && (

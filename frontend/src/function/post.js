@@ -23,7 +23,7 @@ export const createPost = async (
         },
       }
     );
-    return {status:'ok', data};
+    return { status: 'ok', data };
   } catch (error) {
     return error.response.data.message;
   }
@@ -72,6 +72,22 @@ export const comment = async (postId, comment, image, token) => {
         comment,
         image,
       },
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    return error.response.data.message;
+  }
+};
+export const deletePost = async (postId, token) => {
+  try {
+    const { data } = await axios.delete(
+      `${process.env.REACT_APP_BACKEND_URL}/deletePost/${postId}`,
 
       {
         headers: {

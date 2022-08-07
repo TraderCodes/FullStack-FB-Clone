@@ -263,6 +263,7 @@ export default function Post({ post, user, profile }) {
             View more comments
           </div>
         )}
+        
       </div>
       {/* Pass  ID's */}
       {showMenu && (
@@ -271,6 +272,7 @@ export default function Post({ post, user, profile }) {
           postUserId={post.user._id}
           imagesLength={post?.images?.length}
           setShowMenu={setShowMenu}
+          images= {post.images}
         />
       )}
     </div>

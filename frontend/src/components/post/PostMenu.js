@@ -1,17 +1,24 @@
-import { useRef, useState } from "react";
-import MenuItem from "./MenuItem";
-import useOnClickOutside from "../../helpers/clickOutside";
+import { useRef, useState } from 'react';
+import MenuItem from './MenuItem';
+import useOnClickOutside from '../../helpers/clickOutside';
+import { saveAs } from 'file-saver';
 export default function PostMenu({
   postUserId,
   userId,
   imagesLength,
   setShowMenu,
+  images
 }) {
-  // compaire useId with postid 
+  // compaire useId with postid
   const [test, setTest] = useState(postUserId === userId ? true : false);
-  
+
   const menu = useRef(null);
   useOnClickOutside(menu, () => setShowMenu(false));
+  const downloadImages = async()=>{
+    images.map((img) => {
+      saveAs(img.url,'image.jpg')
+    })
+  }
   return (
     <ul className="post_menu" ref={menu}>
       {test && <MenuItem icon="pin_icon" title="Pin Post" />}
@@ -31,7 +38,12 @@ export default function PostMenu({
           title="Turn on notifications for this post"
         />
       )} */}
-      {imagesLength && <MenuItem icon="download_icon" title="Download" />}
+      {imagesLength && (
+        <div onClick={() => downloadImages()}>
+          <MenuItem icon="download_icon" title="Download" />
+        </div>
+      )}
+
       {imagesLength && (
         <MenuItem icon="fullscreen_icon" title="Enter Fullscreen" />
       )}

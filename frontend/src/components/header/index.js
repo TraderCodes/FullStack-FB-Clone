@@ -24,7 +24,7 @@ import UserMenu from './userMenu/index.js';
 export { useSelector } from 'react-redux';
 // added code.js into models which is saved into database
 
-export default function Header({ page }) {
+export default function Header({ page, getAllPosts }) {
   const { user } = useSelector((user) => ({ ...user }));
   const color = '#65676b';
   const [showSearchMenu, setShowSearchMenu] = useState(false);
@@ -62,6 +62,7 @@ export default function Header({ page }) {
           to="/"
           className={`middle_icon ${page === 'home' ? 'active' : 'hover1'}`}
           color={color}
+          onClick={() => getAllPosts()}
         >
           {page === 'home' ? <HomeActive /> : <Home color={color} />}
         </Link>

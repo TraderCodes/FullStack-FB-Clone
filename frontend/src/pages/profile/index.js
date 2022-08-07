@@ -127,7 +127,7 @@ export default function Profile({ getAllPosts }) {
           profile
         />
       )}
-      <Header page="profile" />
+      <Header page="profile" getAllPosts={getAllPosts} />
       <div className="profile_top" ref={profileTop}>
         <div className="profile_container">
           <Cover

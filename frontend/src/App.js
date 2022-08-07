@@ -97,7 +97,12 @@ function App() {
             {/* when entered with id we compare to BackE to check if user exists */}
             <Route
               path="/profile/:username"
-              element={<Profile setPopupVisible={setPopupVisible} />}
+              element={
+                <Profile
+                  setPopupVisible={setPopupVisible}
+                  getAllPosts={getAllPosts}
+                />
+              }
               exact
             />
             <Route
@@ -107,6 +112,7 @@ function App() {
                   setPopupVisible={setPopupVisible}
                   posts={posts}
                   loading={loading}
+                  getAllPosts={getAllPosts}
                 />
               }
               exact

@@ -11,7 +11,7 @@ import SendVerification from '../../components/home/sendVerification';
 import Post from '../../components/post';
 import { useEffect } from 'react';
 
-export default function Home({ setPopupVisible, posts ,loading}) {
+export default function Home({ setPopupVisible, posts ,loading,getAllPosts}) {
   // const { user } = useSelector((user) => ({ ...user }));
   const { user } = useSelector((state) => ({ ...state }));
   const [visible, setVisible] = useState(true);
@@ -38,7 +38,7 @@ export default function Home({ setPopupVisible, posts ,loading}) {
   });
   return (
     <div className="home" style={{ height: `${height + 70}px` }}>
-      <Header page="home"/>
+      <Header page="home" getAllPosts={getAllPosts}/>
       <LeftHome user={user} />
       <div className="home_middle" ref={middle}>
         <Stories />

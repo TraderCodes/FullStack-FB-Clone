@@ -16,7 +16,9 @@ import Photos from './Photos';
 import Friends from './Friends';
 import Intro from '../../components/intro';
 import { useMediaQuery } from 'react-responsive';
-export default function Profile({ setPopupVisible }) {
+import CreatePostPopup from '../../components/createPostPopup/index.';
+export default function Profile({ getAllPosts }) {
+  const [popupVisible, setPopupVisible] = useState(false);
   const { username } = useParams();
   const [photos, setPhotos] = useState({});
   const [othername, setOthername] = useState();
@@ -113,9 +115,18 @@ export default function Profile({ setPopupVisible }) {
   const getScroll = () => {
     setScrollHeight(window.pageYOffset);
   };
-  // console.log(profile);  
+  // console.log(profile);
   return (
     <div className="profile">
+      {popupVisible && (
+        <CreatePostPopup
+          user={user}
+          setPopupVisible={setPopupVisible}
+          dispatch={dispatch}
+          posts={profile?.posts}
+          profile
+        />
+      )}
       <Header page="profile" />
       <div className="profile_top" ref={profileTop}>
         <div className="profile_container">
@@ -143,7 +154,10 @@ export default function Profile({ setPopupVisible }) {
               className={`profile_grid ${
                 check && scrollHeight >= height && leftHeight > 1030
                   ? 'scrollFixed showLess'
-                  : check && scrollHeight >= height && leftHeight < 1030 && 'scrollFixed showMore'
+                  : check &&
+                    scrollHeight >= height &&
+                    leftHeight < 1030 &&
+                    'scrollFixed showMore'
               }`}
             >
               <div className="profile_left" ref={leftSide}>

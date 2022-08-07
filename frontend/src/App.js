@@ -75,16 +75,40 @@ function App() {
       <div>
         {/* when user and popup is true*/}
         {user && popupVisible && (
-          <CreatePostPopup user={user} setPopupVisible={setPopupVisible} dispatch = {dispatch} posts={posts} />
+          <CreatePostPopup
+            user={user}
+            setPopupVisible={setPopupVisible}
+            dispatch={dispatch}
+            posts={posts}
+          />
         )}
         <Routes>
           <Route element={<LoggedInRoutes />}>
-            <Route path="/profile" element={<Profile setPopupVisible={setPopupVisible} />} exact />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  setPopupVisible={setPopupVisible}
+                  getAllPosts={getAllPosts}
+                />
+              }
+              exact
+            />
             {/* when entered with id we compare to BackE to check if user exists */}
-            <Route path="/profile/:username" element={<Profile setPopupVisible={setPopupVisible}/>} exact />
+            <Route
+              path="/profile/:username"
+              element={<Profile setPopupVisible={setPopupVisible} />}
+              exact
+            />
             <Route
               path="/"
-              element={<Home setPopupVisible={setPopupVisible} posts={posts} loading={loading} />}
+              element={
+                <Home
+                  setPopupVisible={setPopupVisible}
+                  posts={posts}
+                  loading={loading}
+                />
+              }
               exact
             />
             <Route path="/activate/:token" element={<Activate />} exact />

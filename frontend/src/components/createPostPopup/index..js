@@ -15,6 +15,7 @@ export default function CreatePostPopup({
   setPopupVisible,
   posts,
   dispatch,
+  profile
 }) {
   const [text, setText] = useState('');
   const [showPrev, setShowPrev] = useState(false);
@@ -44,7 +45,7 @@ export default function CreatePostPopup({
       setLoading(false);
       if (response.status === 'ok') {
         dispatch({
-          type: 'POSTS_SUCCESS',
+          type: profile? 'PROFILE_POSTS':'POSTS_SUCCESS',
           payload: [response.data, ...posts],
         });
         setBackground('');
@@ -77,7 +78,7 @@ export default function CreatePostPopup({
       setLoading(false);
       if (res.status === 'ok') {
         dispatch({
-          type: 'POSTS_SUCCESS',
+          type: profile ? 'PROFILE_POSTS' : 'POSTS_SUCCESS',
           payload: [res.data, ...posts],
         });
         setText('');
@@ -99,7 +100,7 @@ export default function CreatePostPopup({
       setLoading(false);
       if (response.status === 'ok') {
         dispatch({
-          type: 'POSTS_SUCCESS',
+          type: profile ? 'PROFILE_POSTS' : 'POSTS_SUCCESS',
           payload: [response.data, ...posts],
         });
 

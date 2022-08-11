@@ -379,9 +379,9 @@ exports.cancelRequest = async (req, res) => {
         await sender.updateOne({
           $pull: { following: sender._id },
         });
-        res.json({ message: "you successfully canceled request" });
+        res.json({ message: 'you successfully canceled request' });
       } else {
-        return res.status(400).json({ message: "Already Canceled" });
+        return res.status(400).json({ message: 'Already Canceled' });
       }
     } else {
       return res
@@ -408,9 +408,9 @@ exports.follow = async (req, res) => {
         await sender.updateOne({
           $push: { following: receiver._id },
         });
-        res.json({ message: "follow success" });
+        res.json({ message: 'follow success' });
       } else {
-        return res.status(400).json({ message: "Already following" });
+        return res.status(400).json({ message: 'Already following' });
       }
     } else {
       return res.status(400).json({ message: "You can't follow yourself" });
@@ -435,9 +435,9 @@ exports.unfollow = async (req, res) => {
         await sender.updateOne({
           $pull: { following: receiver._id },
         });
-        res.json({ message: "unfollow success" });
+        res.json({ message: 'unfollow success' });
       } else {
-        return res.status(400).json({ message: "Already not following" });
+        return res.status(400).json({ message: 'Already not following' });
       }
     } else {
       return res.status(400).json({ message: "You can't unfollow yourself" });
@@ -461,9 +461,9 @@ exports.acceptRequest = async (req, res) => {
         await receiver.updateOne({
           $pull: { requests: sender._id },
         });
-        res.json({ message: "friend request accepted" });
+        res.json({ message: 'friend request accepted' });
       } else {
-        return res.status(400).json({ message: "Already friends" });
+        return res.status(400).json({ message: 'Already friends' });
       }
     } else {
       return res
@@ -498,9 +498,9 @@ exports.unfriend = async (req, res) => {
           },
         });
 
-        res.json({ message: "unfriend request accepted" });
+        res.json({ message: 'unfriend request accepted' });
       } else {
-        return res.status(400).json({ message: "Already not friends" });
+        return res.status(400).json({ message: 'Already not friends' });
       }
     } else {
       return res.status(400).json({ message: "You can't unfriend yourself" });
@@ -527,13 +527,24 @@ exports.deleteRequest = async (req, res) => {
           },
         });
 
-        res.json({ message: "delete request accepted" });
+        res.json({ message: 'delete request accepted' });
       } else {
-        return res.status(400).json({ message: "Already deleted" });
+        return res.status(400).json({ message: 'Already deleted' });
       }
     } else {
       return res.status(400).json({ message: "You can't delete yourself" });
     }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+exports.search = async (req, res) => {
+  try {
+    const searchTerm = req.paras.searchTerm;
+    const results = await User.find({ $text: { $search: searchTerm } }).select(
+      'first_name last_name username picture'
+    );
+    res.json(results);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

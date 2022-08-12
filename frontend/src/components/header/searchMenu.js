@@ -27,7 +27,7 @@ export default function SearchMenu({ color, setShowSearchMenu, token }) {
       setResults(res);
     }
   };
-  console.log(results);
+  // console.log(results);
   return (
     <div className="header_left search_area scrollbar " ref={menu}>
       <div className="search_wrap">
@@ -63,11 +63,10 @@ export default function SearchMenu({ color, setShowSearchMenu, token }) {
       <div className="search_results scrollbar">
         {results &&
           results.map((user) => (
-            <Link to={`/profile/${user.username}`} className="search_user_item">
+            <Link to={`/profile/${user.username}`} className="search_user_item hover1" >
               <img src={user.picture} alt="" />
               <span>
-                {user.first_name}
-                {user.last_name}
+                {user.first_name} {user.last_name}
               </span>
             </Link>
             

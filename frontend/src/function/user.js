@@ -178,7 +178,7 @@ export const addToSearchHistory = async (searchUser, token) => {
   try {
     const { data } = await axios.put(
       `${process.env.REACT_APP_BACKEND_URL}/addToSearchHistory`,
-      { searchUser },
+      {searchUser},
 
       {
         headers: {

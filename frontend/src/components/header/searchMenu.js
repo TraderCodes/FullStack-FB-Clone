@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { addToHistorysearch, search } from '../../function/user';
+import { addToHistorysearch, addToSearchHistory, search } from '../../function/user';
 import useClickOutside from '../../helpers/clickOutside';
 import { Return, Search } from '../../svg';
 import './style.css';

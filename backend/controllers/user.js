@@ -557,7 +557,7 @@ exports.addToSearchHistory = async (req, res) => {
       user: searchUser,
       createdAt: new Date(),
     };
-    const user = await User.findByIdz(req.body.user);
+    const user = await User.findById(req.body.user);
     // check if user have search user
     const check = user.search.find((x) => x.user.toString() === searchUser);
 
@@ -569,7 +569,7 @@ exports.addToSearchHistory = async (req, res) => {
           'search._id': check._id,
         },
         {
-          $set: { 'search.$.createdAt': new Date() },
+          $set: {'search.$.createdAt': new Date() },
         }
       );
     } else {

@@ -27,9 +27,11 @@ export default function SearchMenu({ color, setShowSearchMenu, token }) {
       setResults(res);
     }
   };
-  const addToHistorysearchHandler = async() =>{
-    addToHistorysearchHistory
-  }
+  const addToSearchHistoryHandler = async (searchUser) => {
+    // searchUser is the user.id on click
+    // update the date base on when the person click on his profile
+    const res = await addToSearchHistory(searchUser, token);
+  };
   // console.log(results);
   return (
     <div className="header_left search_area scrollbar " ref={menu}>
@@ -69,7 +71,7 @@ export default function SearchMenu({ color, setShowSearchMenu, token }) {
             <Link
               to={`/profile/${user.username}`}
               className="search_user_item hover1"
-              onClick={() => addToSearchHistory(user._id)}
+              onClick={() => addToSearchHistoryHandler(user._id)}
             >
               <img src={user.picture} alt="" />
               <span>

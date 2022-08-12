@@ -496,15 +496,21 @@ header {
   border-radius: 10px;
   cursor: pointer;
 }
-.search_user_item img{
-  width:36px;
+.search_user_item img {
+  width: 36px;
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
 }
-.search_user_item span{
+.search_user_item span {
   font-weight: 600;
   font-size: 15px;
+}
+.search_results {
+  width: 100%;
+  max-height: 3 0vh;
+  /* enable scrolling IMPORTANT  */
+  overflow-y: auto;
 }
 /*----Active header----*/
 @media (max-width: 1295px) {

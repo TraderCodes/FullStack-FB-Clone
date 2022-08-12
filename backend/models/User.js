@@ -100,7 +100,8 @@ const userSchema = new mongoose.Schema(
     ],
     search: [
       {
-        user: { type: ObjectId, ref: 'User' },
+        user: { type: ObjectId, ref: 'User' , required: true},
+        createdAt: { type: Date, required: true },
       },
     ],
 
@@ -148,7 +149,7 @@ const userSchema = new mongoose.Schema(
         },
         savedAt: {
           type: Date,
-         required: true,
+          required: true,
         },
       },
     ],

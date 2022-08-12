@@ -20,7 +20,8 @@ const {
   acceptRequest,
   unfriend,
   deleteRequest,
-  search
+  search,
+  addToHistorysearch
 } = require('../controllers/user');
 const { authUser } = require('../middlewares/auth');
 const router = express.Router();
@@ -49,5 +50,7 @@ router.put('/unfollow/:id', authUser, unfollow);
 router.put('/acceptRequest/:id', authUser, acceptRequest);
 router.put('/unfriend/:id', authUser, unfriend);
 router.put('/deleteRequest/:id', authUser, deleteRequest);
-router.post('/search/:searchTerm', authUser, search)
+router.post('/search/:searchTerm', authUser, search);
+// update = put
+router.put('/addToSearchHistory', authUser, addToHistorysearch);
 module.exports = router;

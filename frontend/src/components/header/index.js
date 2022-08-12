@@ -54,7 +54,11 @@ export default function Header({ page, getAllPosts }) {
       </div>
       {/*  SEARCH SECTION */}
       {showSearchMenu && (
-        <SearchMenu color={color} setShowSearchMenu={setShowSearchMenu} />
+        <SearchMenu
+          color={color}
+          setShowSearchMenu={setShowSearchMenu}
+          token={user.token}
+        />
       )}
       {/* MIDDLE MENU */}
       <div className="header_middle">

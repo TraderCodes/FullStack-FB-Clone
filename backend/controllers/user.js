@@ -540,7 +540,7 @@ exports.deleteRequest = async (req, res) => {
 };
 exports.search = async (req, res) => {
   try {
-    const searchTerm = req.paras.searchTerm;
+    const searchTerm = req.params.searchTerm;
     const results = await User.find({ $text: { $search: searchTerm } }).select(
       'first_name last_name username picture'
     );
